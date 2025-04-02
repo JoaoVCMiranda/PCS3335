@@ -41,14 +41,19 @@ begin
 	CTX : tx
 	port map(clock=>clock, reset=>reset, start=>start, dados=>dados, sout=>sout);
 
-	process(clock)
+	process is
 	begin
     		assert false report "--- TESTBENCH ---" severity note;
-    		keep_simulating <= '1';
+    		--keep_simulating <= '1';
 		---------- CASO 1 ----------  
 		-- Enviar o seguinte bit vector 
 		-- "01001010"
 		dados <= "01001010";
+		start <= '1';
+		wait for 300 us;
+    		--keep_simulating <= '0';
+
+    		assert false report "--- FIMTESTBENCH ---" severity note;
 	end process;
 
 end arch_testbench;

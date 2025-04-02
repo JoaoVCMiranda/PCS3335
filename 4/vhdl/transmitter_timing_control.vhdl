@@ -7,6 +7,7 @@ entity transmitter_timing_control is
 	    clock : in std_logic;
 	    reset : in std_logic;
 	    parity : in std_logic;
+	    start  : in std_logic;
 	    regControl : out std_logic_vector(1 downto 0);
 	    serial_i : out std_logic
 	);
@@ -20,8 +21,10 @@ architecture arch_ttc of transmitter_timing_control is
 	signal timeToChange: std_logic;
 	signal r : std_logic;
 	signal en:std_logic;
+	signal en16:std_logic;
 	signal mode: std_logic := '0';
 	signal counter_value: std_logic_vector(4 downto 0);
+	signal aux_counter : std_logic_vector(3 downto 0);
 	component simple_counter is
 		generic(
 			WIDTH: natural := 16);
@@ -32,15 +35,15 @@ architecture arch_ttc of transmitter_timing_control is
 		);
 	end component;
 begin 
+	counter16 : simple_counter
+	generic map(WIDTH=>4)
+	port map(clock=>clock, reset=>r, enable=>en16, data_o=>aux_counter);
+	en16 <= '1';
+
 	counter : simple_counter
 	generic map(WIDTH=>5)
 	port map(clock=>clock, reset=>r, enable=>en, data_o=>counter_value);
-
-	-- Para aumentar o tempo do contador em 16
-	-- gerar um contador auxiliar de WIDTH=>4
-	-- en <= "AND todos os bits data_o" 
-	en <= '1';
-	
+	en <= aux_counter(3) and aux_counter(2) and aux_counter(1) and aux_counter(0);
 
 
 	regControl <= rc;

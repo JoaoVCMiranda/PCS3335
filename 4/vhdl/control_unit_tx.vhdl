@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity tx is
+entity control_unit_tx is
 	port (
 	    clock : in std_logic;
 	    reset : in std_logic;
@@ -10,9 +10,9 @@ entity tx is
 	    dados : in std_logic_vector(7 downto 0);
 	    sout  : out std_logic
 	);
-end tx;
+end control_unit_tx;
 
-architecture arch_tx of tx is
+architecture arch_tx of control_unit_tx is
 	component baud_rate_generator is
 	port(
 	    clock : in std_logic;
@@ -26,6 +26,7 @@ architecture arch_tx of tx is
 	    clock : in std_logic;
 	    reset : in std_logic;
 	    parity : in std_logic;
+	    start  : in std_logic;
 	    regControl : out std_logic_vector(1 downto 0);
 	    serial_i : out std_logic
 	);
@@ -68,7 +69,7 @@ begin
 	BGR: baud_rate_generator
 	port map(clock=>clock, reset=>reset, divisor=>div_vector, baudOut_n=>brg_clock);
 	TTC: transmitter_timing_control
-	port map(clock=>brg_clock, reset=>reset, parity=>parity, regControl=>loadOrShift, serial_i=>serial_i);
+	port map(clock=>brg_clock, reset=>reset, parity=>parity, regControl=>loadOrShift, serial_i=>serial_i, start=>start);
 	REG: shift_reg
 	port map(clock=>brg_clock, reset=>reset, loadOrShift=>loadOrShift, serial_i=>serial_i, data_i=>dados, serial_o_r=>dados_tx);
 	

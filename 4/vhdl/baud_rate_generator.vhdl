@@ -40,7 +40,7 @@ begin
 	process(clock, reset)
 	begin
 		-- pois o contador começa em 0
-		if(unsigned(c) = unsigned(divisor)-1) then
+		if(unsigned(c) = (unsigned(divisor)-1)/2) then
 			bgr_clock<= not bgr_clock; 
 			r <= '1';
 		else
