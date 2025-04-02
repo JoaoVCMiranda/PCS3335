@@ -64,7 +64,6 @@ begin
 		  dados(7);
 	div_vector <= std_logic_vector(to_unsigned(div, 16));
 	sout <= dados_tx;
-
 	--- Instâncias de componentes
 	BGR: baud_rate_generator
 	port map(clock=>clock, reset=>reset, divisor=>div_vector, baudOut_n=>brg_clock);

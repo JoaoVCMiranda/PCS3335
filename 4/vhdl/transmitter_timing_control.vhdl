@@ -14,8 +14,8 @@ entity transmitter_timing_control is
 end transmitter_timing_control;
 
 architecture arch_ttc of transmitter_timing_control is
-	type states is (A,B,C,D); 
-	signal state : states; 
+	type states is (S,A,B,C,D); 
+	signal state : states := S; 
 	signal rc: std_logic_vector(1 downto 0);
 	signal si: std_logic;
 	signal timeToChange: std_logic;
@@ -53,12 +53,18 @@ begin
 	begin
 		if rising_edge(clock)then
 			case state is
+			when S =>
+				-- no inicio o contador deve estar "1111111"
+				rc <= "00";
+				if start = '1' then
+					state <= A;
+				end if;
 			when A =>
 				-- deslocamento para esquerda
 				rc <= "10";
 				-- low for start
 				si <= '0';
-				-- no shiftReg temos XXXXXXX0
+				-- no shiftReg temos 11111110
 				r <= '1';
 				mode <= '0';
 				if timeToChange = '1' then

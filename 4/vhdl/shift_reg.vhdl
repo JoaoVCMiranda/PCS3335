@@ -24,12 +24,12 @@ begin
     begin
         if reset = '1' then
             -- Resetar o registrador
-            reg <= (others => '0');
+            reg <= (others => '1');
         elsif rising_edge(clock) then
             case loadOrShift is
                 when "00" =>
-                    -- Nada acontece
-                    reg <= reg;
+                    -- retorna para o estado "11111111"
+                    reg <= "11111111";
                 when "01" =>
                     -- Deslocamento para a direita
                     reg <= serial_i & reg(WIDTH - 1 downto 1);
