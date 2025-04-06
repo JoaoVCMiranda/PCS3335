@@ -16,15 +16,14 @@ end transmitter_timing_control;
 architecture arch_ttc of transmitter_timing_control is
 	type states is (S,A,B,C,D); 
 	signal state : states := S; 
-	signal rc: std_logic_vector(1 downto 0);
+	signal rc: std_logic_vector(1 downto 0) := "00";
 	signal si: std_logic;
 	signal timeToChange: std_logic;
 	signal r : std_logic;
 	signal en:std_logic;
-	signal en16:std_logic;
 	signal mode: std_logic := '0';
 	signal counter_value: std_logic_vector(4 downto 0);
-	signal aux_counter : std_logic_vector(3 downto 0);
+	signal stt : std_logic_vector(1 downto 0);
 	component simple_counter is
 		generic(
 			WIDTH: natural := 16);
@@ -35,15 +34,11 @@ architecture arch_ttc of transmitter_timing_control is
 		);
 	end component;
 begin 
-	counter16 : simple_counter
-	generic map(WIDTH=>4)
-	port map(clock=>clock, reset=>r, enable=>en16, data_o=>aux_counter);
-	en16 <= '1';
 
 	counter : simple_counter
 	generic map(WIDTH=>5)
 	port map(clock=>clock, reset=>r, enable=>en, data_o=>counter_value);
-	en <= aux_counter(3) and aux_counter(2) and aux_counter(1) and aux_counter(0);
+	en <= '1';
 
 
 	regControl <= rc;
@@ -51,66 +46,100 @@ begin
 
 	process(clock)
 	begin
-		if rising_edge(clock)then
+		if falling_edge(clock)then
 			case state is
 			when S =>
 				-- no inicio o contador deve estar "1111111"
 				rc <= "00";
 				if start = '1' then
 					state <= A;
+					mode <= '0';
 				end if;
+			-- Start bit
 			when A =>
-				-- deslocamento para esquerda
-				rc <= "10";
-				-- low for start
 				si <= '0';
+				stt<= "00";
+				rc <= "10";
+				state <= B;
+				--r <= '1';
+				-- Manter o reset desativado
+				--r <='0';
+				--mode <= '0';
+				--stt <= "00";
+				-- deslocamento para esquerda
+				--rc <= "10";
+				-- low for start
+				--si <= '0';
 				-- no shiftReg temos 11111110
-				r <= '1';
-				mode <= '0';
-				if timeToChange = '1' then
-					state <= B;
-				end if;
+				--if timeToChange = '1' then
+				--	r <= '1';
+				--	state <= B;
+				--end if;
+			-- load
 			when B =>
-				-- carregar os dados em paralelo
 				rc <= "11";
+				stt<= "01";
+				state <= C;
+				-- Manter o reset desativado
+				--r <='0';
+				--mode <= '0';
+				--stt <= "01";
+				-- carregar os dados em paralelo
+				--rc <= "11";
 				-- no shiftReg temos QQQQQQQQ
-				r <= '1';
-				mode <= '0';
-				if timeToChange = '1' then
-					state <= C;
-				end if;
+				--mode <= '0';
+				--if timeToChange = '1' then
+				--	r <= '1';
+				--	state <= C;
+				--end if;
+			-- parity append
 			when C =>
-				-- deslocamento para direita (transmitir os dados) + append paridade
-				rc <= "01";
+				rc<="01";
+				stt <= "10";
 				si <= parity;
-				-- no shiftReg temos 1QQQQQQQ -> 11QQQQQQ -> ...
+				state <= D;
+				-- Resetar o contador
 				r <= '1';
-				mode <= '0';
-				if timeToChange = '1' then
-					state <= D;
-				end if;
+				-- Manter o reset desativado
+				--r <='0';
+				--mode <= '0'; 
+				--stt <= "10";
+				-- deslocamento para direita (transmitir os dados) + append paridade
+				--rc <= "01";
+				--si <= parity;
+				-- no shiftReg temos 1QQQQQQQ -> 11QQQQQQ -> ...
+				---mode <= '0';
+				--if timeToChange = '1' then
+				--	r <= '1';
+				--	state <= D;
+				--end if;
+			-- append end bit + transfer + offset
 			when D =>
+				-- Manter o reset desativado
+				r <='0';
+				mode <= '1';
+				stt <= "11";
 				-- transmitir dados e 
 				rc <= "01";
 				si <= '1';
-				mode <= '1';
 				if timeToChange = '1' then
+					r <= '1'; 
 					state <= A;
 				end if;
 			when others =>
+				r <= '1';
 				rc <= "00";
 			end case;
 		end if;
 		case mode is
 		when '0' =>
-			-- Eu sei que deve haver um jeito mais bonito de fazer...
 			if counter_value="00001" then 
 				timeToChange <= '1';
 			else
 				timeToChange <= '0';
 			end if;
 		when '1' =>
-			if counter_value="11110" then
+			if counter_value="11100" then
 				timeToChange <= '1';
 			else 
 				timeToChange <= '0';

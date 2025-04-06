@@ -39,12 +39,17 @@ begin
 
 	process(clock, reset)
 	begin
-		-- pois o contador começa em 0
-		if(unsigned(c) = (unsigned(divisor)-1)/2) then
-			bgr_clock<= not bgr_clock; 
+		if reset = '1' then
+			bgr_clock<='0';
 			r <= '1';
 		else
-			r <= '0';
+			-- pois o contador começa em 0
+			if(unsigned(c) = unsigned(divisor)) then
+				bgr_clock<= not bgr_clock; 
+				r <= '1';
+			else
+				r <= '0';
+			end if;
 		end if;
 	end process;
 	-- Filosofia vhdl

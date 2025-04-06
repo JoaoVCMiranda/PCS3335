@@ -1,0 +1,11 @@
+#!/usr/bin/zsh
+ghdl -s *.vhdl
+echo "--- sintaxe OK---"
+ghdl -a *.vhdl
+echo "--- analise OK ---"
+for x in *.vhdl
+do
+ghdl -e ${x/.vhdl/}
+done
+echo "-- elaboracao OK --"
+ghdl -r control_unit_tx_tb --vcd=control_unit_tx_tb.vcd
