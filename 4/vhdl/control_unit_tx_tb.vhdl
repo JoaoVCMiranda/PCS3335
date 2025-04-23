@@ -6,6 +6,18 @@ entity control_unit_tx_tb is
 end control_unit_tx_tb;
 
 architecture arch_testbench of control_unit_tx_tb is
+<<<<<<< Updated upstream
+=======
+	--component ip_pll is
+	--port (
+	--    refclk 	: in std_logic;
+	--    rst 	: in std_logic;
+	--    outclk_0	: out std_logic;
+	--    locked 	: out std_logic
+	--);
+	--end component;
+	
+>>>>>>> Stashed changes
 	component control_unit_tx is
 	port (
 	    -- Verificar o clock
@@ -33,12 +45,20 @@ architecture arch_testbench of control_unit_tx_tb is
 	signal keep_simulating : std_logic := '1';
 
 begin
+<<<<<<< Updated upstream
 	refclk <= (not refclk) after clockPeriod/2 when keep_simulating = '1' else '0';
 	--PLL : ip_pll
 	--port map(refclk=>refclk, rst=>reset, outclk_0=>clock);
 	CTX : control_unit_tx
 	port map(clock=>refclk, reset=>reset, start=>start, dados=>dados, sout=>sout);
 	--port map(clock=>clock, reset=>reset, start=>start, dados=>dados, sout=>sout);
+=======
+	refclk <= (not refclk) after clockPeriod/2;
+	--PLL : ip_pll
+	--port map(refclk=>refclk, rst=>reset, outclk_0=>clock);
+	CTX : control_unit_tx
+	port map(clock=>clock, reset=>reset, start=>start, dados=>dados, sout=>sout);
+>>>>>>> Stashed changes
 
 	process is
 	begin
