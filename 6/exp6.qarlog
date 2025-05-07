@@ -1,0 +1,28 @@
+Quartus Prime Archive log --	C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/exp6.qarlog
+
+Archive:	C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/exp6.qar
+Date:		Mon May 05 09:52:35 2025
+Quartus Prime		20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/brg.vhd
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/exp6.qpf
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/exp6.qsf
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/exp6.vhd
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/ip_pll.cmp
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/ip_pll.qip
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/ip_pll.sip
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/ip_pll.spd
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/ip_pll.vhd
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/ip_pll/ip_pll_0002.qip
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/ip_pll/ip_pll_0002.v
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/ip_pll_sim/ip_pll.vho
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/pd.vhd
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/rsr.vhd
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/ss_out.vhd
+C:/Users/LABDIG-PCS/Desktop/EXP6 Adami/uc.vhd
+c:/intelfpga_lite/20.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 17 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

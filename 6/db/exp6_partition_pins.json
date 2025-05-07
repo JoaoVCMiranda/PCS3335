@@ -1,0 +1,161 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "uc_currentState[0]",
+					"strict" : false
+				},
+				{
+					"name" : "uc_currentState[1]",
+					"strict" : false
+				},
+				{
+					"name" : "uc_currentState[2]",
+					"strict" : false
+				},
+				{
+					"name" : "uc_currentState[3]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_left[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_left[1]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_left[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_left[3]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_left[4]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_left[5]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_left[6]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_right[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_right[1]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_right[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_right[3]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_right[4]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_right[5]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_right[6]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_uc[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_uc[1]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_uc[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_uc[3]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_uc[4]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_uc[5]",
+					"strict" : false
+				},
+				{
+					"name" : "sevensegment_uc[6]",
+					"strict" : false
+				},
+				{
+					"name" : "uc_counter_viewer[0]",
+					"strict" : false
+				},
+				{
+					"name" : "uc_counter_viewer[1]",
+					"strict" : false
+				},
+				{
+					"name" : "uc_counter_viewer[2]",
+					"strict" : false
+				},
+				{
+					"name" : "uc_counter_viewer[3]",
+					"strict" : false
+				},
+				{
+					"name" : "rsr_counter_viewer[0]",
+					"strict" : false
+				},
+				{
+					"name" : "rsr_counter_viewer[1]",
+					"strict" : false
+				},
+				{
+					"name" : "rsr_counter_viewer[2]",
+					"strict" : false
+				},
+				{
+					"name" : "rsr_counter_viewer[3]",
+					"strict" : false
+				},
+				{
+					"name" : "parity_led",
+					"strict" : false
+				},
+				{
+					"name" : "serial_in_led",
+					"strict" : false
+				},
+				{
+					"name" : "connection_uc_to_pd_paritybit_led",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "serial_in",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
