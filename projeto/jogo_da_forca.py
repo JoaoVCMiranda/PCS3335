@@ -3,14 +3,14 @@ from unicodedata import normalize
 class Forca:
    
     def __init__(self, palavra, vidas, dica):
-        self.banner1 = "**** JOGO DA FORCA ****"
-        self.banner2 = "*** cheira a suco ? ***"
+        self.banner1 = "*JOGO DA FORCA*"
+        self.banner2 = "cheira a suco ?"
 
-        self.win1 = "Você não é de suco"
-        self.win2 = "*** Parabéns!!! ***"
+        self.win1 = "Vc n eh de suco"
+        self.win2 = "*Parabens!!!*"
 
-        self.lose1 = "Você cheira a suco"
-        self.lose2 = "* Tente novamente *"
+        self.lose1 = "Vc cheira suco"
+        self.lose2 = "Tente novamente"
  
         self.palavraOriginal = palavra
         self.palavra = normalize('NFKD', palavra).encode('ASCII', 'ignore').decode('utf-8').upper()
@@ -48,7 +48,7 @@ class Forca:
             for p in posicoes:
                 self.posicoesCertas[p] = 1
 
-            self.pontos = len(posicoes)*self.getMultiplicador()
+            self.pontos += len(posicoes)*self.getMultiplicador()*100
             self.streak += 1
         else: 
             self.vidas -= 1
@@ -60,7 +60,7 @@ class Forca:
             self.status = 4
 
     def select(self):
-        self.selectValue = (self.selectValue + 1)%3
+        self.selectValue = (self.selectValue + 1)%4
 
     def jogo(self):
         ans = []
@@ -81,22 +81,30 @@ class Forca:
                 return self.win1
             case 4:
                 return self.lose1
+            case 5:
+                return f"Pontos: {self.pontos}"
 
     def linha2(self):
         if self.status == 1:
+            self.status = 2
             return self.banner2
         if self.status == 3:
+            self.status = 5 
             return self.win2
         if self.status == 4:
             return self.lose2
+        if self.status == 5:
+            return self.win2
 
         match self.selectValue:
             case 0:
                 return " ".join(self.palpites) 
             case 1:
-                return " ".join(["♥	" for x in range(self.vidas)])
+                return " ".join(["#" for x in range(self.vidas)])
             case 2:
                 return f"Dica: {self.dica}"
+            case 3:
+                return f"Pontos: {self.pontos}"
             case _:
                 return " ".join(self.palpites)
 def interativo(jogo):
@@ -118,7 +126,7 @@ def interativo(jogo):
 
 if __name__ == "__main__":
     jogo = Forca("Melancia", 3, "Fruta")
-    interativo(jogo)
+    #interativo(jogo)
     win = True
 
     # TODO: 
@@ -206,6 +214,10 @@ if __name__ == "__main__":
         jogo.palpite('L')
     else:
         jogo.palpite('Z')
+
+    print(jogo.linha1())
+    print(jogo.linha2())
+    print()
 
     print(jogo.linha1())
     print(jogo.linha2())

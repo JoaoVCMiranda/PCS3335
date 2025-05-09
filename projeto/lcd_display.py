@@ -65,28 +65,12 @@ def main():
   # Valeu Mano Brow 
   while True:
  
-    # Send some test
-    lcd_string("Rasbperry Pi",LCD_LINE_1)
-    lcd_string("16x2 LCD Test",LCD_LINE_2)
- 
-    time.sleep(3) # 3 second delay
- 
     # Send some text
-    lcd_string("1234567890123456",LCD_LINE_1)
-    lcd_string("abcdefghijklmnop",LCD_LINE_2)
- 
-    time.sleep(3) # 3 second delay
- 
-    # Send some text
-    lcd_string("RaspberryPi-spy",LCD_LINE_1)
-    lcd_string(".co.uk",LCD_LINE_2)
- 
+    lcd_string("Oi Albertini",LCD_LINE_1)
+    lcd_string("...",LCD_LINE_2)
     time.sleep(3)
- 
-    # Send some text
-    lcd_string("Follow me on",LCD_LINE_1)
-    lcd_string("Twitter @RPiSpy",LCD_LINE_2)
- 
+    lcd_string("Vc gosta de ",LCD_LINE_1)
+    lcd_string("_ suco _ ?",LCD_LINE_2)
     time.sleep(3)
  
 def setupGPIO():
