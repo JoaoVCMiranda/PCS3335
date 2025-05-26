@@ -15,6 +15,7 @@ Depois de concluir o primeiro tutorial, fazer uma branch auxiliar com a sua part
 
 - [Chaves e clonar repositório (5 min)](https://www.youtube.com/watch?v=9gkb81GKmVI)
 - [branches (4 min)](https://www.youtube.com/watch?v=b9LTz6joMf8)
+- [commits e branches(6 min)](https://youtu.be/i_23KUAEtUM?t=53)
 
 ## Informações adicionais
 
