@@ -1,0 +1,2 @@
+#lvl1[0].apply(lambda s: ' '.join(format(ord(x), '08b') for x in s))
+#bin_lvl1[['binary_char_norm', 'binary_char_tip_norm', 'binary_word','binary_tip']].to_csv('palavras/lvl1.dat', sep=" ", encoding='utf-8',index=False, header=False)
