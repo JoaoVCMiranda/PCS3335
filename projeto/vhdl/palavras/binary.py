@@ -66,7 +66,7 @@ lvl2['binary_tip'] = lvl2[1].apply(binary_format)
 word_setup = "\n----- WORD SETUP -----"
 # Numero de bits 16*8
 for y in range(128):
-  word_setup += f"\nwith binary_select select binary_tip({127-y}) <= "
+  word_setup += f"\nwith binary_select select binary_word({127-y}) <= "
   for x in range(len(lvl2)):
     word_setup += f"\n\t'{lvl2['binary_word'][x][y]}' when \"{format(x, f'07b')}\","
   word_setup += "\n\t'0' when others;\n"

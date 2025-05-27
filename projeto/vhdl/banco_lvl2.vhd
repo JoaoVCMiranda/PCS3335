@@ -17,7 +17,7 @@ architecture arch_banco_lvl2 of banco_lvl2 is
 -----------------------------------
 
 ----- WORD SETUP -----
-with binary_select select binary_tip(127) <=
+with binary_select select binary_word(127) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -148,7 +148,7 @@ with binary_select select binary_tip(127) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(126) <=
+with binary_select select binary_word(126) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -279,7 +279,7 @@ with binary_select select binary_tip(126) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(125) <=
+with binary_select select binary_word(125) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -410,7 +410,7 @@ with binary_select select binary_tip(125) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(124) <=
+with binary_select select binary_word(124) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -541,7 +541,7 @@ with binary_select select binary_tip(124) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(123) <=
+with binary_select select binary_word(123) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -672,7 +672,7 @@ with binary_select select binary_tip(123) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(122) <=
+with binary_select select binary_word(122) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -803,7 +803,7 @@ with binary_select select binary_tip(122) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(121) <=
+with binary_select select binary_word(121) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -934,7 +934,7 @@ with binary_select select binary_tip(121) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(120) <=
+with binary_select select binary_word(120) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -1065,7 +1065,7 @@ with binary_select select binary_tip(120) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(119) <=
+with binary_select select binary_word(119) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -1196,7 +1196,7 @@ with binary_select select binary_tip(119) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(118) <=
+with binary_select select binary_word(118) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -1327,7 +1327,7 @@ with binary_select select binary_tip(118) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(117) <=
+with binary_select select binary_word(117) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -1458,7 +1458,7 @@ with binary_select select binary_tip(117) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(116) <=
+with binary_select select binary_word(116) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -1589,7 +1589,7 @@ with binary_select select binary_tip(116) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(115) <=
+with binary_select select binary_word(115) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -1720,7 +1720,7 @@ with binary_select select binary_tip(115) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(114) <=
+with binary_select select binary_word(114) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -1851,7 +1851,7 @@ with binary_select select binary_tip(114) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(113) <=
+with binary_select select binary_word(113) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -1982,7 +1982,7 @@ with binary_select select binary_tip(113) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(112) <=
+with binary_select select binary_word(112) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -2113,7 +2113,7 @@ with binary_select select binary_tip(112) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(111) <=
+with binary_select select binary_word(111) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -2244,7 +2244,7 @@ with binary_select select binary_tip(111) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(110) <=
+with binary_select select binary_word(110) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -2375,7 +2375,7 @@ with binary_select select binary_tip(110) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(109) <=
+with binary_select select binary_word(109) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -2506,7 +2506,7 @@ with binary_select select binary_tip(109) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(108) <=
+with binary_select select binary_word(108) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -2637,7 +2637,7 @@ with binary_select select binary_tip(108) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(107) <=
+with binary_select select binary_word(107) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -2768,7 +2768,7 @@ with binary_select select binary_tip(107) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(106) <=
+with binary_select select binary_word(106) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -2899,7 +2899,7 @@ with binary_select select binary_tip(106) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(105) <=
+with binary_select select binary_word(105) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -3030,7 +3030,7 @@ with binary_select select binary_tip(105) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(104) <=
+with binary_select select binary_word(104) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -3161,7 +3161,7 @@ with binary_select select binary_tip(104) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(103) <=
+with binary_select select binary_word(103) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -3292,7 +3292,7 @@ with binary_select select binary_tip(103) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(102) <=
+with binary_select select binary_word(102) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -3423,7 +3423,7 @@ with binary_select select binary_tip(102) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(101) <=
+with binary_select select binary_word(101) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -3554,7 +3554,7 @@ with binary_select select binary_tip(101) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(100) <=
+with binary_select select binary_word(100) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -3685,7 +3685,7 @@ with binary_select select binary_tip(100) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(99) <=
+with binary_select select binary_word(99) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -3816,7 +3816,7 @@ with binary_select select binary_tip(99) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(98) <=
+with binary_select select binary_word(98) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -3947,7 +3947,7 @@ with binary_select select binary_tip(98) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(97) <=
+with binary_select select binary_word(97) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -4078,7 +4078,7 @@ with binary_select select binary_tip(97) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(96) <=
+with binary_select select binary_word(96) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -4209,7 +4209,7 @@ with binary_select select binary_tip(96) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(95) <=
+with binary_select select binary_word(95) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -4340,7 +4340,7 @@ with binary_select select binary_tip(95) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(94) <=
+with binary_select select binary_word(94) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -4471,7 +4471,7 @@ with binary_select select binary_tip(94) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(93) <=
+with binary_select select binary_word(93) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -4602,7 +4602,7 @@ with binary_select select binary_tip(93) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(92) <=
+with binary_select select binary_word(92) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -4733,7 +4733,7 @@ with binary_select select binary_tip(92) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(91) <=
+with binary_select select binary_word(91) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -4864,7 +4864,7 @@ with binary_select select binary_tip(91) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(90) <=
+with binary_select select binary_word(90) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -4995,7 +4995,7 @@ with binary_select select binary_tip(90) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(89) <=
+with binary_select select binary_word(89) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -5126,7 +5126,7 @@ with binary_select select binary_tip(89) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(88) <=
+with binary_select select binary_word(88) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -5257,7 +5257,7 @@ with binary_select select binary_tip(88) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(87) <=
+with binary_select select binary_word(87) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -5388,7 +5388,7 @@ with binary_select select binary_tip(87) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(86) <=
+with binary_select select binary_word(86) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -5519,7 +5519,7 @@ with binary_select select binary_tip(86) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(85) <=
+with binary_select select binary_word(85) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -5650,7 +5650,7 @@ with binary_select select binary_tip(85) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(84) <=
+with binary_select select binary_word(84) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -5781,7 +5781,7 @@ with binary_select select binary_tip(84) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(83) <=
+with binary_select select binary_word(83) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -5912,7 +5912,7 @@ with binary_select select binary_tip(83) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(82) <=
+with binary_select select binary_word(82) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -6043,7 +6043,7 @@ with binary_select select binary_tip(82) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(81) <=
+with binary_select select binary_word(81) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -6174,7 +6174,7 @@ with binary_select select binary_tip(81) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(80) <=
+with binary_select select binary_word(80) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -6305,7 +6305,7 @@ with binary_select select binary_tip(80) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(79) <=
+with binary_select select binary_word(79) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -6436,7 +6436,7 @@ with binary_select select binary_tip(79) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(78) <=
+with binary_select select binary_word(78) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -6567,7 +6567,7 @@ with binary_select select binary_tip(78) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(77) <=
+with binary_select select binary_word(77) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -6698,7 +6698,7 @@ with binary_select select binary_tip(77) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(76) <=
+with binary_select select binary_word(76) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -6829,7 +6829,7 @@ with binary_select select binary_tip(76) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(75) <=
+with binary_select select binary_word(75) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -6960,7 +6960,7 @@ with binary_select select binary_tip(75) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(74) <=
+with binary_select select binary_word(74) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -7091,7 +7091,7 @@ with binary_select select binary_tip(74) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(73) <=
+with binary_select select binary_word(73) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -7222,7 +7222,7 @@ with binary_select select binary_tip(73) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(72) <=
+with binary_select select binary_word(72) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -7353,7 +7353,7 @@ with binary_select select binary_tip(72) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(71) <=
+with binary_select select binary_word(71) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -7484,7 +7484,7 @@ with binary_select select binary_tip(71) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(70) <=
+with binary_select select binary_word(70) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -7615,7 +7615,7 @@ with binary_select select binary_tip(70) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(69) <=
+with binary_select select binary_word(69) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -7746,7 +7746,7 @@ with binary_select select binary_tip(69) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(68) <=
+with binary_select select binary_word(68) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -7877,7 +7877,7 @@ with binary_select select binary_tip(68) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(67) <=
+with binary_select select binary_word(67) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -8008,7 +8008,7 @@ with binary_select select binary_tip(67) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(66) <=
+with binary_select select binary_word(66) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -8139,7 +8139,7 @@ with binary_select select binary_tip(66) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(65) <=
+with binary_select select binary_word(65) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -8270,7 +8270,7 @@ with binary_select select binary_tip(65) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(64) <=
+with binary_select select binary_word(64) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -8401,7 +8401,7 @@ with binary_select select binary_tip(64) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(63) <=
+with binary_select select binary_word(63) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -8532,7 +8532,7 @@ with binary_select select binary_tip(63) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(62) <=
+with binary_select select binary_word(62) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -8663,7 +8663,7 @@ with binary_select select binary_tip(62) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(61) <=
+with binary_select select binary_word(61) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -8794,7 +8794,7 @@ with binary_select select binary_tip(61) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(60) <=
+with binary_select select binary_word(60) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -8925,7 +8925,7 @@ with binary_select select binary_tip(60) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(59) <=
+with binary_select select binary_word(59) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -9056,7 +9056,7 @@ with binary_select select binary_tip(59) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(58) <=
+with binary_select select binary_word(58) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -9187,7 +9187,7 @@ with binary_select select binary_tip(58) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(57) <=
+with binary_select select binary_word(57) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -9318,7 +9318,7 @@ with binary_select select binary_tip(57) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(56) <=
+with binary_select select binary_word(56) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -9449,7 +9449,7 @@ with binary_select select binary_tip(56) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(55) <=
+with binary_select select binary_word(55) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -9580,7 +9580,7 @@ with binary_select select binary_tip(55) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(54) <=
+with binary_select select binary_word(54) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -9711,7 +9711,7 @@ with binary_select select binary_tip(54) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(53) <=
+with binary_select select binary_word(53) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -9842,7 +9842,7 @@ with binary_select select binary_tip(53) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(52) <=
+with binary_select select binary_word(52) <=
 	'1' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -9973,7 +9973,7 @@ with binary_select select binary_tip(52) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(51) <=
+with binary_select select binary_word(51) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -10104,7 +10104,7 @@ with binary_select select binary_tip(51) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(50) <=
+with binary_select select binary_word(50) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -10235,7 +10235,7 @@ with binary_select select binary_tip(50) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(49) <=
+with binary_select select binary_word(49) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -10366,7 +10366,7 @@ with binary_select select binary_tip(49) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(48) <=
+with binary_select select binary_word(48) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -10497,7 +10497,7 @@ with binary_select select binary_tip(48) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(47) <=
+with binary_select select binary_word(47) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -10628,7 +10628,7 @@ with binary_select select binary_tip(47) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(46) <=
+with binary_select select binary_word(46) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -10759,7 +10759,7 @@ with binary_select select binary_tip(46) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(45) <=
+with binary_select select binary_word(45) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -10890,7 +10890,7 @@ with binary_select select binary_tip(45) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(44) <=
+with binary_select select binary_word(44) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -11021,7 +11021,7 @@ with binary_select select binary_tip(44) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(43) <=
+with binary_select select binary_word(43) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -11152,7 +11152,7 @@ with binary_select select binary_tip(43) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(42) <=
+with binary_select select binary_word(42) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -11283,7 +11283,7 @@ with binary_select select binary_tip(42) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(41) <=
+with binary_select select binary_word(41) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -11414,7 +11414,7 @@ with binary_select select binary_tip(41) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(40) <=
+with binary_select select binary_word(40) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -11545,7 +11545,7 @@ with binary_select select binary_tip(40) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(39) <=
+with binary_select select binary_word(39) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -11676,7 +11676,7 @@ with binary_select select binary_tip(39) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(38) <=
+with binary_select select binary_word(38) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -11807,7 +11807,7 @@ with binary_select select binary_tip(38) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(37) <=
+with binary_select select binary_word(37) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -11938,7 +11938,7 @@ with binary_select select binary_tip(37) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(36) <=
+with binary_select select binary_word(36) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -12069,7 +12069,7 @@ with binary_select select binary_tip(36) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(35) <=
+with binary_select select binary_word(35) <=
 	'1' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -12200,7 +12200,7 @@ with binary_select select binary_tip(35) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(34) <=
+with binary_select select binary_word(34) <=
 	'1' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -12331,7 +12331,7 @@ with binary_select select binary_tip(34) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(33) <=
+with binary_select select binary_word(33) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -12462,7 +12462,7 @@ with binary_select select binary_tip(33) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(32) <=
+with binary_select select binary_word(32) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -12593,7 +12593,7 @@ with binary_select select binary_tip(32) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(31) <=
+with binary_select select binary_word(31) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -12724,7 +12724,7 @@ with binary_select select binary_tip(31) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(30) <=
+with binary_select select binary_word(30) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -12855,7 +12855,7 @@ with binary_select select binary_tip(30) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(29) <=
+with binary_select select binary_word(29) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -12986,7 +12986,7 @@ with binary_select select binary_tip(29) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(28) <=
+with binary_select select binary_word(28) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -13117,7 +13117,7 @@ with binary_select select binary_tip(28) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(27) <=
+with binary_select select binary_word(27) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -13248,7 +13248,7 @@ with binary_select select binary_tip(27) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(26) <=
+with binary_select select binary_word(26) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -13379,7 +13379,7 @@ with binary_select select binary_tip(26) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(25) <=
+with binary_select select binary_word(25) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -13510,7 +13510,7 @@ with binary_select select binary_tip(25) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(24) <=
+with binary_select select binary_word(24) <=
 	'1' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -13641,7 +13641,7 @@ with binary_select select binary_tip(24) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(23) <=
+with binary_select select binary_word(23) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -13772,7 +13772,7 @@ with binary_select select binary_tip(23) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(22) <=
+with binary_select select binary_word(22) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -13903,7 +13903,7 @@ with binary_select select binary_tip(22) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(21) <=
+with binary_select select binary_word(21) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -14034,7 +14034,7 @@ with binary_select select binary_tip(21) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(20) <=
+with binary_select select binary_word(20) <=
 	'1' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -14165,7 +14165,7 @@ with binary_select select binary_tip(20) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(19) <=
+with binary_select select binary_word(19) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -14296,7 +14296,7 @@ with binary_select select binary_tip(19) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(18) <=
+with binary_select select binary_word(18) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -14427,7 +14427,7 @@ with binary_select select binary_tip(18) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(17) <=
+with binary_select select binary_word(17) <=
 	'1' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -14558,7 +14558,7 @@ with binary_select select binary_tip(17) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(16) <=
+with binary_select select binary_word(16) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -14689,7 +14689,7 @@ with binary_select select binary_tip(16) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(15) <=
+with binary_select select binary_word(15) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -14820,7 +14820,7 @@ with binary_select select binary_tip(15) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(14) <=
+with binary_select select binary_word(14) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -14951,7 +14951,7 @@ with binary_select select binary_tip(14) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(13) <=
+with binary_select select binary_word(13) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -15082,7 +15082,7 @@ with binary_select select binary_tip(13) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(12) <=
+with binary_select select binary_word(12) <=
 	'1' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -15213,7 +15213,7 @@ with binary_select select binary_tip(12) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(11) <=
+with binary_select select binary_word(11) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -15344,7 +15344,7 @@ with binary_select select binary_tip(11) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(10) <=
+with binary_select select binary_word(10) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -15475,7 +15475,7 @@ with binary_select select binary_tip(10) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(9) <=
+with binary_select select binary_word(9) <=
 	'1' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -15606,7 +15606,7 @@ with binary_select select binary_tip(9) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(8) <=
+with binary_select select binary_word(8) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -15737,7 +15737,7 @@ with binary_select select binary_tip(8) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(7) <=
+with binary_select select binary_word(7) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -15868,7 +15868,7 @@ with binary_select select binary_tip(7) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(6) <=
+with binary_select select binary_word(6) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -15999,7 +15999,7 @@ with binary_select select binary_tip(6) <=
 	'1' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(5) <=
+with binary_select select binary_word(5) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'0' when "0000010",
@@ -16130,7 +16130,7 @@ with binary_select select binary_tip(5) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(4) <=
+with binary_select select binary_word(4) <=
 	'0' when "0000000",
 	'0' when "0000001",
 	'1' when "0000010",
@@ -16261,7 +16261,7 @@ with binary_select select binary_tip(4) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(3) <=
+with binary_select select binary_word(3) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -16392,7 +16392,7 @@ with binary_select select binary_tip(3) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(2) <=
+with binary_select select binary_word(2) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'0' when "0000010",
@@ -16523,7 +16523,7 @@ with binary_select select binary_tip(2) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(1) <=
+with binary_select select binary_word(1) <=
 	'0' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -16654,7 +16654,7 @@ with binary_select select binary_tip(1) <=
 	'0' when "1111111",
 	'0' when others;
 
-with binary_select select binary_tip(0) <=
+with binary_select select binary_word(0) <=
 	'1' when "0000000",
 	'1' when "0000001",
 	'1' when "0000010",
@@ -33555,5 +33555,7 @@ with binary_select select binary_tip(0) <=
 	'1' when "1111110",
 	'0' when "1111111",
 	'0' when others;
+
 -----------------------------------
+
 end architecture;
