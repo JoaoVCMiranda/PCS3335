@@ -20,17 +20,17 @@ lvl1['binary_tip'] = lvl1[1].apply(binary_format)
 word_setup = "\n----- WORD SETUP -----"
 # Numero de bits 16*8
 for y in range(128):
-  word_setup += f"\nwith binary_select"
+  word_setup += f"\nwith binary_select select binary_word({127-y}) <="
   for x in range(len(lvl1)):
-    word_setup += f"\n\tbinary_word({127-x}) <= '{lvl1['binary_word'][x][y]}' when \"{format(x, f'07b')}\","
-  word_setup += ';\n'
+    word_setup += f"\n\t'{lvl1['binary_word'][x][y]}' when \"{format(x, f'07b')}\","
+  word_setup += "\n\t'0' when others;\n"
 
 tip_setup = "\n----- TIP SETUP -----"
 for y in range(128):
-  tip_setup += f"\nwith binary_select"
+  tip_setup += f"\nwith binary_select select binary_tip({127-y}) <="
   for x in range(len(lvl1)):
-    tip_setup += f"\n\tbinary_tip({127-y}) <= '{lvl1['binary_tip'][x][y]}' when \"{format(x, f'07b')}\","
-  tip_setup += ',\n'
+    tip_setup += f"\n\t'{lvl1['binary_tip'][x][y]}' when \"{format(x, f'07b')}\","
+  tip_setup += "\n\t'0' when others;\n"
 
 divider = "\n-----------------------------------\n"
 with open('lvl1.vhd', 'w') as f:
@@ -66,17 +66,17 @@ lvl2['binary_tip'] = lvl2[1].apply(binary_format)
 word_setup = "\n----- WORD SETUP -----"
 # Numero de bits 16*8
 for y in range(128):
-  word_setup += f"\nwith binary_select"
+  word_setup += f"\nwith binary_select select binary_tip({127-y}) <= "
   for x in range(len(lvl2)):
-    word_setup += f"\n\tbinary_word({127-y}) <= '{lvl2['binary_word'][x][y]}' when \"{format(x, f'07b')}\","
-  word_setup += ';\n'
+    word_setup += f"\n\t'{lvl2['binary_word'][x][y]}' when \"{format(x, f'07b')}\","
+  word_setup += "\n\t'0' when others;\n"
 
 tip_setup = "\n----- TIP SETUP -----"
 for y in range(128):
-  tip_setup += f"\nwith binary_select"
+  tip_setup += f"\nwith binary_select select binary_tip({127-y}) <= "
   for x in range(len(lvl2)):
-    tip_setup += f"\n\tbinary_tip({127-y}) <= '{lvl2['binary_tip'][x][y]}' when \"{format(x, f'07b')}\","
-  tip_setup += ',\n'
+    tip_setup += f"\n\t'{lvl2['binary_tip'][x][y]}' when \"{format(x, f'07b')}\","
+  tip_setup += "\n\t'0' when others;\n"
 
 divider = "\n-----------------------------------\n"
 with open('lvl2.vhd', 'w') as f:
@@ -112,17 +112,17 @@ lvl3['binary_tip'] = lvl3[1].apply(binary_format)
 word_setup = "\n----- WORD SETUP -----"
 # Numero de bits 16*8
 for y in range(128):
-  word_setup += f"\nwith binary_select"
+  word_setup += f"\nwith binary_select select binary_word({127-y}) <="
   for x in range(len(lvl3)):
-    word_setup += f"\n\tbinary_word({127-y}) <= '{lvl3['binary_word'][x][y]}' when \"{format(x, f'06b')}\","
-  word_setup += ';\n'
+    word_setup += f"\n\t'{lvl3['binary_word'][x][y]}' when \"{format(x, f'06b')}\","
+  word_setup += "\n\t'0' when others;\n"
 
 tip_setup = "\n----- TIP SETUP -----"
 for y in range(128):
-  tip_setup += f"\nwith binary_select"
+  tip_setup += f"\nwith binary_select select binary_tip({127-y}) <="
   for x in range(len(lvl3)):
-    tip_setup += f"\n\tbinary_tip({127-y}) <= '{lvl3['binary_tip'][x][y]}' when \"{format(x, f'06b')}\","
-  tip_setup += ';\n'
+    tip_setup += f"\n\t'{lvl3['binary_tip'][x][y]}' when \"{format(x, f'06b')}\","
+  tip_setup += "\n\t'0' when others;\n"
 
 divider = "\n-----------------------------------\n"
 with open('lvl3.vhd', 'w') as f:
