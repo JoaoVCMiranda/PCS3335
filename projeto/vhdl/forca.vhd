@@ -64,10 +64,9 @@ component not_uart is
 end component;
 
 begin
-	ippll : ip_pll
+	pll : ip_pll
 	port map(clock, reset, out_clk);
 
-	letra : display_letra 
-	port map(seta_esquerda, seta_direita, seg_up, seg_down);
+
 
 end architecture;
