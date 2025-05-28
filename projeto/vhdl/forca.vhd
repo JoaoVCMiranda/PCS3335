@@ -12,7 +12,7 @@ entity forca is
 		start : in std_logic;
 		seg_up : out std_logic_vector(6 downto 0);
 		seg_down : out std_logic_vector(6 downto 0);
-		vidas : out std_logic_vector(9 downto 0);
+		vidas : out std_logic_vector(5 downto 0);
 		tx : out std_logic;
 		rx : in std_logic
 );
@@ -90,6 +90,17 @@ component fsm_ascii_alphabet is
     );
 end component;
 
+component Pontuacao is
+  port (
+    clk             : in std_logic;
+    rst             : in std_logic;
+    comp_ok         : in std_logic_vector(15 downto 0);
+    combo           : out std_logic_vector(3 downto 0);
+    total           : out std_logic_vector(11 downto 0);
+    vidas           : out std_logic_vector(5 downto 0)
+  ) ;
+end component;
+
 signal lvl : std_logic_vector(1 downto 0);
 
 signal tip : out std_logic_vector(127 downto 0);
@@ -102,6 +113,10 @@ signal palpite : std_logic(7 downto 0);
 signal comparison_ok : std_logic_vector(15 downto 0);
 signal compariton_saved : std_logic_vector(15 downto 0);
 
+signal combo : std_logic_vector(3 downto 0);
+signal total_pontos : std_logic_vector(11 downto 0);
+
+
 begin
 	pll : ip_pll
 	port map(clock, reset, out_clk);
@@ -113,6 +128,9 @@ begin
 	port map(out_clk, reset, proxima, word, comparison_ok, comparison_saved);
 
 	seletor_letras : fsm_ascii_alphabet
-	port map(out_clk, reset, seta_direita , start , palpite) 
+	port map(out_clk, reset, seta_direita , start , palpite);
+
+	pontos : Pontuacao
+	port map(out_clk, reset, comparison_ok, combo, total_pontos,vidas);
 
 end architecture;
