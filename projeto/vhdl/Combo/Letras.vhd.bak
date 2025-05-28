@@ -23,7 +23,7 @@ architecture Behavioral of fsm_ascii_alphabet is
 
 begin
 
-    --ascii <= ascii_out;
+    ascii <= ascii_out;
 
     process(clk, reset)
     begin

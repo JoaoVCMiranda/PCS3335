@@ -35,17 +35,17 @@ begin
                to_integer(unsigned(comp_ok(1 downto 1))) + to_integer(unsigned(comp_ok(0 downto 0)));
 
 
-    --vidas   <= std_logic_vector(to_unsigned(vidas_int, 6));
+    vidas   <= std_logic_vector(to_unsigned(vidas_int, 3));
     total   <= std_logic_vector(to_unsigned(total_int, 12));
     combo   <= std_logic_vector(to_unsigned(combo_int, 4));
-	 with vidas_int select vidas <=
-				"000001" when 1,
-				"000011" when 2,
-				"000111" when 3,
-				"001111" when 4,
-				"011111" when 5,
-				"111111" when 6,
-				"000000" when others;
+
+    vidas   <= "000001" when vidas_int = 1 else
+               "000011" when vidas_int = 2 else
+               "000111" when vidas_int = 3 else
+               "001111" when vidas_int = 4 else
+               "011111" when vidas_int = 5 else
+               "111111" when vidas_int = 6 else
+               "000000";
 
 
     process(clk, rst)
