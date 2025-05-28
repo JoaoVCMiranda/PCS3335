@@ -20,10 +20,6 @@ end entity;
 architecture arch_forca of forca is 
 -- OUT CLOCK
 signal out_clk : std_logic;
--- Letra signal
---signal letra_seg_up : out std_logic_vector(6 downto 0);
---signal letra_seg_down : out std_logic_vector(6 downto 0);
-
 
 component display_letra is
 	port(
@@ -63,10 +59,46 @@ component not_uart is
 	);
 end component;
 
+component banco_palavras is
+	port(
+        clock : in std_logic;
+        en : in std_logic;
+        lvl : in std_logic_vector(1 downto 0);
+        binary_tip : out std_logic_vector(127 downto 0);
+        binary_word : out std_logic_vector(127 downto 0)
+    );
+end component;
+
+component reg_and_comp_system is
+	port(
+		clock, reset, clear : in std_logic;
+		data_in : in std_logic_vector(127 downto 0);
+		guess : in std_logic_vector(7 downto 0);
+        comp_OK_out : out unsigned(15 downto 0);
+        comps_saved_out : out std_logic_vector(15 downto 0)
+    );
+end component;
+
+signal lvl : std_logic_vector(1 downto 0);
+
+signal tip : out std_logic_vector(127 downto 0);
+signal word : out std_logic_vector(127 downto 0)
+
+signal proxima : std_logic := '0';
+
+signal palpite : std_logic(7 downto 0);
+
+signal comparison_ok : std_logic_vector(15 downto 0);
+signal compariton_saved : std_logic_vector(15 downto 0);
+
 begin
 	pll : ip_pll
 	port map(clock, reset, out_clk);
 
+	db: banco_palavras
+	port map(out_clk, proxima, lvl,tip, word);
 
+	comparador : reg_and_comp_system
+	port map(out_clk, reset, proxima, word, comparison_ok, comparison_saved);
 
 end architecture;
