@@ -94,7 +94,7 @@ component Pontuacao is
   port (
     clk             : in std_logic;
     rst             : in std_logic;
-    comp_ok         : in unsigned(15 downto 0);
+    comp_ok         : in std_logic_vector(15 downto 0);
     combo           : out std_logic_vector(3 downto 0);
     total           : out std_logic_vector(11 downto 0);
     vidas           : out std_logic_vector(5 downto 0)
@@ -103,15 +103,15 @@ end component;
 
 signal lvl : std_logic_vector(1 downto 0);
 
-signal tip :  std_logic_vector(127 downto 0);
-signal word : std_logic_vector(127 downto 0);
+signal tip : out std_logic_vector(127 downto 0);
+signal word : out std_logic_vector(127 downto 0)
 
 signal proxima : std_logic := '0';
 
-signal palpite : std_logic_vector(7 downto 0);
+signal palpite : std_logic(7 downto 0);
 
-signal comparison_ok : unsigned(15 downto 0);
-signal comparison_saved : std_logic_vector(15 downto 0);
+signal comparison_ok : std_logic_vector(15 downto 0);
+signal compariton_saved : std_logic_vector(15 downto 0);
 
 signal combo : std_logic_vector(3 downto 0);
 signal total_pontos : std_logic_vector(11 downto 0);
@@ -125,7 +125,7 @@ begin
 	port map(out_clk, proxima, lvl,tip, word);
 
 	comparador : reg_and_comp_system
-	port map(out_clk, reset, proxima, word, palpite, comparison_ok, comparison_saved);
+	port map(out_clk, reset, proxima, word, comparison_ok, comparison_saved);
 
 	seletor_letras : fsm_ascii_alphabet
 	port map(out_clk, reset, seta_direita , start , palpite);
