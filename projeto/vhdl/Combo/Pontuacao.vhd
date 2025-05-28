@@ -41,7 +41,7 @@ begin
                "001111" when vidas_int = 4 else
                "011111" when vidas_int = 5 else
                "111111" when vidas_int = 6 else
-               "000000"
+               "000000";
 
 
     process(clk, rst)

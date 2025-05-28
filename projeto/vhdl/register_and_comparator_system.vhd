@@ -87,7 +87,7 @@ architecture behav of reg_and_comp_system is
         process(clock, reset)
         begin
             if reset = '1' or clear = '1' then
-                comps_saved <= (others => 0);
+                comps_saved <= "0000000000000000";
             elsif rising_edge(clock) then
                 comps_saved <= comps_saved or comp_OK;
             end if;
