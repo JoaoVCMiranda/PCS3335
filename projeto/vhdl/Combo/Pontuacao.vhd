@@ -9,7 +9,7 @@ entity Pontuacao is
   port (
     clk             : in std_logic;
     rst             : in std_logic;
-    comp_ok         : in std_logic_vector(15 downto 0);
+    comp_ok         : in unsigned(15 downto 0);
     combo           : out std_logic_vector(3 downto 0);
     total           : out std_logic_vector(11 downto 0);
     vidas           : out std_logic_vector(5 downto 0)
@@ -25,10 +25,14 @@ architecture behavioral of Pontuacao is
 
 begin
 
-    acertos <= to_integer(comp_ok(15) + comp_ok(14) + comp_ok(13) + comp_ok(12) +
-               comp_ok(11) + comp_ok(10) + comp_ok(9) + comp_ok(8) +
-               comp_ok(7) + comp_ok(6) + comp_ok(5) + comp_ok(4) +
-               comp_ok(3) + comp_ok(2) + comp_ok(1) + comp_ok(0));
+    acertos <= to_integer(unsigned(comp_ok(15 downto 15))) + to_integer(unsigned(comp_ok(14 downto 14))) +
+               to_integer(unsigned(comp_ok(13 downto 13))) + to_integer(unsigned(comp_ok(12 downto 12))) +
+               to_integer(unsigned(comp_ok(11 downto 11))) + to_integer(unsigned(comp_ok(10 downto 10))) +
+               to_integer(unsigned(comp_ok(9 downto 9))) + to_integer(unsigned(comp_ok(8 downto 8))) +
+               to_integer(unsigned(comp_ok(7 downto 7))) + to_integer(unsigned(comp_ok(6 downto 6))) +
+               to_integer(unsigned(comp_ok(5 downto 5))) + to_integer(unsigned(comp_ok(4 downto 4))) +
+               to_integer(unsigned(comp_ok(3 downto 3))) + to_integer(unsigned(comp_ok(2 downto 2))) +
+               to_integer(unsigned(comp_ok(1 downto 1))) + to_integer(unsigned(comp_ok(0 downto 0)));
 
 
     vidas   <= std_logic_vector(to_unsigned(vidas_int, 3));
@@ -51,7 +55,7 @@ begin
             total_int     <= 0;
             vidas_int     <= 6;
         elsif rising_edge(clk) then
-            if quant_acertos /= "000" then
+            if acertos = 0 then
                 -- É melhor usar quant_acertos porque isso simplifica a parte síncrona, caso contrário, seria necessário
                 -- uma máquina de estados ou um process mais complexo, pois para mais de um acerto, o combo deveria se manter
                 -- constante e seria necessário mais sinais de controle para saber se devo incrementar o combo ou não. É mais
