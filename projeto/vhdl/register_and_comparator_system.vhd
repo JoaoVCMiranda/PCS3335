@@ -4,7 +4,7 @@ use IEEE.std_logic_1164.all;
 
 entity reg_and_comp_system is
 	port(
-		clock, reset, load, clear : in std_logic;
+		clock, reset, clear : in std_logic;
 		data_in : in std_logic_vector(127 downto 0);
 		guess : in std_logic_vector(7 downto 0);
         comp_OK_out : out unsigned(15 downto 0);
