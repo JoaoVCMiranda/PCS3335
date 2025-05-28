@@ -28,7 +28,7 @@ begin
     process(clk, reset)
     begin
         if reset = '1' then
-            contador <= 0
+            contador <= 0;
         elsif rising_edge(clk) and switch_let = '0' then
             -- delay para não mudar muito rápido a letra. Produz um clock de periodo 400ms.
             if contador = 368640 then 
@@ -37,6 +37,7 @@ begin
         elsif rising_edge(clk) and sel = '1' then -- seleciona a letra, evita enviar uma letra indesejada
             ascii <= ascii_out;
         end if;
+	 end process;
 
     process(clk_int, reset)
     begin
