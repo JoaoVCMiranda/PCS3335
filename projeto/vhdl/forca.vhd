@@ -9,6 +9,7 @@ entity forca is
 		reset : in std_logic;
 		seta_esquerda : in std_logic;
 		seta_direita : in std_logic;
+		start : in std_logic;
 		seg_up : out std_logic_vector(6 downto 0);
 		seg_down : out std_logic_vector(6 downto 0);
 		vidas : out std_logic_vector(9 downto 0);
@@ -79,6 +80,16 @@ component reg_and_comp_system is
     );
 end component;
 
+component fsm_ascii_alphabet is
+    Port (
+        clk         : in  std_logic;
+        reset       : in  std_logic;
+        switch_let  : in  std_logic;
+        sel         : in  std_logic;
+        ascii       : out std_logic_vector(7 downto 0)
+    );
+end component;
+
 signal lvl : std_logic_vector(1 downto 0);
 
 signal tip : out std_logic_vector(127 downto 0);
@@ -100,5 +111,8 @@ begin
 
 	comparador : reg_and_comp_system
 	port map(out_clk, reset, proxima, word, comparison_ok, comparison_saved);
+
+	seletor_letras : fsm_ascii_alphabet
+	port map(out_clk, reset, seta_direita , start , palpite) 
 
 end architecture;
