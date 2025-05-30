@@ -38,12 +38,12 @@ end = '\n'
 
 while 1:
   char = ser.flush()
-  print(datetime.datetime.now().strftime("%S"),char)
+  print(datetime.datetime.now().strftime("%mm%SS"),char)
 
   if(char == start):
     contador = 1
 
-  if(contador != 0)
+  if(contador != 0):
     linha += char
 
   if(char == end and contador == 1):
