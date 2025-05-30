@@ -8,7 +8,8 @@ entity control_unit_tx is
 	    reset : in std_logic;
 	    start : in std_logic;
 	    dados : in std_logic_vector(7 downto 0);
-	    sout  : out std_logic
+	    sout  : out std_logic;
+			done	: out std_logic
 	);
 end control_unit_tx;
 
@@ -43,7 +44,7 @@ architecture arch_tx of control_unit_tx is
 	    serial_o_l:	out std_logic
 	);
 	end component;
-	signal pll_clock	: std_logic;
+
 	signal brg_clock 	: std_logic;
 	signal super_clock	: std_logic;
 	signal loadOrShift 	: std_logic_vector(1 downto 0);
@@ -55,26 +56,19 @@ architecture arch_tx of control_unit_tx is
 	signal div_vector	: std_logic_vector(15 downto 0);
 begin
 	out_clock <= super_clock;
+	--- Saida principal
+	sout <= dados_tx;
+
+	--- Instâncias de componentes
+	BGR: baud_rate_generator
+	port map(clock=>clock, reset=>reset, divisor=>div_vector, baudOut_n=>brg_clock);
 	--- Superamostargem
 	super: baud_rate_generator
 	port map(clock=>brg_clock, reset=>reset, divisor=>"0000000000001111", baudOut_n=>super_clock);
 	--- Conexões de controle
-	parity <= dados(0) xor
-		  dados(1) xor
-		  dados(2) xor
-		  dados(3) xor
-		  dados(4) xor
-		  dados(5) xor
-		  dados(6) xor
-		  dados(7);
 	div_vector <= std_logic_vector(to_unsigned(div, 16));
-	--- Saida principal
-	sout <= dados_tx;
-	--- Instâncias de componentes
-	BGR: baud_rate_generator
-	port map(clock=>clock, reset=>reset, divisor=>div_vector, baudOut_n=>brg_clock);
 	TTC: transmitter_timing_control
-	port map(clock=>super_clock, reset=>reset, parity=>parity, regControl=>loadOrShift, serial_i=>serial_i, start=>start);
+	port map(clock=>super_clock, reset=>reset, parity=>parity, regControl=>loadOrShift, serial_i=>serial_i, start=>start, done=>done);
 	REG: shift_reg
 	port map(clock=>super_clock, reset=>reset, loadOrShift=>loadOrShift, serial_i=>serial_i, data_i=>dados, serial_o_r=>dados_tx);
 
