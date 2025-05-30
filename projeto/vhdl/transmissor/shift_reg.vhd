@@ -11,7 +11,6 @@ entity shift_reg is
 		loadOrShift : in std_logic_vector(1 downto 0);
 		serial_i: 	in  std_logic;				 
 		data_i:		in  std_logic_vector(WIDTH - 1 downto 0);
-		data_o:		out std_logic_vector(WIDTH-1 downto 0);	 
 		serial_o_r:	out std_logic;				 
 		serial_o_l:	out std_logic
 		);
@@ -47,7 +46,6 @@ begin
     end process;
 
     -- Atribuir valores às saídas
-    data_o <= reg;
     serial_o_r <= reg(0); -- Saída serial à direita
     serial_o_l <= reg(WIDTH - 1); -- Saída serial à esquerda
 end shift_reg_arch;
