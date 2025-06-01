@@ -1,0 +1,181 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -6.172
+TNS   : -96.117
+
+Type  : Slow 1100mV 85C Model Setup 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -5.143
+TNS   : -131.213
+
+Type  : Slow 1100mV 85C Model Setup 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : -3.248
+TNS   : -64.704
+
+Type  : Slow 1100mV 85C Model Hold 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -0.018
+TNS   : -0.018
+
+Type  : Slow 1100mV 85C Model Hold 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : 0.204
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : 0.334
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -0.538
+TNS   : -21.666
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : -0.538
+TNS   : -18.777
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
+Slack : 1.458
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clock'
+Slack : 9.949
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 270.337
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -6.078
+TNS   : -95.537
+
+Type  : Slow 1100mV 0C Model Setup 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -4.622
+TNS   : -104.849
+
+Type  : Slow 1100mV 0C Model Setup 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : -3.211
+TNS   : -64.231
+
+Type  : Slow 1100mV 0C Model Hold 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -0.195
+TNS   : -0.420
+
+Type  : Slow 1100mV 0C Model Hold 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : 0.166
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : 0.363
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -0.538
+TNS   : -21.860
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : -0.538
+TNS   : -18.683
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
+Slack : 1.458
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clock'
+Slack : 9.980
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 270.307
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -3.580
+TNS   : -77.706
+
+Type  : Fast 1100mV 85C Model Setup 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -3.072
+TNS   : -44.209
+
+Type  : Fast 1100mV 85C Model Setup 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : -1.186
+TNS   : -18.164
+
+Type  : Fast 1100mV 85C Model Hold 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -0.047
+TNS   : -0.047
+
+Type  : Fast 1100mV 85C Model Hold 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.027
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : 0.169
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -0.094
+TNS   : -1.538
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : 0.099
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
+Slack : 1.458
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clock'
+Slack : 9.643
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 270.785
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -3.042
+TNS   : -42.930
+
+Type  : Fast 1100mV 0C Model Setup 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -2.668
+TNS   : -49.818
+
+Type  : Fast 1100mV 0C Model Setup 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : -1.030
+TNS   : -15.835
+
+Type  : Fast 1100mV 0C Model Hold 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -0.194
+TNS   : -0.194
+
+Type  : Fast 1100mV 0C Model Hold 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -0.036
+TNS   : -0.036
+
+Type  : Fast 1100mV 0C Model Hold 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : 0.150
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock'
+Slack : -0.063
+TNS   : -1.054
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock'
+Slack : 0.116
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
+Slack : 1.458
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clock'
+Slack : 9.632
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'pll|ip_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 270.791
+TNS   : 0.000
+
+------------------------------------------------------------

@@ -1,5 +1,5 @@
 Flow report for forca
-Tue May 20 11:36:21 2025
+Fri May 30 19:02:10 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,25 +41,25 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Tue May 20 11:36:21 2025       ;
+; Flow Status                     ; Successful - Fri May 30 19:02:03 2025       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; forca                                       ;
 ; Top-level Entity Name           ; forca                                       ;
 ; Family                          ; Cyclone V                                   ;
-; Device                          ; 5CEBA9F23C7                                 ;
+; Device                          ; 5CEBA4F23C7                                 ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 0                                           ;
-; Total pins                      ; 30                                          ;
+; Logic utilization (in ALMs)     ; 71 / 18,480 ( < 1 % )                       ;
+; Total registers                 ; 111                                         ;
+; Total pins                      ; 26 / 224 ( 12 % )                           ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 0                                           ;
-; Total DSP Blocks                ; 0                                           ;
+; Total block memory bits         ; 0 / 3,153,920 ( 0 % )                       ;
+; Total DSP Blocks                ; 0 / 66 ( 0 % )                              ;
 ; Total HSSI RX PCSs              ; 0                                           ;
 ; Total HSSI PMA RX Deserializers ; 0                                           ;
 ; Total HSSI TX PCSs              ; 0                                           ;
 ; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0                                           ;
-; Total DLLs                      ; 0                                           ;
+; Total PLLs                      ; 1 / 4 ( 25 % )                              ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
 +---------------------------------+---------------------------------------------+
 
 
@@ -68,7 +68,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/20/2025 11:36:10 ;
+; Start date & time ; 05/30/2025 19:01:15 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; forca               ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 231134837241907.174775177010524        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 231134837241907.174864247504856        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; MISC_FILE                           ; ip_pll.cmp                             ; --            ; --          ; --         ;
@@ -98,8 +98,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4856 MB             ; 00:00:26                           ;
-; Total                ; 00:00:11     ; --                      ; --                  ; 00:00:26                           ;
+; Analysis & Synthesis ; 00:00:12     ; 1.0                     ; 4883 MB             ; 00:00:27                           ;
+; Fitter               ; 00:00:28     ; 1.0                     ; 6304 MB             ; 00:00:46                           ;
+; Assembler            ; 00:00:05     ; 1.0                     ; 4820 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:06     ; 1.1                     ; 5092 MB             ; 00:00:07                           ;
+; Total                ; 00:00:51     ; --                      ; --                  ; 00:01:24                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -109,6 +112,9 @@ https://fpgasoftware.intel.com/eula.
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; DESKTOP-D670JL6  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; DESKTOP-D670JL6  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-D670JL6  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; DESKTOP-D670JL6  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -116,6 +122,9 @@ https://fpgasoftware.intel.com/eula.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off forca -c forca
+quartus_fit --read_settings_files=off --write_settings_files=off forca -c forca
+quartus_asm --read_settings_files=off --write_settings_files=off forca -c forca
+quartus_sta forca -c forca
 
 
 

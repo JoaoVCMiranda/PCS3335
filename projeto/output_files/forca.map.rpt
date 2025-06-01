@@ -1,5 +1,5 @@
 Analysis & Synthesis report for forca
-Tue May 20 11:36:21 2025
+Fri May 30 19:01:27 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -14,12 +14,33 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis IP Cores Summary
-  9. General Register Statistics
- 10. Parameter Settings for User Entity Instance: ip_pll:ippll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i
- 11. Port Connectivity Checks: "ip_pll:ippll"
- 12. Post-Synthesis Netlist Statistics for Top Partition
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
+  9. State Machine - |forca|tx:transmissor|state
+ 10. State Machine - |forca|tx:transmissor|control_unit_tx:control|transmitter_timing_control:TTC|state
+ 11. State Machine - |forca|fsm_ascii_alphabet:seletor_letras|state
+ 12. State Machine - |forca|banco_palavras:db|pseudo_rand:lvl3_rand_gen|state
+ 13. State Machine - |forca|banco_palavras:db|pseudo_rand:lvl2_rand_gen|state
+ 14. State Machine - |forca|banco_palavras:db|pseudo_rand:lvl1_rand_gen|state
+ 15. Registers Removed During Synthesis
+ 16. Removed Registers Triggering Further Register Optimizations
+ 17. General Register Statistics
+ 18. Inverted Register Statistics
+ 19. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 20. Parameter Settings for User Entity Instance: ip_pll:pll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i
+ 21. Parameter Settings for User Entity Instance: banco_palavras:db|pseudo_rand:lvl1_rand_gen
+ 22. Parameter Settings for User Entity Instance: banco_palavras:db|pseudo_rand:lvl2_rand_gen
+ 23. Parameter Settings for User Entity Instance: banco_palavras:db|pseudo_rand:lvl3_rand_gen
+ 24. Parameter Settings for User Entity Instance: tx:transmissor|control_unit_tx:control|shift_reg:REG
+ 25. Port Connectivity Checks: "tx:transmissor|control_unit_tx:control|shift_reg:REG"
+ 26. Port Connectivity Checks: "tx:transmissor|control_unit_tx:control|baud_rate_generator:super"
+ 27. Port Connectivity Checks: "tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR"
+ 28. Port Connectivity Checks: "tx:transmissor"
+ 29. Port Connectivity Checks: "Pontuacao:pontos"
+ 30. Port Connectivity Checks: "reg_and_comp_system:comparador"
+ 31. Port Connectivity Checks: "banco_palavras:db"
+ 32. Port Connectivity Checks: "ip_pll:pll"
+ 33. Post-Synthesis Netlist Statistics for Top Partition
+ 34. Elapsed Time Per Partition
+ 35. Analysis & Synthesis Messages
 
 
 
@@ -46,14 +67,14 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue May 20 11:36:21 2025       ;
+; Analysis & Synthesis Status     ; Successful - Fri May 30 19:01:27 2025       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; forca                                       ;
 ; Top-level Entity Name           ; forca                                       ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 0                                           ;
-; Total pins                      ; 30                                          ;
+; Total registers                 ; 101                                         ;
+; Total pins                      ; 26                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -61,7 +82,7 @@ https://fpgasoftware.intel.com/eula.
 ; Total HSSI PMA RX Deserializers ; 0                                           ;
 ; Total HSSI TX PCSs              ; 0                                           ;
 ; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0                                           ;
+; Total PLLs                      ; 1                                           ;
 ; Total DLLs                      ; 0                                           ;
 +---------------------------------+---------------------------------------------+
 
@@ -71,7 +92,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
-; Device                                                                          ; 5CEBA9F23C7        ;                    ;
+; Device                                                                          ; 5CEBA4F23C7        ;                    ;
 ; Top-level entity name                                                           ; forca              ; forca              ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
@@ -162,70 +183,372 @@ https://fpgasoftware.intel.com/eula.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                  ;
-+----------------------------------+-----------------+-----------------------------+----------------------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                   ; File Name with Absolute Path                                                                                               ; Library ;
-+----------------------------------+-----------------+-----------------------------+----------------------------------------------------------------------------------------------------------------------------+---------+
-; ip_pll.vhd                       ; yes             ; User Wizard-Generated File  ; C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/ip_pll.vhd             ; ip_pll  ;
-; ip_pll/ip_pll_0002.v             ; yes             ; User Verilog HDL File       ; C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/ip_pll/ip_pll_0002.v   ; ip_pll  ;
-; vhdl/forca.vhd                   ; yes             ; User VHDL File              ; C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd         ;         ;
-; vhdl/display_letra.vhd           ; yes             ; User VHDL File              ; C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/display_letra.vhd ;         ;
-; altera_pll.v                     ; yes             ; Megafunction                ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altera_pll.v                                                        ;         ;
-+----------------------------------+-----------------+-----------------------------+----------------------------------------------------------------------------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                              ;
++-------------------------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                ; Used in Netlist ; File Type                   ; File Name with Absolute Path                                                                            ; Library ;
++-------------------------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------------------------------------------+---------+
+; ip_pll.vhd                                      ; yes             ; User Wizard-Generated File  ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/ip_pll.vhd                                      ; ip_pll  ;
+; ip_pll/ip_pll_0002.v                            ; yes             ; User Verilog HDL File       ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/ip_pll/ip_pll_0002.v                            ; ip_pll  ;
+; vhdl/forca.vhd                                  ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd                                  ;         ;
+; vhdl/transmissor/baud_rate_generator.vhd        ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/baud_rate_generator.vhd        ;         ;
+; vhdl/transmissor/control_unit_tx.vhd            ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/control_unit_tx.vhd            ;         ;
+; vhdl/transmissor/shift_reg.vhd                  ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/shift_reg.vhd                  ;         ;
+; vhdl/transmissor/transmitter_timing_control.vhd ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/transmitter_timing_control.vhd ;         ;
+; vhdl/transmissor/tx.vhd                         ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/tx.vhd                         ;         ;
+; vhdl/Combo/Letras.vhd                           ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Letras.vhd                           ;         ;
+; vhdl/Combo/Pontuacao.vhd                        ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Pontuacao.vhd                        ;         ;
+; vhdl/banco_palavras.vhd                         ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_palavras.vhd                         ;         ;
+; vhdl/pseudo_rand.vhd                            ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/pseudo_rand.vhd                            ;         ;
+; vhdl/banco_lvl1.vhd                             ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_lvl1.vhd                             ;         ;
+; vhdl/banco_lvl2.vhd                             ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_lvl2.vhd                             ;         ;
+; vhdl/banco_lvl3.vhd                             ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_lvl3.vhd                             ;         ;
+; vhdl/register_and_comparator_system.vhd         ; yes             ; User VHDL File              ; C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/register_and_comparator_system.vhd         ;         ;
+; altera_pll.v                                    ; yes             ; Megafunction                ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altera_pll.v                                     ;         ;
++-------------------------------------------------+-----------------+-----------------------------+---------------------------------------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-; Estimate of Logic utilization (ALMs needed) ; 0     ;
-;                                             ;       ;
-; Combinational ALUT usage for logic          ; 0     ;
-;     -- 7 input functions                    ; 0     ;
-;     -- 6 input functions                    ; 0     ;
-;     -- 5 input functions                    ; 0     ;
-;     -- 4 input functions                    ; 0     ;
-;     -- <=3 input functions                  ; 0     ;
-;                                             ;       ;
-; Dedicated logic registers                   ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 30    ;
-;                                             ;       ;
-; Total DSP Blocks                            ; 0     ;
-;                                             ;       ;
-; Maximum fan-out node                        ; clock ;
-; Maximum fan-out                             ; 1     ;
-; Total fan-out                               ; 30    ;
-; Average fan-out                             ; 0.50  ;
-+---------------------------------------------+-------+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimate of Logic utilization (ALMs needed) ; 72          ;
+;                                             ;             ;
+; Combinational ALUT usage for logic          ; 109         ;
+;     -- 7 input functions                    ; 0           ;
+;     -- 6 input functions                    ; 29          ;
+;     -- 5 input functions                    ; 26          ;
+;     -- 4 input functions                    ; 11          ;
+;     -- <=3 input functions                  ; 43          ;
+;                                             ;             ;
+; Dedicated logic registers                   ; 101         ;
+;                                             ;             ;
+; I/O pins                                    ; 26          ;
+;                                             ;             ;
+; Total DSP Blocks                            ; 0           ;
+;                                             ;             ;
+; Total PLLs                                  ; 1           ;
+;     -- PLLs                                 ; 1           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; reset~input ;
+; Maximum fan-out                             ; 102         ;
+; Total fan-out                               ; 832         ;
+; Average fan-out                             ; 3.16        ;
++---------------------------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |forca                     ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 30   ; 0            ; |forca              ; forca       ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                           ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------+----------------------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                          ; Entity Name                ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------+----------------------------+--------------+
+; |forca                                    ; 109 (0)             ; 101 (0)                   ; 0                 ; 0          ; 26   ; 0            ; |forca                                                                       ; forca                      ; work         ;
+;    |ip_pll:pll|                           ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |forca|ip_pll:pll                                                            ; ip_pll                     ; ip_pll       ;
+;       |ip_pll_0002:ip_pll_inst|           ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |forca|ip_pll:pll|ip_pll_0002:ip_pll_inst                                    ; ip_pll_0002                ; ip_pll       ;
+;          |altera_pll:altera_pll_i|        ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |forca|ip_pll:pll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i            ; altera_pll                 ; work         ;
+;    |tx:transmissor|                       ; 109 (50)            ; 101 (43)                  ; 0                 ; 0          ; 0    ; 0            ; |forca|tx:transmissor                                                        ; tx                         ; work         ;
+;       |control_unit_tx:control|           ; 59 (0)              ; 58 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |forca|tx:transmissor|control_unit_tx:control                                ; control_unit_tx            ; work         ;
+;          |baud_rate_generator:BGR|        ; 21 (21)             ; 17 (17)                   ; 0                 ; 0          ; 0    ; 0            ; |forca|tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR        ; baud_rate_generator        ; work         ;
+;          |baud_rate_generator:super|      ; 21 (21)             ; 17 (17)                   ; 0                 ; 0          ; 0    ; 0            ; |forca|tx:transmissor|control_unit_tx:control|baud_rate_generator:super      ; baud_rate_generator        ; work         ;
+;          |shift_reg:REG|                  ; 8 (8)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |forca|tx:transmissor|control_unit_tx:control|shift_reg:REG                  ; shift_reg                  ; work         ;
+;          |transmitter_timing_control:TTC| ; 9 (9)               ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |forca|tx:transmissor|control_unit_tx:control|transmitter_timing_control:TTC ; transmitter_timing_control ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------+----------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                 ;
-+--------+--------------+---------+--------------+--------------+---------------------+-----------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance     ; IP Include File ;
-+--------+--------------+---------+--------------+--------------+---------------------+-----------------+
-; Altera ; altera_pll   ; 20.1    ; N/A          ; N/A          ; |forca|ip_pll:ippll ; ip_pll.vhd      ;
-+--------+--------------+---------+--------------+--------------+---------------------+-----------------+
++-----------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                               ;
++--------+--------------+---------+--------------+--------------+-------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance   ; IP Include File ;
++--------+--------------+---------+--------------+--------------+-------------------+-----------------+
+; Altera ; altera_pll   ; 20.1    ; N/A          ; N/A          ; |forca|ip_pll:pll ; ip_pll.vhd      ;
++--------+--------------+---------+--------------+--------------+-------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |forca|tx:transmissor|state                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
++--------------+---------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+---------+---------+
+; Name         ; state.N ; state.L2_Q16 ; state.L1_Q16 ; state.L2_Q15 ; state.L1_Q15 ; state.L2_Q14 ; state.L1_Q14 ; state.L2_Q13 ; state.L1_Q13 ; state.L2_Q12 ; state.L1_Q12 ; state.L2_Q11 ; state.L1_Q11 ; state.L2_Q10 ; state.L1_Q10 ; state.L2_Q9 ; state.L1_Q9 ; state.L2_Q8 ; state.L1_Q8 ; state.L2_Q7 ; state.L1_Q7 ; state.L2_Q6 ; state.L1_Q6 ; state.L2_Q5 ; state.L1_Q5 ; state.L2_Q4 ; state.L1_Q4 ; state.L2_Q3 ; state.L1_Q3 ; state.L2_Q2 ; state.L1_Q2 ; state.L2_Q1 ; state.L1_Q1 ; state.T ; state.O ;
++--------------+---------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+---------+---------+
+; state.O      ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 0       ;
+; state.T      ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1       ; 1       ;
+; state.L1_Q1  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0       ; 1       ;
+; state.L2_Q1  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0       ; 1       ;
+; state.L1_Q2  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q2  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q3  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q3  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q4  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q4  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q5  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q5  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q6  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q6  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q7  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q7  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q8  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q8  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q9  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q9  ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q10 ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q10 ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q11 ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q11 ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q12 ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q12 ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q13 ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q13 ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q14 ; 0       ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q14 ; 0       ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q15 ; 0       ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q15 ; 0       ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L1_Q16 ; 0       ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.L2_Q16 ; 0       ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
+; state.N      ; 1       ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0       ; 1       ;
++--------------+---------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+---------+---------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |forca|tx:transmissor|control_unit_tx:control|transmitter_timing_control:TTC|state                                       ;
++----------+---------+----------+----------+----------+----------+----------+----------+----------+----------+---------+---------+---------+
+; Name     ; state.E ; state.D0 ; state.D1 ; state.D2 ; state.D3 ; state.D4 ; state.D5 ; state.D6 ; state.D7 ; state.B ; state.A ; state.S ;
++----------+---------+----------+----------+----------+----------+----------+----------+----------+----------+---------+---------+---------+
+; state.S  ; 0       ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0       ; 0       ; 0       ;
+; state.A  ; 0       ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0       ; 1       ; 1       ;
+; state.B  ; 0       ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1       ; 0       ; 1       ;
+; state.D7 ; 0       ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0       ; 0       ; 1       ;
+; state.D6 ; 0       ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0       ; 0       ; 1       ;
+; state.D5 ; 0       ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0       ; 0       ; 1       ;
+; state.D4 ; 0       ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0       ; 0       ; 1       ;
+; state.D3 ; 0       ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0       ; 0       ; 1       ;
+; state.D2 ; 0       ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0       ; 0       ; 1       ;
+; state.D1 ; 0       ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0       ; 0       ; 1       ;
+; state.D0 ; 0       ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0       ; 0       ; 1       ;
+; state.E  ; 1       ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0       ; 0       ; 1       ;
++----------+---------+----------+----------+----------+----------+----------+----------+----------+----------+---------+---------+---------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |forca|fsm_ascii_alphabet:seletor_letras|state                                                                                                                                                                                                              ;
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+
+; Name    ; state.Z ; state.Y ; state.X ; state.W ; state.V ; state.U ; state.T ; state.S ; state.R ; state.Q ; state.P ; state.O ; state.N ; state.M ; state.L ; state.K ; state.J ; state.I ; state.H ; state.G ; state.F ; state.E ; state.D ; state.C ; state.B ; state.A ;
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+
+; state.A ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ;
+; state.B ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 1       ;
+; state.C ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 1       ;
+; state.D ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 1       ;
+; state.E ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 1       ;
+; state.F ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.G ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.H ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.I ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.J ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.K ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.L ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.M ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.N ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.O ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.P ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.Q ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.R ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.S ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.T ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.U ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.V ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.W ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.X ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.Y ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
+; state.Z ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------+
+; State Machine - |forca|banco_palavras:db|pseudo_rand:lvl3_rand_gen|state ;
++---------+---------+---------+--------------------------------------------+
+; Name    ; state.B ; state.A ; state.O                                    ;
++---------+---------+---------+--------------------------------------------+
+; state.O ; 0       ; 0       ; 0                                          ;
+; state.A ; 0       ; 1       ; 1                                          ;
+; state.B ; 1       ; 0       ; 1                                          ;
++---------+---------+---------+--------------------------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------+
+; State Machine - |forca|banco_palavras:db|pseudo_rand:lvl2_rand_gen|state ;
++---------+---------+---------+--------------------------------------------+
+; Name    ; state.B ; state.A ; state.O                                    ;
++---------+---------+---------+--------------------------------------------+
+; state.O ; 0       ; 0       ; 0                                          ;
+; state.A ; 0       ; 1       ; 1                                          ;
+; state.B ; 1       ; 0       ; 1                                          ;
++---------+---------+---------+--------------------------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------+
+; State Machine - |forca|banco_palavras:db|pseudo_rand:lvl1_rand_gen|state ;
++---------+---------+---------+--------------------------------------------+
+; Name    ; state.B ; state.A ; state.O                                    ;
++---------+---------+---------+--------------------------------------------+
+; state.O ; 0       ; 0       ; 0                                          ;
+; state.A ; 0       ; 1       ; 1                                          ;
+; state.B ; 1       ; 0       ; 1                                          ;
++---------+---------+---------+--------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                               ;
++--------------------------------------------------------------------+---------------------------------------------+
+; Register name                                                      ; Reason for Removal                          ;
++--------------------------------------------------------------------+---------------------------------------------+
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|aux_rand[0..5]         ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[0..2] ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|rand[0]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[3]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|rand[1]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[4]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|rand[2]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[5]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|rand[3,4]              ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|aux_rand[0..6]         ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[0..2] ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[0]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[3]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[1]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[4]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[2]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[5]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[3]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[6]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[4,5]              ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|aux_rand[0..6]         ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[0..2] ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[0]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[3]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[1]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[4]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[2]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[5]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[3]                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[6]    ; Stuck at GND due to stuck port clock_enable ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[4,5]              ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|noise[0,1]             ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|noise[0,1]             ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|noise[0,1]             ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|ascii[7]                         ; Stuck at GND due to stuck port data_in      ;
+; fsm_ascii_alphabet:seletor_letras|ascii[6]                         ; Stuck at VCC due to stuck port data_in      ;
+; fsm_ascii_alphabet:seletor_letras|ascii[5]                         ; Stuck at GND due to stuck port data_in      ;
+; fsm_ascii_alphabet:seletor_letras|ascii[0..4]                      ; Lost fanout                                 ;
+; Pontuacao:pontos|vidas_int[2]                                      ; Stuck at VCC due to stuck port clock_enable ;
+; fsm_ascii_alphabet:seletor_letras|state.A                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.B                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.C                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.D                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.E                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.F                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.G                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.H                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.I                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.J                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.K                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.L                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.M                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.N                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.O                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.P                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.Q                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.R                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.S                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.T                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.U                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.V                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.W                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.X                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.Y                          ; Lost fanout                                 ;
+; fsm_ascii_alphabet:seletor_letras|state.Z                          ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|state.O                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|state.A                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|state.B                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|state.O                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|state.A                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|state.B                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|state.O                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|state.A                ; Lost fanout                                 ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|state.B                ; Lost fanout                                 ;
+; tx:transmissor|letra[7]                                            ; Merged with tx:transmissor|letra[5]         ;
+; Pontuacao:pontos|vidas_int[0,1]                                    ; Stuck at GND due to stuck port clock        ;
+; Total Number of Removed Registers = 110                            ;                                             ;
++--------------------------------------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                              ;
++-----------------------------------------------------------------+--------------------------------+-------------------------------------------------------+
+; Register name                                                   ; Reason for Removal             ; Registers Removed due to This Register                ;
++-----------------------------------------------------------------+--------------------------------+-------------------------------------------------------+
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[0] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl3_rand_gen|noise[0], ;
+;                                                                 ; due to stuck port clock_enable ; banco_palavras:db|pseudo_rand:lvl3_rand_gen|noise[1], ;
+;                                                                 ;                                ; fsm_ascii_alphabet:seletor_letras|ascii[4],           ;
+;                                                                 ;                                ; fsm_ascii_alphabet:seletor_letras|ascii[3],           ;
+;                                                                 ;                                ; fsm_ascii_alphabet:seletor_letras|ascii[2],           ;
+;                                                                 ;                                ; fsm_ascii_alphabet:seletor_letras|ascii[1],           ;
+;                                                                 ;                                ; fsm_ascii_alphabet:seletor_letras|ascii[0]            ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[0] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl2_rand_gen|noise[0], ;
+;                                                                 ; due to stuck port clock_enable ; banco_palavras:db|pseudo_rand:lvl2_rand_gen|noise[1]  ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[0] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl1_rand_gen|noise[0], ;
+;                                                                 ; due to stuck port clock_enable ; banco_palavras:db|pseudo_rand:lvl1_rand_gen|noise[1]  ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[1] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl3_rand_gen|rand[0]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[2] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl3_rand_gen|rand[1]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[3] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl3_rand_gen|rand[2]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[4] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl3_rand_gen|rand[3]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl3_rand_gen|full_rand_output[5] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl3_rand_gen|rand[4]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[1] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[0]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[2] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[1]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[3] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[2]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[4] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[3]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[5] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[4]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl2_rand_gen|full_rand_output[6] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl2_rand_gen|rand[5]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[1] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[0]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[2] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[1]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[3] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[2]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[4] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[3]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[5] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[4]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; banco_palavras:db|pseudo_rand:lvl1_rand_gen|full_rand_output[6] ; Stuck at GND                   ; banco_palavras:db|pseudo_rand:lvl1_rand_gen|rand[5]   ;
+;                                                                 ; due to stuck port clock_enable ;                                                       ;
+; fsm_ascii_alphabet:seletor_letras|state.A                       ; Lost Fanouts                   ; fsm_ascii_alphabet:seletor_letras|state.Z             ;
+; Pontuacao:pontos|vidas_int[0]                                   ; Stuck at GND                   ; Pontuacao:pontos|vidas_int[1]                         ;
+;                                                                 ; due to stuck port clock        ;                                                       ;
++-----------------------------------------------------------------+--------------------------------+-------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -233,271 +556,410 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 101   ;
+; Number of registers using Synchronous Clear  ; 32    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 89    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 43    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: ip_pll:ippll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i ;
-+--------------------------------------+------------------------+-------------------------------------------+
-; Parameter Name                       ; Value                  ; Type                                      ;
-+--------------------------------------+------------------------+-------------------------------------------+
-; reference_clock_frequency            ; 50.0 MHz               ; String                                    ;
-; fractional_vco_multiplier            ; false                  ; String                                    ;
-; pll_type                             ; General                ; String                                    ;
-; pll_subtype                          ; General                ; String                                    ;
-; number_of_clocks                     ; 1                      ; Signed Integer                            ;
-; operation_mode                       ; direct                 ; String                                    ;
-; deserialization_factor               ; 4                      ; Signed Integer                            ;
-; data_rate                            ; 0                      ; Signed Integer                            ;
-; sim_additional_refclk_cycles_to_lock ; 0                      ; Signed Integer                            ;
-; output_clock_frequency0              ; 1.843198 MHz           ; String                                    ;
-; phase_shift0                         ; 0 ps                   ; String                                    ;
-; duty_cycle0                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency1              ; 0 MHz                  ; String                                    ;
-; phase_shift1                         ; 0 ps                   ; String                                    ;
-; duty_cycle1                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency2              ; 0 MHz                  ; String                                    ;
-; phase_shift2                         ; 0 ps                   ; String                                    ;
-; duty_cycle2                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency3              ; 0 MHz                  ; String                                    ;
-; phase_shift3                         ; 0 ps                   ; String                                    ;
-; duty_cycle3                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency4              ; 0 MHz                  ; String                                    ;
-; phase_shift4                         ; 0 ps                   ; String                                    ;
-; duty_cycle4                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency5              ; 0 MHz                  ; String                                    ;
-; phase_shift5                         ; 0 ps                   ; String                                    ;
-; duty_cycle5                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency6              ; 0 MHz                  ; String                                    ;
-; phase_shift6                         ; 0 ps                   ; String                                    ;
-; duty_cycle6                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency7              ; 0 MHz                  ; String                                    ;
-; phase_shift7                         ; 0 ps                   ; String                                    ;
-; duty_cycle7                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency8              ; 0 MHz                  ; String                                    ;
-; phase_shift8                         ; 0 ps                   ; String                                    ;
-; duty_cycle8                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency9              ; 0 MHz                  ; String                                    ;
-; phase_shift9                         ; 0 ps                   ; String                                    ;
-; duty_cycle9                          ; 50                     ; Signed Integer                            ;
-; output_clock_frequency10             ; 0 MHz                  ; String                                    ;
-; phase_shift10                        ; 0 ps                   ; String                                    ;
-; duty_cycle10                         ; 50                     ; Signed Integer                            ;
-; output_clock_frequency11             ; 0 MHz                  ; String                                    ;
-; phase_shift11                        ; 0 ps                   ; String                                    ;
-; duty_cycle11                         ; 50                     ; Signed Integer                            ;
-; output_clock_frequency12             ; 0 MHz                  ; String                                    ;
-; phase_shift12                        ; 0 ps                   ; String                                    ;
-; duty_cycle12                         ; 50                     ; Signed Integer                            ;
-; output_clock_frequency13             ; 0 MHz                  ; String                                    ;
-; phase_shift13                        ; 0 ps                   ; String                                    ;
-; duty_cycle13                         ; 50                     ; Signed Integer                            ;
-; output_clock_frequency14             ; 0 MHz                  ; String                                    ;
-; phase_shift14                        ; 0 ps                   ; String                                    ;
-; duty_cycle14                         ; 50                     ; Signed Integer                            ;
-; output_clock_frequency15             ; 0 MHz                  ; String                                    ;
-; phase_shift15                        ; 0 ps                   ; String                                    ;
-; duty_cycle15                         ; 50                     ; Signed Integer                            ;
-; output_clock_frequency16             ; 0 MHz                  ; String                                    ;
-; phase_shift16                        ; 0 ps                   ; String                                    ;
-; duty_cycle16                         ; 50                     ; Signed Integer                            ;
-; output_clock_frequency17             ; 0 MHz                  ; String                                    ;
-; phase_shift17                        ; 0 ps                   ; String                                    ;
-; duty_cycle17                         ; 50                     ; Signed Integer                            ;
-; clock_name_0                         ;                        ; String                                    ;
-; clock_name_1                         ;                        ; String                                    ;
-; clock_name_2                         ;                        ; String                                    ;
-; clock_name_3                         ;                        ; String                                    ;
-; clock_name_4                         ;                        ; String                                    ;
-; clock_name_5                         ;                        ; String                                    ;
-; clock_name_6                         ;                        ; String                                    ;
-; clock_name_7                         ;                        ; String                                    ;
-; clock_name_8                         ;                        ; String                                    ;
-; clock_name_global_0                  ; false                  ; String                                    ;
-; clock_name_global_1                  ; false                  ; String                                    ;
-; clock_name_global_2                  ; false                  ; String                                    ;
-; clock_name_global_3                  ; false                  ; String                                    ;
-; clock_name_global_4                  ; false                  ; String                                    ;
-; clock_name_global_5                  ; false                  ; String                                    ;
-; clock_name_global_6                  ; false                  ; String                                    ;
-; clock_name_global_7                  ; false                  ; String                                    ;
-; clock_name_global_8                  ; false                  ; String                                    ;
-; m_cnt_hi_div                         ; 1                      ; Signed Integer                            ;
-; m_cnt_lo_div                         ; 1                      ; Signed Integer                            ;
-; m_cnt_bypass_en                      ; false                  ; String                                    ;
-; m_cnt_odd_div_duty_en                ; false                  ; String                                    ;
-; n_cnt_hi_div                         ; 1                      ; Signed Integer                            ;
-; n_cnt_lo_div                         ; 1                      ; Signed Integer                            ;
-; n_cnt_bypass_en                      ; false                  ; String                                    ;
-; n_cnt_odd_div_duty_en                ; false                  ; String                                    ;
-; c_cnt_hi_div0                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div0                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en0                     ; false                  ; String                                    ;
-; c_cnt_in_src0                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en0               ; false                  ; String                                    ;
-; c_cnt_prst0                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst0                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div1                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div1                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en1                     ; false                  ; String                                    ;
-; c_cnt_in_src1                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en1               ; false                  ; String                                    ;
-; c_cnt_prst1                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst1                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div2                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div2                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en2                     ; false                  ; String                                    ;
-; c_cnt_in_src2                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en2               ; false                  ; String                                    ;
-; c_cnt_prst2                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst2                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div3                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div3                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en3                     ; false                  ; String                                    ;
-; c_cnt_in_src3                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en3               ; false                  ; String                                    ;
-; c_cnt_prst3                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst3                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div4                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div4                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en4                     ; false                  ; String                                    ;
-; c_cnt_in_src4                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en4               ; false                  ; String                                    ;
-; c_cnt_prst4                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst4                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div5                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div5                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en5                     ; false                  ; String                                    ;
-; c_cnt_in_src5                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en5               ; false                  ; String                                    ;
-; c_cnt_prst5                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst5                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div6                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div6                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en6                     ; false                  ; String                                    ;
-; c_cnt_in_src6                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en6               ; false                  ; String                                    ;
-; c_cnt_prst6                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst6                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div7                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div7                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en7                     ; false                  ; String                                    ;
-; c_cnt_in_src7                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en7               ; false                  ; String                                    ;
-; c_cnt_prst7                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst7                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div8                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div8                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en8                     ; false                  ; String                                    ;
-; c_cnt_in_src8                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en8               ; false                  ; String                                    ;
-; c_cnt_prst8                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst8                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div9                        ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div9                        ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en9                     ; false                  ; String                                    ;
-; c_cnt_in_src9                        ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en9               ; false                  ; String                                    ;
-; c_cnt_prst9                          ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst9                   ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div10                       ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div10                       ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en10                    ; false                  ; String                                    ;
-; c_cnt_in_src10                       ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en10              ; false                  ; String                                    ;
-; c_cnt_prst10                         ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst10                  ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div11                       ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div11                       ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en11                    ; false                  ; String                                    ;
-; c_cnt_in_src11                       ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en11              ; false                  ; String                                    ;
-; c_cnt_prst11                         ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst11                  ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div12                       ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div12                       ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en12                    ; false                  ; String                                    ;
-; c_cnt_in_src12                       ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en12              ; false                  ; String                                    ;
-; c_cnt_prst12                         ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst12                  ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div13                       ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div13                       ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en13                    ; false                  ; String                                    ;
-; c_cnt_in_src13                       ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en13              ; false                  ; String                                    ;
-; c_cnt_prst13                         ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst13                  ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div14                       ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div14                       ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en14                    ; false                  ; String                                    ;
-; c_cnt_in_src14                       ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en14              ; false                  ; String                                    ;
-; c_cnt_prst14                         ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst14                  ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div15                       ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div15                       ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en15                    ; false                  ; String                                    ;
-; c_cnt_in_src15                       ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en15              ; false                  ; String                                    ;
-; c_cnt_prst15                         ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst15                  ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div16                       ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div16                       ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en16                    ; false                  ; String                                    ;
-; c_cnt_in_src16                       ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en16              ; false                  ; String                                    ;
-; c_cnt_prst16                         ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst16                  ; 0                      ; Signed Integer                            ;
-; c_cnt_hi_div17                       ; 1                      ; Signed Integer                            ;
-; c_cnt_lo_div17                       ; 1                      ; Signed Integer                            ;
-; c_cnt_bypass_en17                    ; false                  ; String                                    ;
-; c_cnt_in_src17                       ; ph_mux_clk             ; String                                    ;
-; c_cnt_odd_div_duty_en17              ; false                  ; String                                    ;
-; c_cnt_prst17                         ; 1                      ; Signed Integer                            ;
-; c_cnt_ph_mux_prst17                  ; 0                      ; Signed Integer                            ;
-; pll_vco_div                          ; 1                      ; Signed Integer                            ;
-; pll_slf_rst                          ; false                  ; String                                    ;
-; pll_bw_sel                           ; low                    ; String                                    ;
-; pll_output_clk_frequency             ; 0 MHz                  ; String                                    ;
-; pll_cp_current                       ; 0                      ; Signed Integer                            ;
-; pll_bwctrl                           ; 0                      ; Signed Integer                            ;
-; pll_fractional_division              ; 1                      ; Signed Integer                            ;
-; pll_fractional_cout                  ; 24                     ; Signed Integer                            ;
-; pll_dsm_out_sel                      ; 1st_order              ; String                                    ;
-; mimic_fbclk_type                     ; gclk                   ; String                                    ;
-; pll_fbclk_mux_1                      ; glb                    ; String                                    ;
-; pll_fbclk_mux_2                      ; fb_1                   ; String                                    ;
-; pll_m_cnt_in_src                     ; ph_mux_clk             ; String                                    ;
-; pll_vcoph_div                        ; 1                      ; Signed Integer                            ;
-; refclk1_frequency                    ; 0 MHz                  ; String                                    ;
-; pll_clkin_0_src                      ; clk_0                  ; String                                    ;
-; pll_clkin_1_src                      ; clk_0                  ; String                                    ;
-; pll_clk_loss_sw_en                   ; false                  ; String                                    ;
-; pll_auto_clk_sw_en                   ; false                  ; String                                    ;
-; pll_manu_clk_sw_en                   ; false                  ; String                                    ;
-; pll_clk_sw_dly                       ; 0                      ; Signed Integer                            ;
-; pll_extclk_0_cnt_src                 ; pll_extclk_cnt_src_vss ; String                                    ;
-; pll_extclk_1_cnt_src                 ; pll_extclk_cnt_src_vss ; String                                    ;
-+--------------------------------------+------------------------+-------------------------------------------+
++--------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                         ;
++----------------------------------------------------------------------------+---------+
+; Inverted Register                                                          ; Fan out ;
++----------------------------------------------------------------------------+---------+
+; tx:transmissor|control_unit_tx:control|shift_reg:REG|reg[0]                ; 2       ;
+; tx:transmissor|control_unit_tx:control|shift_reg:REG|reg[1]                ; 2       ;
+; tx:transmissor|control_unit_tx:control|baud_rate_generator:super|out_clock ; 25      ;
+; tx:transmissor|control_unit_tx:control|shift_reg:REG|reg[2]                ; 2       ;
+; tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR|out_clock   ; 18      ;
+; tx:transmissor|control_unit_tx:control|shift_reg:REG|reg[3]                ; 2       ;
+; tx:transmissor|control_unit_tx:control|shift_reg:REG|reg[4]                ; 2       ;
+; tx:transmissor|control_unit_tx:control|shift_reg:REG|reg[5]                ; 2       ;
+; tx:transmissor|control_unit_tx:control|shift_reg:REG|reg[6]                ; 2       ;
+; tx:transmissor|control_unit_tx:control|shift_reg:REG|reg[7]                ; 1       ;
+; Total number of inverted registers = 10                                    ;         ;
++----------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------+
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |forca|tx:transmissor|letra[7]                                                         ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |forca|tx:transmissor|control_unit_tx:control|shift_reg:REG|reg[1]                     ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |forca|tx:transmissor|control_unit_tx:control|transmitter_timing_control:TTC|Selector2 ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |forca|tx:transmissor|Selector1                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ip_pll:pll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i ;
++--------------------------------------+------------------------+-----------------------------------------+
+; Parameter Name                       ; Value                  ; Type                                    ;
++--------------------------------------+------------------------+-----------------------------------------+
+; reference_clock_frequency            ; 50.0 MHz               ; String                                  ;
+; fractional_vco_multiplier            ; false                  ; String                                  ;
+; pll_type                             ; General                ; String                                  ;
+; pll_subtype                          ; General                ; String                                  ;
+; number_of_clocks                     ; 1                      ; Signed Integer                          ;
+; operation_mode                       ; direct                 ; String                                  ;
+; deserialization_factor               ; 4                      ; Signed Integer                          ;
+; data_rate                            ; 0                      ; Signed Integer                          ;
+; sim_additional_refclk_cycles_to_lock ; 0                      ; Signed Integer                          ;
+; output_clock_frequency0              ; 1.843198 MHz           ; String                                  ;
+; phase_shift0                         ; 0 ps                   ; String                                  ;
+; duty_cycle0                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency1              ; 0 MHz                  ; String                                  ;
+; phase_shift1                         ; 0 ps                   ; String                                  ;
+; duty_cycle1                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency2              ; 0 MHz                  ; String                                  ;
+; phase_shift2                         ; 0 ps                   ; String                                  ;
+; duty_cycle2                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency3              ; 0 MHz                  ; String                                  ;
+; phase_shift3                         ; 0 ps                   ; String                                  ;
+; duty_cycle3                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency4              ; 0 MHz                  ; String                                  ;
+; phase_shift4                         ; 0 ps                   ; String                                  ;
+; duty_cycle4                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency5              ; 0 MHz                  ; String                                  ;
+; phase_shift5                         ; 0 ps                   ; String                                  ;
+; duty_cycle5                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency6              ; 0 MHz                  ; String                                  ;
+; phase_shift6                         ; 0 ps                   ; String                                  ;
+; duty_cycle6                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency7              ; 0 MHz                  ; String                                  ;
+; phase_shift7                         ; 0 ps                   ; String                                  ;
+; duty_cycle7                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency8              ; 0 MHz                  ; String                                  ;
+; phase_shift8                         ; 0 ps                   ; String                                  ;
+; duty_cycle8                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency9              ; 0 MHz                  ; String                                  ;
+; phase_shift9                         ; 0 ps                   ; String                                  ;
+; duty_cycle9                          ; 50                     ; Signed Integer                          ;
+; output_clock_frequency10             ; 0 MHz                  ; String                                  ;
+; phase_shift10                        ; 0 ps                   ; String                                  ;
+; duty_cycle10                         ; 50                     ; Signed Integer                          ;
+; output_clock_frequency11             ; 0 MHz                  ; String                                  ;
+; phase_shift11                        ; 0 ps                   ; String                                  ;
+; duty_cycle11                         ; 50                     ; Signed Integer                          ;
+; output_clock_frequency12             ; 0 MHz                  ; String                                  ;
+; phase_shift12                        ; 0 ps                   ; String                                  ;
+; duty_cycle12                         ; 50                     ; Signed Integer                          ;
+; output_clock_frequency13             ; 0 MHz                  ; String                                  ;
+; phase_shift13                        ; 0 ps                   ; String                                  ;
+; duty_cycle13                         ; 50                     ; Signed Integer                          ;
+; output_clock_frequency14             ; 0 MHz                  ; String                                  ;
+; phase_shift14                        ; 0 ps                   ; String                                  ;
+; duty_cycle14                         ; 50                     ; Signed Integer                          ;
+; output_clock_frequency15             ; 0 MHz                  ; String                                  ;
+; phase_shift15                        ; 0 ps                   ; String                                  ;
+; duty_cycle15                         ; 50                     ; Signed Integer                          ;
+; output_clock_frequency16             ; 0 MHz                  ; String                                  ;
+; phase_shift16                        ; 0 ps                   ; String                                  ;
+; duty_cycle16                         ; 50                     ; Signed Integer                          ;
+; output_clock_frequency17             ; 0 MHz                  ; String                                  ;
+; phase_shift17                        ; 0 ps                   ; String                                  ;
+; duty_cycle17                         ; 50                     ; Signed Integer                          ;
+; clock_name_0                         ;                        ; String                                  ;
+; clock_name_1                         ;                        ; String                                  ;
+; clock_name_2                         ;                        ; String                                  ;
+; clock_name_3                         ;                        ; String                                  ;
+; clock_name_4                         ;                        ; String                                  ;
+; clock_name_5                         ;                        ; String                                  ;
+; clock_name_6                         ;                        ; String                                  ;
+; clock_name_7                         ;                        ; String                                  ;
+; clock_name_8                         ;                        ; String                                  ;
+; clock_name_global_0                  ; false                  ; String                                  ;
+; clock_name_global_1                  ; false                  ; String                                  ;
+; clock_name_global_2                  ; false                  ; String                                  ;
+; clock_name_global_3                  ; false                  ; String                                  ;
+; clock_name_global_4                  ; false                  ; String                                  ;
+; clock_name_global_5                  ; false                  ; String                                  ;
+; clock_name_global_6                  ; false                  ; String                                  ;
+; clock_name_global_7                  ; false                  ; String                                  ;
+; clock_name_global_8                  ; false                  ; String                                  ;
+; m_cnt_hi_div                         ; 1                      ; Signed Integer                          ;
+; m_cnt_lo_div                         ; 1                      ; Signed Integer                          ;
+; m_cnt_bypass_en                      ; false                  ; String                                  ;
+; m_cnt_odd_div_duty_en                ; false                  ; String                                  ;
+; n_cnt_hi_div                         ; 1                      ; Signed Integer                          ;
+; n_cnt_lo_div                         ; 1                      ; Signed Integer                          ;
+; n_cnt_bypass_en                      ; false                  ; String                                  ;
+; n_cnt_odd_div_duty_en                ; false                  ; String                                  ;
+; c_cnt_hi_div0                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div0                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en0                     ; false                  ; String                                  ;
+; c_cnt_in_src0                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en0               ; false                  ; String                                  ;
+; c_cnt_prst0                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst0                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div1                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div1                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en1                     ; false                  ; String                                  ;
+; c_cnt_in_src1                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en1               ; false                  ; String                                  ;
+; c_cnt_prst1                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst1                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div2                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div2                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en2                     ; false                  ; String                                  ;
+; c_cnt_in_src2                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en2               ; false                  ; String                                  ;
+; c_cnt_prst2                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst2                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div3                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div3                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en3                     ; false                  ; String                                  ;
+; c_cnt_in_src3                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en3               ; false                  ; String                                  ;
+; c_cnt_prst3                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst3                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div4                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div4                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en4                     ; false                  ; String                                  ;
+; c_cnt_in_src4                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en4               ; false                  ; String                                  ;
+; c_cnt_prst4                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst4                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div5                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div5                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en5                     ; false                  ; String                                  ;
+; c_cnt_in_src5                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en5               ; false                  ; String                                  ;
+; c_cnt_prst5                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst5                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div6                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div6                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en6                     ; false                  ; String                                  ;
+; c_cnt_in_src6                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en6               ; false                  ; String                                  ;
+; c_cnt_prst6                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst6                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div7                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div7                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en7                     ; false                  ; String                                  ;
+; c_cnt_in_src7                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en7               ; false                  ; String                                  ;
+; c_cnt_prst7                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst7                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div8                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div8                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en8                     ; false                  ; String                                  ;
+; c_cnt_in_src8                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en8               ; false                  ; String                                  ;
+; c_cnt_prst8                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst8                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div9                        ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div9                        ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en9                     ; false                  ; String                                  ;
+; c_cnt_in_src9                        ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en9               ; false                  ; String                                  ;
+; c_cnt_prst9                          ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst9                   ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div10                       ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div10                       ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en10                    ; false                  ; String                                  ;
+; c_cnt_in_src10                       ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en10              ; false                  ; String                                  ;
+; c_cnt_prst10                         ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst10                  ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div11                       ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div11                       ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en11                    ; false                  ; String                                  ;
+; c_cnt_in_src11                       ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en11              ; false                  ; String                                  ;
+; c_cnt_prst11                         ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst11                  ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div12                       ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div12                       ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en12                    ; false                  ; String                                  ;
+; c_cnt_in_src12                       ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en12              ; false                  ; String                                  ;
+; c_cnt_prst12                         ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst12                  ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div13                       ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div13                       ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en13                    ; false                  ; String                                  ;
+; c_cnt_in_src13                       ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en13              ; false                  ; String                                  ;
+; c_cnt_prst13                         ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst13                  ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div14                       ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div14                       ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en14                    ; false                  ; String                                  ;
+; c_cnt_in_src14                       ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en14              ; false                  ; String                                  ;
+; c_cnt_prst14                         ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst14                  ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div15                       ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div15                       ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en15                    ; false                  ; String                                  ;
+; c_cnt_in_src15                       ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en15              ; false                  ; String                                  ;
+; c_cnt_prst15                         ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst15                  ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div16                       ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div16                       ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en16                    ; false                  ; String                                  ;
+; c_cnt_in_src16                       ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en16              ; false                  ; String                                  ;
+; c_cnt_prst16                         ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst16                  ; 0                      ; Signed Integer                          ;
+; c_cnt_hi_div17                       ; 1                      ; Signed Integer                          ;
+; c_cnt_lo_div17                       ; 1                      ; Signed Integer                          ;
+; c_cnt_bypass_en17                    ; false                  ; String                                  ;
+; c_cnt_in_src17                       ; ph_mux_clk             ; String                                  ;
+; c_cnt_odd_div_duty_en17              ; false                  ; String                                  ;
+; c_cnt_prst17                         ; 1                      ; Signed Integer                          ;
+; c_cnt_ph_mux_prst17                  ; 0                      ; Signed Integer                          ;
+; pll_vco_div                          ; 1                      ; Signed Integer                          ;
+; pll_slf_rst                          ; false                  ; String                                  ;
+; pll_bw_sel                           ; low                    ; String                                  ;
+; pll_output_clk_frequency             ; 0 MHz                  ; String                                  ;
+; pll_cp_current                       ; 0                      ; Signed Integer                          ;
+; pll_bwctrl                           ; 0                      ; Signed Integer                          ;
+; pll_fractional_division              ; 1                      ; Signed Integer                          ;
+; pll_fractional_cout                  ; 24                     ; Signed Integer                          ;
+; pll_dsm_out_sel                      ; 1st_order              ; String                                  ;
+; mimic_fbclk_type                     ; gclk                   ; String                                  ;
+; pll_fbclk_mux_1                      ; glb                    ; String                                  ;
+; pll_fbclk_mux_2                      ; fb_1                   ; String                                  ;
+; pll_m_cnt_in_src                     ; ph_mux_clk             ; String                                  ;
+; pll_vcoph_div                        ; 1                      ; Signed Integer                          ;
+; refclk1_frequency                    ; 0 MHz                  ; String                                  ;
+; pll_clkin_0_src                      ; clk_0                  ; String                                  ;
+; pll_clkin_1_src                      ; clk_0                  ; String                                  ;
+; pll_clk_loss_sw_en                   ; false                  ; String                                  ;
+; pll_auto_clk_sw_en                   ; false                  ; String                                  ;
+; pll_manu_clk_sw_en                   ; false                  ; String                                  ;
+; pll_clk_sw_dly                       ; 0                      ; Signed Integer                          ;
+; pll_extclk_0_cnt_src                 ; pll_extclk_cnt_src_vss ; String                                  ;
+; pll_extclk_1_cnt_src                 ; pll_extclk_cnt_src_vss ; String                                  ;
++--------------------------------------+------------------------+-----------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ip_pll:ippll"                                                                           ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port     ; Type   ; Severity ; Details                                                                             ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; outclk_0 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; locked   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: banco_palavras:db|pseudo_rand:lvl1_rand_gen ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; number_range   ; 7     ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: banco_palavras:db|pseudo_rand:lvl2_rand_gen ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; number_range   ; 7     ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: banco_palavras:db|pseudo_rand:lvl3_rand_gen ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; number_range   ; 6     ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: tx:transmissor|control_unit_tx:control|shift_reg:REG ;
++----------------+-------+--------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                     ;
++----------------+-------+--------------------------------------------------------------------------+
+; width          ; 8     ; Signed Integer                                                           ;
++----------------+-------+--------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "tx:transmissor|control_unit_tx:control|shift_reg:REG"                                     ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; serial_o_l ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "tx:transmissor|control_unit_tx:control|baud_rate_generator:super" ;
++----------------+-------+----------+----------------------------------------------------------+
+; Port           ; Type  ; Severity ; Details                                                  ;
++----------------+-------+----------+----------------------------------------------------------+
+; divisor[3..0]  ; Input ; Info     ; Stuck at VCC                                             ;
+; divisor[15..4] ; Input ; Info     ; Stuck at GND                                             ;
++----------------+-------+----------+----------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR" ;
++----------------+-------+----------+--------------------------------------------------------+
+; Port           ; Type  ; Severity ; Details                                                ;
++----------------+-------+----------+--------------------------------------------------------+
+; divisor[1..0]  ; Input ; Info     ; Stuck at VCC                                           ;
+; divisor[15..4] ; Input ; Info     ; Stuck at GND                                           ;
+; divisor[3]     ; Input ; Info     ; Stuck at VCC                                           ;
+; divisor[2]     ; Input ; Info     ; Stuck at GND                                           ;
++----------------+-------+----------+--------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "tx:transmissor"                                                                     ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; ok   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Pontuacao:pontos"                                                                    ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; combo ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; total ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg_and_comp_system:comparador"                                                                ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; clear           ; Input  ; Info     ; Stuck at GND                                                                        ;
+; comps_saved_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "banco_palavras:db" ;
++------+-------+----------+---------------------+
+; Port ; Type  ; Severity ; Details             ;
++------+-------+----------+---------------------+
+; en   ; Input ; Info     ; Stuck at GND        ;
++------+-------+----------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ip_pll:pll"                                                                           ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; locked ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -505,13 +967,28 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 1                           ;
-;     normal            ; 1                           ;
-;         0 data inputs ; 1                           ;
-; boundary_port         ; 30                          ;
+; arriav_ff             ; 101                         ;
+;     CLR               ; 25                          ;
+;     CLR SCLR          ; 32                          ;
+;     ENA               ; 11                          ;
+;     ENA CLR           ; 32                          ;
+;     plain             ; 1                           ;
+; arriav_lcell_comb     ; 112                         ;
+;     arith             ; 32                          ;
+;         1 data inputs ; 32                          ;
+;     normal            ; 80                          ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 4                           ;
+;         4 data inputs ; 11                          ;
+;         5 data inputs ; 26                          ;
+;         6 data inputs ; 29                          ;
+; boundary_port         ; 26                          ;
+; generic_pll           ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 0.00                        ;
-; Average LUT depth     ; 0.00                        ;
+; Max LUT depth         ; 3.00                        ;
+; Average LUT depth     ; 2.06                        ;
 +-----------------------+-----------------------------+
 
 
@@ -520,7 +997,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -530,34 +1007,81 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Tue May 20 11:36:10 2025
+    Info: Processing started: Fri May 30 19:01:15 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off forca -c forca
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file ip_pll.vhd
-    Info (12022): Found design unit 1: ip_pll-rtl File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/ip_pll.vhd Line: 20
-    Info (12023): Found entity 1: ip_pll File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/ip_pll.vhd Line: 11
+    Info (12022): Found design unit 1: ip_pll-rtl File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/ip_pll.vhd Line: 20
+    Info (12023): Found entity 1: ip_pll File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/ip_pll.vhd Line: 11
 Info (12021): Found 1 design units, including 1 entities, in source file ip_pll/ip_pll_0002.v
-    Info (12023): Found entity 1: ip_pll_0002 File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/ip_pll/ip_pll_0002.v Line: 2
+    Info (12023): Found entity 1: ip_pll_0002 File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/ip_pll/ip_pll_0002.v Line: 2
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl/forca.vhd
-    Info (12022): Found design unit 1: forca-arch_forca File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 20
-    Info (12023): Found entity 1: forca File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 6
-Info (12021): Found 2 design units, including 1 entities, in source file vhdl/display_letra.vhd
-    Info (12022): Found design unit 1: display_letra-comportamental File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/display_letra.vhd Line: 15
-    Info (12023): Found entity 1: display_letra File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/display_letra.vhd Line: 6
+    Info (12022): Found design unit 1: forca-arch_forca File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 20
+    Info (12023): Found entity 1: forca File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 6
+Warning (12019): Can't analyze file -- file vhdl/display_letra.vhd is missing
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl/not_uart.vhd
-    Info (12022): Found design unit 1: not_uart-arch_not_uart File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/not_uart.vhd Line: 26
-    Info (12023): Found entity 1: not_uart File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/not_uart.vhd Line: 6
+    Info (12022): Found design unit 1: not_uart-arch_not_uart File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/not_uart.vhd Line: 26
+    Info (12023): Found entity 1: not_uart File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/not_uart.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/transmissor/baud_rate_generator.vhd
+    Info (12022): Found design unit 1: baud_rate_generator-Behavioral File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/baud_rate_generator.vhd Line: 14
+    Info (12023): Found entity 1: baud_rate_generator File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/baud_rate_generator.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/transmissor/control_unit_tx.vhd
+    Info (12022): Found design unit 1: control_unit_tx-arch_tx File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/control_unit_tx.vhd Line: 16
+    Info (12023): Found entity 1: control_unit_tx File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/control_unit_tx.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/transmissor/shift_reg.vhd
+    Info (12022): Found design unit 1: shift_reg-shift_reg_arch File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/shift_reg.vhd Line: 19
+    Info (12023): Found entity 1: shift_reg File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/shift_reg.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/transmissor/transmitter_timing_control.vhd
+    Info (12022): Found design unit 1: transmitter_timing_control-arch_ttc File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/transmitter_timing_control.vhd Line: 16
+    Info (12023): Found entity 1: transmitter_timing_control File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/transmitter_timing_control.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/transmissor/tx.vhd
+    Info (12022): Found design unit 1: tx-arch_tx File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/tx.vhd Line: 16
+    Info (12023): Found entity 1: tx File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/tx.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/combo/letras.vhd
+    Info (12022): Found design unit 1: fsm_ascii_alphabet-Behavioral File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Letras.vhd Line: 15
+    Info (12023): Found entity 1: fsm_ascii_alphabet File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Letras.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/combo/pontuacao.vhd
+    Info (12022): Found design unit 1: Pontuacao-behavioral File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Pontuacao.vhd Line: 19
+    Info (12023): Found entity 1: Pontuacao File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Pontuacao.vhd Line: 8
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/combo/shiftregister.vhd
+    Info (12022): Found design unit 1: shiftregister-arch_reg File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/shiftregister.vhd Line: 20
+    Info (12023): Found entity 1: shiftregister File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/shiftregister.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/banco_palavras.vhd
+    Info (12022): Found design unit 1: banco_palavras-arch_banco_palavras File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_palavras.vhd Line: 16
+    Info (12023): Found entity 1: banco_palavras File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_palavras.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/pseudo_rand.vhd
+    Info (12022): Found design unit 1: pseudo_rand-arch_pseudo_rand File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/pseudo_rand.vhd Line: 17
+    Info (12023): Found entity 1: pseudo_rand File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/pseudo_rand.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/telas.vhd
+    Info (12022): Found design unit 1: telas-arch_telas File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/telas.vhd Line: 14
+    Info (12023): Found entity 1: telas File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/telas.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/banco_lvl1.vhd
+    Info (12022): Found design unit 1: banco_lvl1-arch_banco_lvl1 File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_lvl1.vhd Line: 14
+    Info (12023): Found entity 1: banco_lvl1 File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_lvl1.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/banco_lvl2.vhd
+    Info (12022): Found design unit 1: banco_lvl2-arch_banco_lvl2 File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_lvl2.vhd Line: 14
+    Info (12023): Found entity 1: banco_lvl2 File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_lvl2.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/banco_lvl3.vhd
+    Info (12022): Found design unit 1: banco_lvl3-arch_banco_lvl3 File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_lvl3.vhd Line: 14
+    Info (12023): Found entity 1: banco_lvl3 File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_lvl3.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl/register_and_comparator_system.vhd
+    Info (12022): Found design unit 1: reg_and_comp_system-behav File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/register_and_comparator_system.vhd Line: 15
+    Info (12023): Found entity 1: reg_and_comp_system File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/register_and_comparator_system.vhd Line: 5
 Info (12127): Elaborating entity "forca" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at forca.vhd(14): used implicit default value for signal "vidas" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-Warning (10541): VHDL Signal Declaration warning at forca.vhd(15): used implicit default value for signal "tx" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 15
-Warning (10036): Verilog HDL or VHDL warning at forca.vhd(22): object "out_clk" assigned a value but never read File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 22
-Info (12128): Elaborating entity "ip_pll" for hierarchy "ip_pll:ippll" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 67
-Info (12128): Elaborating entity "ip_pll_0002" for hierarchy "ip_pll:ippll|ip_pll_0002:ip_pll_inst" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/ip_pll.vhd Line: 32
-Info (12128): Elaborating entity "altera_pll" for hierarchy "ip_pll:ippll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/ip_pll/ip_pll_0002.v Line: 85
+Warning (10541): VHDL Signal Declaration warning at forca.vhd(13): used implicit default value for signal "seg_up" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 13
+Warning (10541): VHDL Signal Declaration warning at forca.vhd(14): used implicit default value for signal "seg_down" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 14
+Warning (10541): VHDL Signal Declaration warning at forca.vhd(94): used implicit default value for signal "lvl" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 94
+Warning (10540): VHDL Signal Declaration warning at forca.vhd(99): used explicit default value for signal "proxima" because signal was never assigned a value File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 99
+Warning (10036): Verilog HDL or VHDL warning at forca.vhd(104): object "comparison_saved" assigned a value but never read File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 104
+Warning (10036): Verilog HDL or VHDL warning at forca.vhd(106): object "combo" assigned a value but never read File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 106
+Warning (10036): Verilog HDL or VHDL warning at forca.vhd(107): object "total_pontos" assigned a value but never read File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 107
+Info (12128): Elaborating entity "ip_pll" for hierarchy "ip_pll:pll" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 113
+Info (12128): Elaborating entity "ip_pll_0002" for hierarchy "ip_pll:pll|ip_pll_0002:ip_pll_inst" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/ip_pll.vhd Line: 32
+Info (12128): Elaborating entity "altera_pll" for hierarchy "ip_pll:pll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/ip_pll/ip_pll_0002.v Line: 85
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "wire_to_nowhere_64" into its bus
-Info (12130): Elaborated megafunction instantiation "ip_pll:ippll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/ip_pll/ip_pll_0002.v Line: 85
-Info (12133): Instantiated megafunction "ip_pll:ippll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i" with the following parameter: File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/ip_pll/ip_pll_0002.v Line: 85
+Info (12130): Elaborated megafunction instantiation "ip_pll:pll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/ip_pll/ip_pll_0002.v Line: 85
+Info (12133): Instantiated megafunction "ip_pll:pll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i" with the following parameter: File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/ip_pll/ip_pll_0002.v Line: 85
     Info (12134): Parameter "fractional_vco_multiplier" = "false"
     Info (12134): Parameter "reference_clock_frequency" = "50.0 MHz"
     Info (12134): Parameter "operation_mode" = "direct"
@@ -618,51 +1142,60 @@ Info (12133): Instantiated megafunction "ip_pll:ippll|ip_pll_0002:ip_pll_inst|al
     Info (12134): Parameter "duty_cycle17" = "50"
     Info (12134): Parameter "pll_type" = "General"
     Info (12134): Parameter "pll_subtype" = "General"
-Info (12128): Elaborating entity "display_letra" for hierarchy "display_letra:letra" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 70
-Warning (14284): Synthesized away the following node(s):
-    Warning (14285): Synthesized away the following PLL node(s):
-        Warning (14320): Synthesized away node "ip_pll:ippll|ip_pll_0002:ip_pll_inst|altera_pll:altera_pll_i|outclk_wire[0]" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altera_pll.v Line: 749
+Info (12128): Elaborating entity "banco_palavras" for hierarchy "banco_palavras:db" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 116
+Info (12128): Elaborating entity "pseudo_rand" for hierarchy "banco_palavras:db|pseudo_rand:lvl1_rand_gen" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_palavras.vhd Line: 67
+Info (12128): Elaborating entity "pseudo_rand" for hierarchy "banco_palavras:db|pseudo_rand:lvl3_rand_gen" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_palavras.vhd Line: 73
+Info (12128): Elaborating entity "banco_lvl1" for hierarchy "banco_palavras:db|banco_lvl1:lvl1" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_palavras.vhd Line: 77
+Info (12128): Elaborating entity "banco_lvl2" for hierarchy "banco_palavras:db|banco_lvl2:lvl2" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_palavras.vhd Line: 79
+Info (12128): Elaborating entity "banco_lvl3" for hierarchy "banco_palavras:db|banco_lvl3:lvl3" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/banco_palavras.vhd Line: 81
+Info (12128): Elaborating entity "reg_and_comp_system" for hierarchy "reg_and_comp_system:comparador" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 119
+Warning (10492): VHDL Process Statement warning at register_and_comparator_system.vhd(89): signal "clear" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/register_and_comparator_system.vhd Line: 89
+Info (12128): Elaborating entity "fsm_ascii_alphabet" for hierarchy "fsm_ascii_alphabet:seletor_letras" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 122
+Warning (10492): VHDL Process Statement warning at Letras.vhd(32): signal "switch_let" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Letras.vhd Line: 32
+Warning (10492): VHDL Process Statement warning at Letras.vhd(37): signal "sel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Letras.vhd Line: 37
+Warning (10631): VHDL Process Statement warning at Letras.vhd(28): inferring latch(es) for signal or variable "contador", which holds its previous value in one or more paths through the process File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Letras.vhd Line: 28
+Warning (10492): VHDL Process Statement warning at Letras.vhd(46): signal "clk" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Letras.vhd Line: 46
+Info (12128): Elaborating entity "Pontuacao" for hierarchy "Pontuacao:pontos" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 125
+Info (12128): Elaborating entity "tx" for hierarchy "tx:transmissor" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 130
+Info (12128): Elaborating entity "control_unit_tx" for hierarchy "tx:transmissor|control_unit_tx:control" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/tx.vhd Line: 54
+Warning (10540): VHDL Signal Declaration warning at control_unit_tx.vhd(54): used explicit default value for signal "div" because signal was never assigned a value File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/control_unit_tx.vhd Line: 54
+Info (12128): Elaborating entity "baud_rate_generator" for hierarchy "tx:transmissor|control_unit_tx:control|baud_rate_generator:BGR" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/control_unit_tx.vhd Line: 63
+Info (12128): Elaborating entity "transmitter_timing_control" for hierarchy "tx:transmissor|control_unit_tx:control|transmitter_timing_control:TTC" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/control_unit_tx.vhd Line: 69
+Info (12128): Elaborating entity "shift_reg" for hierarchy "tx:transmissor|control_unit_tx:control|shift_reg:REG" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/transmissor/control_unit_tx.vhd Line: 72
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "seg_up[0]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 12
-    Warning (13410): Pin "seg_up[1]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 12
-    Warning (13410): Pin "seg_up[2]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 12
-    Warning (13410): Pin "seg_up[3]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 12
-    Warning (13410): Pin "seg_up[4]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 12
-    Warning (13410): Pin "seg_up[5]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 12
-    Warning (13410): Pin "seg_up[6]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 12
-    Warning (13410): Pin "seg_down[0]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 13
-    Warning (13410): Pin "seg_down[1]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 13
-    Warning (13410): Pin "seg_down[2]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 13
-    Warning (13410): Pin "seg_down[3]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 13
-    Warning (13410): Pin "seg_down[4]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 13
-    Warning (13410): Pin "seg_down[5]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 13
-    Warning (13410): Pin "seg_down[6]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 13
-    Warning (13410): Pin "vidas[0]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "vidas[1]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "vidas[2]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "vidas[3]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "vidas[4]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "vidas[5]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "vidas[6]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "vidas[7]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "vidas[8]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "vidas[9]" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 14
-    Warning (13410): Pin "tx" is stuck at GND File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 15
+    Warning (13410): Pin "seg_up[0]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 13
+    Warning (13410): Pin "seg_up[1]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 13
+    Warning (13410): Pin "seg_up[2]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 13
+    Warning (13410): Pin "seg_up[3]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 13
+    Warning (13410): Pin "seg_up[4]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 13
+    Warning (13410): Pin "seg_up[5]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 13
+    Warning (13410): Pin "seg_up[6]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 13
+    Warning (13410): Pin "seg_down[0]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 14
+    Warning (13410): Pin "seg_down[1]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 14
+    Warning (13410): Pin "seg_down[2]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 14
+    Warning (13410): Pin "seg_down[3]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 14
+    Warning (13410): Pin "seg_down[4]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 14
+    Warning (13410): Pin "seg_down[5]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 14
+    Warning (13410): Pin "seg_down[6]" is stuck at GND File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 14
+Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register Pontuacao:pontos|vidas_int[0] will power up to Low File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Pontuacao.vhd Line: 53
+    Critical Warning (18010): Register Pontuacao:pontos|vidas_int[1] will power up to High File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/Combo/Pontuacao.vhd Line: 53
+Info (17049): 63 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 5 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "clock" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 8
-    Warning (15610): No output dependent on input pin "reset" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 9
-    Warning (15610): No output dependent on input pin "seta_esquerda" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 10
-    Warning (15610): No output dependent on input pin "seta_direita" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 11
-    Warning (15610): No output dependent on input pin "rx" File: C:/Users/Operador/Documents/umnometaograndequesejaquaseimpossiveldeperdernomeiodessaspastas/projeto/vhdl/forca.vhd Line: 16
-Info (21057): Implemented 30 device resources after synthesis - the final resource count might be different
+    Info (16011): Adding 5 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "seta_esquerda" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 10
+    Warning (15610): No output dependent on input pin "seta_direita" File: C:/Users/Operador/Desktop/PCS3335-jv/PCS3335-jv/projeto/vhdl/forca.vhd Line: 11
+Info (21057): Implemented 175 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
-    Info (21059): Implemented 25 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 39 warnings
-    Info: Peak virtual memory: 4856 megabytes
-    Info: Processing ended: Tue May 20 11:36:21 2025
-    Info: Elapsed time: 00:00:11
+    Info (21059): Implemented 21 output pins
+    Info (21061): Implemented 148 logic cells
+    Info (21065): Implemented 1 PLLs
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 36 warnings
+    Info: Peak virtual memory: 4883 megabytes
+    Info: Processing ended: Fri May 30 19:01:27 2025
+    Info: Elapsed time: 00:00:12
     Info: Total CPU time (on all processors): 00:00:27
 
 
