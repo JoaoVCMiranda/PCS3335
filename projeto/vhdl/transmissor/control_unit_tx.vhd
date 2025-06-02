@@ -15,14 +15,7 @@ entity control_unit_tx is
 end control_unit_tx;
 
 architecture arch_tx of control_unit_tx is
-	component baud_rate_generator is
-	port(
-	    clock : in std_logic;
-	    reset : in std_logic;
-	    divisor : in std_logic_vector(15 downto 0);
-	    baudOut_n: out std_logic
-    	);
-	end component;
+
 	component transmitter_timing_control is
 		port(
 			clock : in std_logic;
@@ -46,32 +39,20 @@ architecture arch_tx of control_unit_tx is
 		);
 	end component;
 
-	signal brg_clock 	: std_logic;
-	signal super_clock	: std_logic;
+
 	signal loadOrShift 	: std_logic_vector(1 downto 0);
 	signal dados_tx		: std_logic;
 	signal serial_i 	: std_logic;
 
-	------------ Alterar o BaudRate aqui caso seja necessário ------------
-	signal div 		: integer := 11;
-	signal div_vector	: std_logic_vector(15 downto 0);
+
 begin
 	--- Saida principal
 	sout <= dados_tx;
 
-	--- Instâncias de componentes
-	--- Conexões de controle
-	div_vector <= std_logic_vector(to_unsigned(div, 16));
-	BGR: baud_rate_generator
-	port map(clock=>clock, reset=>reset, divisor=>div_vector, baudOut_n=>brg_clock);
-	--- Superamostargem
-	super: baud_rate_generator
-	port map(clock=>brg_clock, reset=>reset, divisor=>"0000000000001111", baudOut_n=>super_clock);
-
 	TTC: transmitter_timing_control
-	port map(clock=>super_clock, reset=>reset, regControl=>loadOrShift, serial_i=>serial_i, start=>start, done=>done, current_state=>current_state);
+	port map(clock=>clock, reset=>reset, regControl=>loadOrShift, serial_i=>serial_i, start=>start, done=>done, current_state=>current_state);
 
 	REG: shift_reg
-	port map(clock=>super_clock, reset=>reset, loadOrShift=>loadOrShift, serial_i=>serial_i, data_i=>dados, serial_o_r=>dados_tx);
+	port map(clock=>clock, reset=>reset, loadOrShift=>loadOrShift, serial_i=>serial_i, data_i=>dados, serial_o_r=>dados_tx);
 
 end arch_tx;
