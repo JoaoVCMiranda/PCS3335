@@ -17,6 +17,16 @@ Depois de concluir o primeiro tutorial, fazer uma branch auxiliar com a sua part
 - [branches (4 min)](https://www.youtube.com/watch?v=b9LTz6joMf8)
 - [commits e branches(6 min)](https://youtu.be/i_23KUAEtUM?t=53)
 
+## make_tests.sh
+
+Para usar o script gerado por IA para fazer os testes mais rapidamente, verificar se todas as entidas estão no arquivo work....cf
+Para inserir uma entidade que passou batida, usar
+
+```sh
+ghdl -a {nome_do_arquivo}
+```
+
 ## Informações adicionais
 
 - [RasPi Tutorial](tutorial_raspi.md)
+

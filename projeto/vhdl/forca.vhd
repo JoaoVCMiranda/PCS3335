@@ -15,18 +15,10 @@ entity forca is
 );
 end entity;
 
-architecture arch_forca of forca is 
+architecture arch_forca of forca is
 -- OUT CLOCK
 signal out_clk : std_logic;
 
-component display_letra is
-	port(
-		seta_esquerda : in std_logic;
-		seta_direita : in std_logic;
-		seg_up : out std_logic_vector(6 downto 0);
-		seg_down : out std_logic_vector(6 downto 0)
-	);
-end component;
 
 component ip_pll is
 	port (
@@ -87,6 +79,14 @@ component tx is
 	    sout  : out std_logic;
       	ok    : out std_logic
 	);
+end component;
+
+component telas is
+	port(
+        sel : in std_logic_vector(2 downto 0);
+        st_line : out std_logic_vector(127 downto 0);
+        nd_line : out std_logic_vector(127 downto 0)
+    );
 end component;
 
 signal lvl : std_logic_vector(1 downto 0);

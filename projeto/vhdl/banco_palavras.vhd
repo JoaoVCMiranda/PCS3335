@@ -62,6 +62,8 @@ signal tip_lvl2 : std_logic_vector(127 downto 0);
 signal word_lvl3 : std_logic_vector(127 downto 0);
 signal tip_lvl3 : std_logic_vector(127 downto 0);
 
+--signal lvl_signal : std_logic_vector(1 downto 0) := "01";
+
 begin
     ---para escolher qual palavra usar----
     lvl1_rand_gen : pseudo_rand
@@ -80,6 +82,8 @@ begin
     port map(lvl2_word_index, tip_lvl2, word_lvl2);
     lvl3 : banco_lvl3
     port map(lvl3_word_index, tip_lvl3, word_lvl3);
+
+
 
     with lvl select binary_word <=
         word_lvl1 when "01",
