@@ -1,8 +1,8 @@
-library IEEE;
-use IEEE.numeric_std.all;
-use IEEE.std_logic_1164.all;
+library ieee;
+use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
 
-entity simple_counter is
+entity simple_counter_2 is
     port(
         clock, reset : in std_logic;
         start_count : in std_logic;

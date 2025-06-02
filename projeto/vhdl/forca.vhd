@@ -10,6 +10,7 @@ entity forca is
 		seta_esquerda : in std_logic;
 		seta_direita : in std_logic;
 		start : in std_logic;
+		select_btn : in std_logic; 
 		vidas : out std_logic_vector(5 downto 0);
 		tx_out : out std_logic
 );
@@ -41,11 +42,17 @@ end component;
 
 component reg_and_comp_system is
 	port(
-		clock, reset, clear : in std_logic;
+		clock, reset : in std_logic;
 		data_in : in std_logic_vector(127 downto 0);
 		guess : in std_logic_vector(7 downto 0);
         comp_OK_out : out unsigned(15 downto 0);
-        comps_saved_out : out std_logic_vector(15 downto 0)
+        comps_saved_out : out std_logic_vector(15 downto 0);
+        bad_guess : out std_logic := '0';
+        transmission_start : in std_logic;
+        transmission_over : out std_logic;
+        serial_out : out std_logic;
+        prepare_simple_regs : in std_logic;
+        game_ready : in std_logic --sinal enviado pela UC para indicar que os regs estão prontos e o jogo começou
     );
 end component;
 
@@ -89,6 +96,28 @@ component telas is
     );
 end component;
 
+component FSM_main is
+    port(
+        clock, reset : in std_logic;
+        start_bt, select_bt : in std_logic;
+        transmission_on : out std_logic := '0';
+        transmission_ok : in std_logic;
+        victory_AND : in std_logic;
+        failure_NAND : in std_logic;
+        bad_guess : in std_logic;
+        send_underlines, empty_guess : out std_logic
+    );
+end component;
+
+component mega_register is
+    port(
+        clock, reset, load, transmission_on : in std_logic;
+        data_in : in std_logic_vector(127 downto 0);
+        serial_out : out std_logic := '1';
+        transmission_ok_out : out std_logic := '0';
+    );
+end component;
+
 signal lvl : std_logic_vector(1 downto 0);
 
 signal tip :  std_logic_vector(127 downto 0);
@@ -104,8 +133,9 @@ signal comparison_saved : std_logic_vector(15 downto 0);
 signal combo : std_logic_vector(3 downto 0);
 signal total_pontos : std_logic_vector(11 downto 0);
 
-signal saida : std_logic;
-signal mega_data : std_logic_vector(255 downto 0);
+signal screen : std_logic_vector(255 downto 0);
+signal sel : std_logic_vector(2 downto 0);
+
 
 begin
 	pll : ip_pll
@@ -123,11 +153,12 @@ begin
 	pontos : Pontuacao
 	port map(out_clk, reset, comparison_ok, combo, total_pontos,vidas);
 
-	mega_data <=  word & tip;
-	-- esse start está apenas para fins de debug
 	transmissor : tx
-	port map(out_clk, reset, start,mega_data , saida);
+	port map(out_clk, reset, start, screen, tx_out);
 
-	tx_out <= saida;
+	tela : telas
+	port map(sel,1st_line, 2nd_line);
+
+	screen <= 1st_line & 2nd_line;
 
 end architecture;
