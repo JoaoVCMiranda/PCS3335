@@ -9,7 +9,8 @@ entity control_unit_tx is
 	    start : in std_logic;
 	    dados : in std_logic_vector(7 downto 0);
 	    sout  : out std_logic;
-		done: out std_logic
+			done: out std_logic;
+			current_state : out std_logic_vector(3 downto 0)
 	);
 end control_unit_tx;
 
@@ -29,17 +30,18 @@ architecture arch_tx of control_unit_tx is
 			start  : in std_logic;
 			regControl : out std_logic_vector(1 downto 0);
 			serial_i : out std_logic;
-			done	: out std_logic
+			done	: out std_logic;
+			current_state : out std_logic_vector(3 downto 0)
 		);
 	end component;
 	component shift_reg is
 		generic(WIDTH:natural:=8);
 		port(
-			clock,reset : in std_logic;	
+			clock,reset : in std_logic;
 			loadOrShift : in std_logic_vector(1 downto 0);
-			serial_i: 	in  std_logic;				 
+			serial_i: 	in  std_logic;
 			data_i:		in  std_logic_vector(WIDTH - 1 downto 0);
-			serial_o_r:	out std_logic;				 
+			serial_o_r:	out std_logic;
 			serial_o_l:	out std_logic
 		);
 	end component;
@@ -67,8 +69,8 @@ begin
 	port map(clock=>brg_clock, reset=>reset, divisor=>"0000000000001111", baudOut_n=>super_clock);
 
 	TTC: transmitter_timing_control
-	port map(clock=>super_clock, reset=>reset, regControl=>loadOrShift, serial_i=>serial_i, start=>start, done=>done);
-	
+	port map(clock=>super_clock, reset=>reset, regControl=>loadOrShift, serial_i=>serial_i, start=>start, done=>done, current_state=>current_state);
+
 	REG: shift_reg
 	port map(clock=>super_clock, reset=>reset, loadOrShift=>loadOrShift, serial_i=>serial_i, data_i=>dados, serial_o_r=>dados_tx);
 

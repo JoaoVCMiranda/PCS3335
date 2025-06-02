@@ -21,12 +21,13 @@ component control_unit_tx is
 	    start : in std_logic;
 	    dados : in std_logic_vector(7 downto 0);
 	    sout  : out std_logic;
-		  done: out std_logic
+		  done: out std_logic;
+      current_state : out std_logic_vector(3 downto 0)
 	);
 end component;
 
 	type states is (O, T,
-  L1_Q1,L2_Q1,
+  L1_Q1,L2_Q1,D0_1,
   L1_Q2,L2_Q2,
   L1_Q3,L2_Q3,
   L1_Q4,L2_Q4,
@@ -45,18 +46,66 @@ end component;
   N);
 	signal state : states := O;
   signal letra : std_logic_vector(7 downto 0);
-  signal enviar : std_logic;
+  signal enviar : std_logic := '1';
   signal data_out : std_logic;
   signal done : std_logic;
   signal signal_ok   : std_logic;
+  signal current_state : std_logic_vector(3 downto 0);
+  signal state_tx : std_logic_vector(5 downto 0);
+
 begin
 
   control :  control_unit_tx
-  port map(clock, reset, enviar, letra, data_out, done);
+  port map(clock, reset, enviar, letra, data_out, done, current_state);
 
   sout <= data_out;
   ok <= signal_ok;
 
+with state select
+    state_tx <= "000000" when O,
+                "000001" when T,
+                "000010" when L1_Q1,
+                "000011" when L2_Q1,
+                "000100" when D0_1,
+                "000101" when L1_Q2,
+                "000110" when L2_Q2,
+                "000111" when L1_Q3,
+                "001000" when L2_Q3,
+                "001001" when L1_Q4,
+                "001010" when L2_Q4,
+                "001011" when L1_Q5,
+                "001100" when L2_Q5,
+                "001101" when L1_Q6,
+                "001110" when L2_Q6,
+                "001111" when L1_Q7,
+                "010000" when L2_Q7,
+                "010001" when L1_Q8,
+                "010010" when L2_Q8,
+                "010011" when L1_Q9,
+                "010100" when L2_Q9,
+                "010101" when L1_Q10,
+                "010110" when L2_Q10,
+                "010111" when L1_Q11,
+                "011000" when L2_Q11,
+                "011001" when L1_Q12,
+                "011010" when L2_Q12,
+                "011011" when L1_Q13,
+                "011100" when L2_Q13,
+                "011101" when L1_Q14,
+                "011110" when L2_Q14,
+                "011111" when L1_Q15,
+                "100000" when L2_Q15,
+                "100001" when L1_Q16,
+                "100010" when L2_Q16,
+                "100011" when N,
+                "XXXXXX" when others; -- Fallback for undefined states (highly recommended)
+
+  process(clock, reset)
+  begin
+    if reset = '1' then
+      state <= 0;
+    elsif rising_edge(clock) then
+      state <= next_state;
   process(clock, reset)
   begin
     if reset = '1' then
@@ -70,7 +119,12 @@ begin
       when T =>
         letra <= "01010101";
         enviar <= '1';
-        state <= L1_Q1;
+        state <= D0_1;
+      when D0_1 =>
+          if current_state = "0001" then
+            enviar <= '0';
+            state <= L1_Q1;
+          end if;
       when L1_Q1 =>
           if done = '1' then
             letra <= dados(255 downto 248);

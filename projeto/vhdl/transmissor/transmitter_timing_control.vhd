@@ -8,8 +8,9 @@ entity transmitter_timing_control is
 	    reset : in std_logic;
 	    start  : in std_logic;
 	    regControl : out std_logic_vector(1 downto 0);
-		serial_i : out std_logic;
-		done	: out std_logic
+			serial_i : out std_logic;
+			done	: out std_logic;
+			current_state : out std_logic_vector(3 downto 0)
 	);
 end transmitter_timing_control;
 
@@ -20,6 +21,19 @@ architecture arch_ttc of transmitter_timing_control is
 begin
 
 	regControl <= rc;
+	with state select -- Substitua 'your_state_variable' pela sua variável de estado enumerada (e.g., present_state)
+			current_state <= "0000" when S,
+											"0001" when A,
+											"0011" when D7,
+											"0100" when D6,
+											"0101" when D5,
+											"0110" when D4,
+											"0111" when D3,
+											"1000" when D2,
+											"1001" when D1,
+											"1010" when D0,
+											"1011" when E,
+											"XXXX" when others;
 
 	process(clock, reset)
 	begin
@@ -38,7 +52,7 @@ begin
 				when A =>
 					rc <= "10";
 					serial_i <= '0';
-					state <= B;
+					state <= D0;
 				-- load
 				when D0 =>
 					rc <= "11";
@@ -75,8 +89,7 @@ begin
 					rc <= "00";
 					done <= '1';
 					if start = '1' then
-						state <= D0;
-						done <= '0';
+						state <= S;
 					end if;
 				when others =>
 					rc <= "00";
