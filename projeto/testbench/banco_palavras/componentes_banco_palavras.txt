@@ -1,6 +1,6 @@
-/home/jv/Documents/poli/PCS3335/projeto/testbench/banco_palavras_tb.vhd
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/banco_lvl1.vhd
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/banco_lvl2.vhd
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/banco_lvl3.vhd
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/pseudo_rand.vhd
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/banco_palavras.vhd
+banco_palavras_tb.vhd
+../../vhdl/banco_lvl1.vhd
+../../vhdl/banco_lvl2.vhd
+../../vhdl/banco_lvl3.vhd
+../../vhdl/pseudo_rand.vhd
+../../vhdl/banco_palavras.vhd
