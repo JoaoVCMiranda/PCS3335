@@ -9,8 +9,8 @@ entity control_unit_tx is
 	    start : in std_logic;
 	    dados : in std_logic_vector(7 downto 0);
 	    sout  : out std_logic;
-			done: out std_logic;
-			current_state : out std_logic_vector(3 downto 0)
+		done: out std_logic;
+		current_state : out std_logic_vector(3 downto 0)
 	);
 end control_unit_tx;
 
@@ -34,6 +34,7 @@ architecture arch_tx of control_unit_tx is
 			loadOrShift : in std_logic_vector(1 downto 0);
 			serial_i: 	in  std_logic;
 			data_i:		in  std_logic_vector(WIDTH - 1 downto 0);
+			data_out:	out  std_logic_vector(WIDTH - 1 downto 0);
 			serial_o_r:	out std_logic;
 			serial_o_l:	out std_logic
 		);

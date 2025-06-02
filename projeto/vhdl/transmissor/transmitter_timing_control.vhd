@@ -44,8 +44,7 @@ begin
 				when IDLE =>
 					-- no inicio o contador deve estar "1111111"
 					rc <= "00";
-						done <= '0';
-
+					done <= '0';
 					if start = '1' then
 						state <= START_BIT;
 					end if;

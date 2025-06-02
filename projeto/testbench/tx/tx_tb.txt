@@ -1,6 +1,6 @@
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/transmissor/tx.vhd
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/transmissor/baud_rate_generator.vhd
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/transmissor/shift_reg.vhd
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/transmissor/transmitter_timing_control.vhd
-/home/jv/Documents/poli/PCS3335/projeto/vhdl/transmissor/control_unit_tx.vhd
-/home/jv/Documents/poli/PCS3335/projeto/testbench/tx_tb.txt
+../../vhdl/transmissor/tx.vhd
+../../vhdl/transmissor/baud_rate_generator.vhd
+../../vhdl/transmissor/shift_reg.vhd
+../../vhdl/transmissor/transmitter_timing_control.vhd
+../../vhdl/transmissor/control_unit_tx.vhd
+tx_tb.vhd
