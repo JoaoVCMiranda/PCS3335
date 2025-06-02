@@ -77,7 +77,7 @@ begin
         -- In a real scenario, you'd wait until 'ok_s' becomes '1'
         -- or for a duration long enough for the transmission to complete.
         -- For this example, let's just wait for a fixed duration.
-        wait for clock_period * 260; -- Assuming ~256 clock cycles for 256 bits + overhead
+        wait for clock_period * 100000; -- Assuming ~256 clock cycles for 256 bits + overhead
 
         -- 5. End simulation
         wait; -- Wait forever, stopping the simulation

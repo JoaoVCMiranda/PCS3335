@@ -35,7 +35,7 @@ component control_unit_tx is
 	end component;
 
 	type states is (O, T,
-  L1_Q1,L2_Q1,D0_1,
+  L1_Q1,L2_Q1,
   L1_Q2,L2_Q2,
   L1_Q3,L2_Q3,
   L1_Q4,L2_Q4,
@@ -60,7 +60,6 @@ component control_unit_tx is
   signal signal_ok   : std_logic;
   signal current_state : std_logic_vector(3 downto 0);
   signal state_tx : std_logic_vector(5 downto 0);
-  signal next_state_tx : std_logic_vector(5 downto 0);
 
   signal brg_clock 	: std_logic;
 	signal super_clock	: std_logic;
@@ -90,7 +89,6 @@ begin
                   "000001" when T,
                   "000010" when L1_Q1,
                   "000011" when L2_Q1,
-                  "000100" when D0_1,
                   "000101" when L1_Q2,
                   "000110" when L2_Q2,
                   "000111" when L1_Q3,
@@ -124,270 +122,219 @@ begin
                   "100011" when N,
                   "XXXXXX" when others;
 
-  with next_state select
-      next_state_tx <= "000000" when O,
-                  "000001" when T,
-                  "000010" when L1_Q1,
-                  "000011" when L2_Q1,
-                  "000100" when D0_1,
-                  "000101" when L1_Q2,
-                  "000110" when L2_Q2,
-                  "000111" when L1_Q3,
-                  "001000" when L2_Q3,
-                  "001001" when L1_Q4,
-                  "001010" when L2_Q4,
-                  "001011" when L1_Q5,
-                  "001100" when L2_Q5,
-                  "001101" when L1_Q6,
-                  "001110" when L2_Q6,
-                  "001111" when L1_Q7,
-                  "010000" when L2_Q7,
-                  "010001" when L1_Q8,
-                  "010010" when L2_Q8,
-                  "010011" when L1_Q9,
-                  "010100" when L2_Q9,
-                  "010101" when L1_Q10,
-                  "010110" when L2_Q10,
-                  "010111" when L1_Q11,
-                  "011000" when L2_Q11,
-                  "011001" when L1_Q12,
-                  "011010" when L2_Q12,
-                  "011011" when L1_Q13,
-                  "011100" when L2_Q13,
-                  "011101" when L1_Q14,
-                  "011110" when L2_Q14,
-                  "011111" when L1_Q15,
-                  "100000" when L2_Q15,
-                  "100001" when L1_Q16,
-                  "100010" when L2_Q16,
-                  "100011" when N,
-                  "XXXXXX" when others; -- Fallback for undefined next_states (highly recommended)
+
 
   process(super_clock, reset)
   begin
     if reset = '1' then
       state <= O;
-    elsif falling_edge(clock) then
-      state <= next_state;
-    end if;
-  end process;
-
-  process(super_clock, reset)
-  begin
-    if reset = '1' then
-      next_state <= O;
-    elsif rising_edge(clock) then
+    elsif falling_edge(super_clock) then
     case state is
       when O =>
         if start = '1' then
-          next_state <= T;
+          state <= T;
         end if;
       when T =>
         letra <= "01010101";
         enviar <= '1';
-        next_state <= D0_1;
-      when D0_1 =>
-          if current_state = "0001" then
-            enviar <= '0';
-            next_state <= L1_Q1;
-          end if;
+        state <= L1_Q1;
       when L1_Q1 =>
           if done = '1' then
             letra <= dados(255 downto 248);
             enviar <= '1';
-            next_state <= L1_Q2;
+            state <= L1_Q2;
           end if;
       when L1_Q2 =>
           if done = '1' then
             letra <= dados(247 downto 240);
             enviar <= '1';
-            next_state <= L1_Q3;
+            state <= L1_Q3;
           end if;
       when L1_Q3 =>
           if done = '1' then
             letra <= dados(239 downto 232);
             enviar <= '1';
-            next_state <= L1_Q4;
+            state <= L1_Q4;
           end if;
       when L1_Q4 =>
           if done = '1' then
             letra <= dados(231 downto 224);
             enviar <= '1';
-            next_state <= L1_Q5;
+            state <= L1_Q5;
           end if;
       when L1_Q5 =>
           if done = '1' then
             letra <= dados(223 downto 216);
             enviar <= '1';
-            next_state <= L1_Q6;
+            state <= L1_Q6;
           end if;
       when L1_Q6 =>
           if done = '1' then
             letra <= dados(215 downto 208);
             enviar <= '1';
-            next_state <= L1_Q7;
+            state <= L1_Q7;
           end if;
       when L1_Q7 =>
           if done = '1' then
             letra <= dados(207 downto 200);
             enviar <= '1';
-            next_state <= L1_Q8;
+            state <= L1_Q8;
           end if;
       when L1_Q8 =>
           if done = '1' then
             letra <= dados(199 downto 192);
             enviar <= '1';
-            next_state <= L1_Q9;
+            state <= L1_Q9;
           end if;
       when L1_Q9 =>
           if done = '1' then
             letra <= dados(191 downto 184);
             enviar <= '1';
-            next_state <= L1_Q10;
+            state <= L1_Q10;
           end if;
       when L1_Q10 =>
           if done = '1' then
             letra <= dados(183 downto 176);
             enviar <= '1';
-            next_state <= L1_Q11;
+            state <= L1_Q11;
           end if;
       when L1_Q11 =>
           if done = '1' then
             letra <= dados(175 downto 168);
             enviar <= '1';
-            next_state <= L1_Q12;
+            state <= L1_Q12;
           end if;
       when L1_Q12 =>
           if done = '1' then
             letra <= dados(167 downto 160);
             enviar <= '1';
-            next_state <= L1_Q13;
+            state <= L1_Q13;
           end if;
       when L1_Q13 =>
           if done = '1' then
             letra <= dados(159 downto 152);
             enviar <= '1';
-            next_state <= L1_Q14;
+            state <= L1_Q14;
           end if;
       when L1_Q14 =>
           if done = '1' then
             letra <= dados(151 downto 144);
             enviar <= '1';
-            next_state <= L1_Q15;
+            state <= L1_Q15;
           end if;
       when L1_Q15 =>
           if done = '1' then
             letra <= dados(143 downto 136);
             enviar <= '1';
-            next_state <= L1_Q16;
+            state <= L1_Q16;
           end if;
       when L1_Q16 =>
           if done = '1' then
             letra <= dados(135 downto 128);
             enviar <= '1';
-            next_state <= L2_Q1;
+            state <= L2_Q1;
           end if;
       when L2_Q1 =>
           if done = '1' then
             letra <= dados(127 downto 120);
             enviar <= '1';
-            next_state <= L2_Q2;
+            state <= L2_Q2;
           end if;
       when L2_Q2 =>
           if done = '1' then
             letra <= dados(119 downto 112);
             enviar <= '1';
-            next_state <= L2_Q3;
+            state <= L2_Q3;
           end if;
       when L2_Q3 =>
           if done = '1' then
             letra <= dados(111 downto 104);
             enviar <= '1';
-            next_state <= L2_Q4;
+            state <= L2_Q4;
           end if;
       when L2_Q4 =>
           if done = '1' then
             letra <= dados(103 downto 96);
             enviar <= '1';
-            next_state <= L2_Q5;
+            state <= L2_Q5;
           end if;
       when L2_Q5 =>
           if done = '1' then
             letra <= dados(95 downto 88);
             enviar <= '1';
-            next_state <= L2_Q6;
+            state <= L2_Q6;
           end if;
       when L2_Q6 =>
           if done = '1' then
             letra <= dados(87 downto 80);
             enviar <= '1';
-            next_state <= L2_Q7;
+            state <= L2_Q7;
           end if;
       when L2_Q7 =>
           if done = '1' then
             letra <= dados(79 downto 72);
             enviar <= '1';
-            next_state <= L2_Q8;
+            state <= L2_Q8;
           end if;
       when L2_Q8 =>
           if done = '1' then
             letra <= dados(71 downto 64);
             enviar <= '1';
-            next_state <= L2_Q9;
+            state <= L2_Q9;
           end if;
       when L2_Q9 =>
           if done = '1' then
             letra <= dados(63 downto 56);
             enviar <= '1';
-            next_state <= L2_Q10;
+            state <= L2_Q10;
           end if;
       when L2_Q10 =>
           if done = '1' then
             letra <= dados(55 downto 48);
             enviar <= '1';
-            next_state <= L2_Q11;
+            state <= L2_Q11;
           end if;
       when L2_Q11 =>
           if done = '1' then
             letra <= dados(47 downto 40);
             enviar <= '1';
-            next_state <= L2_Q12;
+            state <= L2_Q12;
           end if;
       when L2_Q12 =>
           if done = '1' then
             letra <= dados(39 downto 32);
             enviar <= '1';
-            next_state <= L2_Q13;
+            state <= L2_Q13;
           end if;
       when L2_Q13 =>
           if done = '1' then
             letra <= dados(31 downto 24);
             enviar <= '1';
-            next_state <= L2_Q14;
+            state <= L2_Q14;
           end if;
       when L2_Q14 =>
           if done = '1' then
             letra <= dados(23 downto 16);
             enviar <= '1';
-            next_state <= L2_Q15;
+            state <= L2_Q15;
           end if;
       when L2_Q15 =>
           if done = '1' then
             letra <= dados(15 downto 8);
             enviar <= '1';
-            next_state <= L2_Q16;
+            state <= L2_Q16;
           end if;
       when L2_Q16 =>
           if done = '1' then
             letra <= dados(7 downto 0);
             enviar <= '1';
-            next_state <= N;
+            state <= N;
           end if;
       when N =>
           if done = '1' then
             letra <= "10101010";
             enviar <= '1';
-            next_state <= O;
+            state <= O;
             signal_ok <= '1';
           end if;
       end case;

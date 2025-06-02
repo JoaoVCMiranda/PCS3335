@@ -15,41 +15,42 @@ entity transmitter_timing_control is
 end transmitter_timing_control;
 
 architecture arch_ttc of transmitter_timing_control is
-	type states is (S,A,B,D7,D6,D5,D4,D3,D2,D1,D0,E);
-	signal state : states := S;
+	type states is (IDLE,START_BIT,D7,D6,D5,D4,D3,D2,D1,D0,END_BIT);
+	signal state : states := IDLE;
 	signal rc : std_logic_vector(1 downto 0);
 begin
 
 	regControl <= rc;
 	with state select -- Substitua 'your_state_variable' pela sua variável de estado enumerada (e.g., present_state)
-			current_state <= "0000" when S,
-											"0001" when A,
-											"0011" when D7,
-											"0100" when D6,
-											"0101" when D5,
+			current_state <= "0000" when IDLE, --0
+											"0001" when START_BIT, --1
+											"0010" when D0, --2
+											"0011" when D1,
+											"0100" when D2,
+											"0101" when D3,
 											"0110" when D4,
-											"0111" when D3,
-											"1000" when D2,
-											"1001" when D1,
-											"1010" when D0,
-											"1011" when E,
+											"0111" when D5,
+											"1000" when D6,
+											"1001" when D7, --9
+											"1010" when END_BIT, -- 10
 											"XXXX" when others;
 
 	process(clock, reset)
 	begin
 		if reset = '1' then
-			state <= S;
+			state <= IDLE;
 		elsif falling_edge(clock) then
 				case state is
-				when S =>
+				when IDLE =>
 					-- no inicio o contador deve estar "1111111"
 					rc <= "00";
-					done <= '0';
+						done <= '0';
+
 					if start = '1' then
-						state <= A;
+						state <= START_BIT;
 					end if;
 				-- Start bit
-				when A =>
+				when START_BIT =>
 					rc <= "10";
 					serial_i <= '0';
 					state <= D0;
@@ -84,12 +85,12 @@ begin
 				when D7 =>
 					rc <= "01";
 					serial_i <= '1';
-					state <= E;
-				when E =>
+					state <= END_BIT;
+				when END_BIT =>
 					rc <= "00";
 					done <= '1';
 					if start = '1' then
-						state <= S;
+						state <= IDLE;
 					end if;
 				when others =>
 					rc <= "00";
