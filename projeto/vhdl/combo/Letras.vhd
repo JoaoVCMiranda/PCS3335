@@ -1,6 +1,6 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity fsm_ascii_alphabet is
     Port (
@@ -31,7 +31,7 @@ begin
             contador <= 0;
         elsif rising_edge(clk) and switch_let = '0' then
             -- delay para não mudar muito rápido a letra. Produz um clock de periodo 400ms.
-            if contador = 368640 then 
+            if contador = 368640 then
                 clk_int <= not clk_int; -- Toggle clock every 368640 cycles
             end if;
         elsif rising_edge(clk) and sel = '1' then -- seleciona a letra, evita enviar uma letra indesejada
