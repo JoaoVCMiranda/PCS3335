@@ -10,7 +10,7 @@ entity simple_counter_2 is
     );
 end entity;
 
-architecture behav of simple_counter_2 is
+architecture behav of simple_counter is
     signal count : unsigned(6 downto 0) := (others => '0');
     signal count_ok_signal : std_logic := '0';
     begin

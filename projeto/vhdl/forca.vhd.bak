@@ -12,8 +12,7 @@ entity forca is
 		start : in std_logic;
 		select_btn : in std_logic; 
 		vidas : out std_logic_vector(5 downto 0);
-		tx_out : out std_logic;
-		PLL_OUT_CLK : OUT STD_LOGIC
+		tx_out : out std_logic
 );
 end entity;
 
@@ -41,7 +40,21 @@ component banco_palavras is
     );
 end component;
 
-
+component reg_and_comp_system is
+	port(
+		clock, reset : in std_logic;
+		data_in : in std_logic_vector(127 downto 0);
+		guess : in std_logic_vector(7 downto 0);
+        comp_OK_out : out unsigned(15 downto 0);
+        comps_saved_out : out std_logic_vector(15 downto 0);
+        bad_guess : out std_logic := '0';
+        transmission_start : in std_logic;
+        transmission_over : out std_logic;
+        serial_out : out std_logic;
+        prepare_simple_regs : in std_logic;
+        game_ready : in std_logic --sinal enviado pela UC para indicar que os regs estão prontos e o jogo começou
+    );
+end component;
 
 component fsm_ascii_alphabet is
     Port (
@@ -96,6 +109,15 @@ component FSM_main is
     );
 end component;
 
+component mega_register is
+    port(
+        clock, reset, load, transmission_on : in std_logic;
+        data_in : in std_logic_vector(127 downto 0);
+        serial_out : out std_logic := '1';
+        transmission_ok_out : out std_logic := '0';
+    );
+end component;
+
 signal lvl : std_logic_vector(1 downto 0);
 
 signal tip :  std_logic_vector(127 downto 0);
@@ -112,15 +134,8 @@ signal combo : std_logic_vector(3 downto 0);
 signal total_pontos : std_logic_vector(11 downto 0);
 
 signal screen : std_logic_vector(255 downto 0);
-signal sel : std_logic_vector(2 downto 0) := "000";
+signal sel : std_logic_vector(2 downto 0);
 
-signal start_tx: std_logic := '0';
-signal prepare : std_logic := '0';
-signal ready  : std_logic := '0';
-
-signal st_line : std_logic_vector(127 downto 0);
-
-signal nd_line : std_logic_vector(127 downto 0);
 
 begin
 	pll : ip_pll
@@ -129,6 +144,8 @@ begin
 	db: banco_palavras
 	port map(out_clk, proxima, lvl,tip, word);
 
+	comparador : reg_and_comp_system
+	port map(out_clk, reset, proxima, word, palpite, comparison_ok, comparison_saved);
 
 	seletor_letras : fsm_ascii_alphabet
 	port map(out_clk, reset, seta_direita , start , palpite);
@@ -140,8 +157,8 @@ begin
 	port map(out_clk, reset, start, screen, tx_out);
 
 	tela : telas
-	port map(sel,st_line, nd_line);
+	port map(sel,1st_line, 2nd_line);
 
-	screen <= st_line & nd_line;
+	screen <= 1st_line & 2nd_line;
 
 end architecture;

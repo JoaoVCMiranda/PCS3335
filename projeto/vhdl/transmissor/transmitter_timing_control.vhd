@@ -15,7 +15,7 @@ entity transmitter_timing_control is
 end transmitter_timing_control;
 
 architecture arch_ttc of transmitter_timing_control is
-	type states is (IDLE,START_BIT,D7,D6,D5,D4,D3,D2,D1,D0,END_BIT);
+	type states is (IDLE,START_BIT,D7,D6,D5,D4,D3,D2,D1,D0,END_BIT_1, END_BIT_2);
 	signal state : states := IDLE;
 	signal rc : std_logic_vector(1 downto 0);
 begin
@@ -32,7 +32,8 @@ begin
 											"0111" when D5,
 											"1000" when D6,
 											"1001" when D7, --9
-											"1010" when END_BIT, -- 10
+											"1010" when END_BIT_1, -- 10
+											"1011" when END_BIT_2,
 											"XXXX" when others;
 
 	process(clock, reset)
@@ -84,8 +85,11 @@ begin
 				when D7 =>
 					rc <= "01";
 					serial_i <= '1';
-					state <= END_BIT;
-				when END_BIT =>
+					state <= END_BIT_1;
+				when END_BIT_1 =>
+					rc <= "00";
+					state <= END_BIT_2;
+				when END_BIT_2 =>
 					rc <= "00";
 					done <= '1';
 					if start = '1' then
