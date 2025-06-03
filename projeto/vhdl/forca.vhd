@@ -5,14 +5,15 @@ use ieee.numeric_std.all;
 
 entity forca is
 	port(
-		clock : in std_logic;
-		reset : in std_logic;
-		seta_esquerda : in std_logic;
-		seta_direita : in std_logic;
-		start : in std_logic;
-		select_btn : in std_logic; 
-		vidas : out std_logic_vector(5 downto 0);
-		tx_out : out std_logic
+		clock           : in std_logic;
+		reset           : in std_logic;
+		seta_esquerda   : in std_logic;
+		seta_direita    : in std_logic;
+		start           : in std_logic;
+		select_btn      : in std_logic; 
+		vidas           : out std_logic_vector(5 downto 0);
+        display         : out std_logic_vector(27 downto 0);
+		tx_out          : out std_logic
 );
 end entity;
 
@@ -77,6 +78,16 @@ component Pontuacao is
   ) ;
 end component;
 
+component bin_to_7seg is
+    Port (
+        bin_in : in  STD_LOGIC_VECTOR(11 downto 0);
+        seg0   : out STD_LOGIC_VECTOR(6 downto 0); -- unidade
+        seg1   : out STD_LOGIC_VECTOR(6 downto 0); -- dezena
+        seg2   : out STD_LOGIC_VECTOR(6 downto 0); -- centena
+        seg3   : out STD_LOGIC_VECTOR(6 downto 0)  -- milhar
+    );
+end component;
+
 component tx is
 	port (
 	    clock : in std_logic;
@@ -114,27 +125,30 @@ component mega_register is
         clock, reset, load, transmission_on : in std_logic;
         data_in : in std_logic_vector(127 downto 0);
         serial_out : out std_logic := '1';
-        transmission_ok_out : out std_logic := '0';
+        transmission_ok_out : out std_logic := '0'
     );
 end component;
 
-signal lvl : std_logic_vector(1 downto 0);
+signal lvl          : std_logic_vector(1 downto 0);
 
-signal tip :  std_logic_vector(127 downto 0);
-signal word : std_logic_vector(127 downto 0);
+signal tip          :  std_logic_vector(127 downto 0);
+signal word         : std_logic_vector(127 downto 0);
 
-signal proxima : std_logic := '0';
+signal proxima      : std_logic := '0';
+signal ok           : std_logic := '0';
 
-signal palpite : std_logic_vector(7 downto 0);
+signal palpite      : std_logic_vector(7 downto 0);
 
 signal comparison_ok : unsigned(15 downto 0);
 signal comparison_saved : std_logic_vector(15 downto 0);
 
-signal combo : std_logic_vector(3 downto 0);
-signal total_pontos : std_logic_vector(11 downto 0);
+signal st_line, nd_line : std_logic_vector(127 downto 0);
 
-signal screen : std_logic_vector(255 downto 0);
-signal sel : std_logic_vector(2 downto 0);
+signal combo            : std_logic_vector(3 downto 0);
+signal total_pontos     : std_logic_vector(11 downto 0);
+
+signal screen           : std_logic_vector(255 downto 0);
+signal sel              : std_logic_vector(2 downto 0);
 
 
 begin
@@ -153,12 +167,15 @@ begin
 	pontos : Pontuacao
 	port map(out_clk, reset, comparison_ok, combo, total_pontos,vidas);
 
+    pont_disp : bin_to_7seg
+    port map(total_pontos, display(6 downto 0), display(13 downto 7), display(20 downto 14), display(27 downto 21));
+
 	transmissor : tx
-	port map(out_clk, reset, start, screen, tx_out);
+	port map(out_clk, reset, start, screen, tx_out, ok);
 
 	tela : telas
-	port map(sel,1st_line, 2nd_line);
+	port map(sel,st_line, nd_line);
 
-	screen <= 1st_line & 2nd_line;
+	screen <= st_line & nd_line;
 
 end architecture;
