@@ -7,7 +7,7 @@ use IEEE.std_logic_1164.all;
 entity reg_and_comp_system is
 	port(
 		clock, reset : in std_logic;
-		data_in : in std_logic_vector(127 downto 0);
+		data_in_main : in std_logic_vector(127 downto 0);
 		guess : in std_logic_vector(7 downto 0);
         comp_OK_out : out unsigned(15 downto 0);
         comps_saved_out : out std_logic_vector(15 downto 0);
@@ -15,8 +15,14 @@ entity reg_and_comp_system is
         transmission_start : in std_logic;
         transmission_over : out std_logic;
         serial_out : out std_logic;
+        counter_value : out unsigned(6 downto 0);
+        mega_reg_parallel_out : out std_logic_vector(127 downto 0);
         prepare_simple_regs : in std_logic;
-        game_ready : in std_logic --sinal enviado pela UC para indicar que os regs estão prontos e o jogo começou
+        game_ready : in std_logic; --sinal enviado pela UC para indicar que os regs estão prontos e o jogo começou
+        load_mega_register : in std_logic;
+        simple_registers_out : out std_logic_vector(127 downto 0);
+        send_underlines : in std_logic;
+        victory_AND : out std_logic
     );
 end entity;
 
@@ -26,7 +32,8 @@ architecture behav of reg_and_comp_system is
     signal comp_OK : std_logic_vector(15 downto 0);
     signal mega_register_in_signal: std_logic_vector(127 downto 0);
     signal load_simple_regs : std_logic_vector(15 downto 0) := (others => '0');
-    signal load_mega_register : std_logic := '1';
+    signal data_in : std_logic_vector(127 downto 0) := (others => '0');
+    --signal data_in_main : std_logic_vector(127 downto 0) := "00000000000000000000000000000000000000000000000001000001010000100100001101000100010001010100011001000111010010000100100101001010";
     
     component simple_reg is
         port(
@@ -41,8 +48,9 @@ architecture behav of reg_and_comp_system is
         clock, reset, load, transmission_on : in std_logic;
         data_in : in std_logic_vector(127 downto 0);
         serial_out : out std_logic := '1';
-        transmission_ok_out : out std_logic := '0'
-        
+        transmission_ok_out : out std_logic := '0';
+        counter_value : out unsigned(6 downto 0) := (others => '0');
+        parallel_out : out std_logic_vector(127 downto 0)
     );
     end component;
     
@@ -65,7 +73,7 @@ architecture behav of reg_and_comp_system is
         reg1  : simple_reg port map(reset, load_simple_regs(1) , data_in(15  downto 8  ), mega_register_in_signal(15  downto 8));
         reg0  : simple_reg port map(reset, load_simple_regs(0) , data_in(7   downto 0  ), mega_register_in_signal(7   downto 0));
         mega_reg : mega_register port map(clock, reset, load_mega_register, transmission_start, mega_register_in_signal, serial_out, 
-            transmission_over);
+            transmission_over, counter_value, mega_reg_parallel_out);
 
 
         comp_OK(15) <= (guess(7) xnor data_in(127)) and (guess(6) xnor data_in(126)) and (guess(5) xnor data_in(125)) and
@@ -134,26 +142,37 @@ architecture behav of reg_and_comp_system is
 
         
         
-        process(clock, reset, game_ready)
+        process(clock, reset, prepare_simple_regs, game_ready)
         begin
             if reset = '1' then
                 comps_saved <= (others => '0');
             elsif rising_edge(clock) then
-                comps_saved <= comps_saved or comp_OK;
-
                 if prepare_simple_regs = '1' then
                     load_simple_regs <= "1111111111111111";
+                    comps_saved <= (others => '0');
                 elsif game_ready = '1' then
+                    comps_saved <= comps_saved or comp_OK;
                     load_simple_regs <= comps_saved;
+                end if;
+
+                if send_underlines = '1' then
+                    data_in <= "01011111010111110101111101011111010111110101111101011111010111110101111101011111010111110101111101011111010111110101111101011111";
+                else
+                    data_in <= data_in_main;
                 end if;
             end if;
         end process;
 
         bad_guess <= not(comp_OK(0) or comp_OK(1) or comp_OK(2) or comp_OK(3) or comp_OK(4) or comp_OK(5) or comp_OK(6) or comp_OK(7) or comp_OK(8) or 
                          comp_OK(9) or comp_OK(10) or comp_OK(11) or comp_OK(12) or comp_OK(13) or comp_OK(14) or comp_OK(15));
-
+        
+        victory_AND <= comps_saved_out(15) and comps_saved_out(14) and comps_saved_out(13) and comps_saved_out(12) and comps_saved_out(11) and
+                       comps_saved_out(10) and comps_saved_out(9) and comps_saved_out(8) and comps_saved_out(7) and comps_saved_out(6) and
+                       comps_saved_out(5) and comps_saved_out(4) and comps_saved_out(3) and comps_saved_out(2) and comps_saved_out(1) and
+                       comps_saved_out(0);
         comps_saved_out <= comps_saved;
         comp_OK_out <= unsigned(comp_OK);
-        load_mega_register <= not transmission_start;
+        simple_registers_out <= mega_register_in_signal;
+        --load_mega_register <= not transmission_start;
 end architecture;
 

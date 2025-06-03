@@ -1,16 +1,17 @@
-library ieee;
-use ieee.numeric_std.all;
-use ieee.std_logic_1164.all;
+library IEEE;
+use IEEE.numeric_std.all;
+use IEEE.std_logic_1164.all;
 
-entity simple_counter_2 is
+entity simple_counter is
     port(
         clock, reset : in std_logic;
         start_count : in std_logic;
-        count_ok : out std_logic := '0'
+        count_ok : out std_logic := '0';
+        count_value : out unsigned(6 downto 0) := (others => '0')
     );
 end entity;
 
-architecture behav of simple_counter_2 is
+architecture behav of simple_counter is
     signal count : unsigned(6 downto 0) := (others => '0');
     signal count_ok_signal : std_logic := '0';
     begin
@@ -30,6 +31,7 @@ architecture behav of simple_counter_2 is
                 end if;
             end if;
         end process;
+    count_value <= count;
     count_ok <= count_ok_signal;
 end architecture;
     

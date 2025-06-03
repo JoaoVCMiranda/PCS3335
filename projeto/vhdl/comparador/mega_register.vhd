@@ -1,8 +1,8 @@
 --mega registrador de 128 bits, com entrada paralela e saída serial
 
-library ieee;
-use ieee.numeric_std.all;
-use ieee.std_logic_1164.all;
+library IEEE;
+use IEEE.numeric_std.all;
+use IEEE.std_logic_1164.all;
 
 entity mega_register is
     port(
@@ -10,15 +10,18 @@ entity mega_register is
         data_in : in std_logic_vector(127 downto 0);
         serial_out : out std_logic := '1';
         transmission_ok_out : out std_logic := '0';
+        counter_value : out unsigned(6 downto 0) := (others => '0');
+        parallel_out : out std_logic_vector(127 downto 0)
     );
 end entity;
 
 architecture behav of mega_register is
-    component simple_counter_2 is
+    component simple_counter is
     port(
         clock, reset : in std_logic;
         start_count : in std_logic;
-        count_ok : out std_logic
+        count_ok : out std_logic;
+        count_value : out unsigned(6 downto 0)
     );
     end component;
     
@@ -26,7 +29,7 @@ architecture behav of mega_register is
     signal transmission_ok : std_logic := '0';
 
     begin
-        counter : simple_counter_2 port map(clock, reset, transmission_on, transmission_ok);
+        counter : simple_counter port map(clock, reset, transmission_on, transmission_ok, counter_value);
 
         load_data : process(clock, reset, load)
         begin
@@ -38,6 +41,7 @@ architecture behav of mega_register is
                     loaded_data <= data_in;
                 elsif transmission_on = '1' then
                     if transmission_ok = '0' then
+                        --transmissão se encontra desativada para essa entidade
                         serial_out <= loaded_data(0);
                         loaded_data <= '0' & loaded_data(127 downto 1);
                     end if;
@@ -45,4 +49,5 @@ architecture behav of mega_register is
             end if;
         end process;
         transmission_ok_out <= transmission_ok;
+        parallel_out <= loaded_data;
     end architecture;
