@@ -34,7 +34,7 @@ architecture behav of reg_and_comp_system is
     signal load_simple_regs : std_logic_vector(15 downto 0) := (others => '0');
     signal data_in : std_logic_vector(127 downto 0) := (others => '0');
     --signal data_in_main : std_logic_vector(127 downto 0) := "00000000000000000000000000000000000000000000000001000001010000100100001101000100010001010100011001000111010010000100100101001010";
-    
+
     component simple_reg is
         port(
             reset, load : in std_logic;
@@ -53,8 +53,8 @@ architecture behav of reg_and_comp_system is
         parallel_out : out std_logic_vector(127 downto 0)
     );
     end component;
-    
-    
+
+
     begin
         reg15 : simple_reg port map(reset, load_simple_regs(15), data_in(127 downto 120), mega_register_in_signal(127 downto 120));
         reg14 : simple_reg port map(reset, load_simple_regs(14), data_in(119 downto 112), mega_register_in_signal(119 downto 112));
@@ -72,7 +72,7 @@ architecture behav of reg_and_comp_system is
         reg2  : simple_reg port map(reset, load_simple_regs(2) , data_in(23  downto 16 ), mega_register_in_signal(23  downto 16));
         reg1  : simple_reg port map(reset, load_simple_regs(1) , data_in(15  downto 8  ), mega_register_in_signal(15  downto 8));
         reg0  : simple_reg port map(reset, load_simple_regs(0) , data_in(7   downto 0  ), mega_register_in_signal(7   downto 0));
-        mega_reg : mega_register port map(clock, reset, load_mega_register, transmission_start, mega_register_in_signal, serial_out, 
+        mega_reg : mega_register port map(clock, reset, load_mega_register, transmission_start, mega_register_in_signal, serial_out,
             transmission_over, counter_value, mega_reg_parallel_out);
 
 
@@ -140,8 +140,8 @@ architecture behav of reg_and_comp_system is
                     (guess(4) xnor data_in(4)) and (guess(3) xnor data_in(3)) and (guess(2) xnor data_in(2)) and
                     (guess(1) xnor data_in(1)) and (guess(0) xnor data_in(0));
 
-        
-        
+
+
         process(clock, reset, prepare_simple_regs, game_ready)
         begin
             if reset = '1' then
@@ -163,9 +163,9 @@ architecture behav of reg_and_comp_system is
             end if;
         end process;
 
-        bad_guess <= not(comp_OK(0) or comp_OK(1) or comp_OK(2) or comp_OK(3) or comp_OK(4) or comp_OK(5) or comp_OK(6) or comp_OK(7) or comp_OK(8) or 
+        bad_guess <= not(comp_OK(0) or comp_OK(1) or comp_OK(2) or comp_OK(3) or comp_OK(4) or comp_OK(5) or comp_OK(6) or comp_OK(7) or comp_OK(8) or
                          comp_OK(9) or comp_OK(10) or comp_OK(11) or comp_OK(12) or comp_OK(13) or comp_OK(14) or comp_OK(15));
-        
+
         victory_AND <= comps_saved_out(15) and comps_saved_out(14) and comps_saved_out(13) and comps_saved_out(12) and comps_saved_out(11) and
                        comps_saved_out(10) and comps_saved_out(9) and comps_saved_out(8) and comps_saved_out(7) and comps_saved_out(6) and
                        comps_saved_out(5) and comps_saved_out(4) and comps_saved_out(3) and comps_saved_out(2) and comps_saved_out(1) and

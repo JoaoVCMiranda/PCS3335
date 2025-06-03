@@ -64,9 +64,9 @@ architecture behav of FSM_main is
                         else
                             state <= q3;
                         end if;
-                    
+
                     when q4 => -- dificuldade média
-                        if cursor_right = '0' then 
+                        if cursor_right = '0' then
                             state <= q5;
                         elsif cursor_left = '0' then
                             state <= q10;
@@ -84,7 +84,7 @@ architecture behav of FSM_main is
                         end if;
 
                     when q6 => --dificuldade politécnica
-                        if cursor_right = '0' then 
+                        if cursor_right = '0' then
                             state <= q7;
                         elsif cursor_left = '0' then
                             state <= q9;
@@ -100,28 +100,28 @@ architecture behav of FSM_main is
                         else
                             state <= q7;
                         end if;
-                        
+
                     when q8 => --freio fácil -> difícil
                         if cursor_left = '1' then
                             state <= q6;
                         else
                             state <= q8;
                         end if;
-                    
+
                     when q9 => --freio difícil -> médio
                         if cursor_left = '1' then
                             state <= q4;
                         else
                             state <= q9;
                         end if;
-                    
+
                     when q10 => --freio médio -> fácil
                         if cursor_left = '1' then
                             state <= q2;
                         else
                             state <= q10;
                         end if;
-                
+
 
                     when q11 => --Aguarda jogador soltar o select
                         if select_bt = '1' then
@@ -170,14 +170,14 @@ architecture behav of FSM_main is
 
                     when q19 => --Ao menos uma das letras da palavra foi descoberta - mega_register atualizado
                         state <= q20;
-                    
+
                     when q20 => --Transmissão do mega_register atualizado para a Raspberry
                         if transmission_ok = '1' then
                             state <= q21;
                         else
                             state <= q20;
                         end if;
-                    
+
                     when q21 => --Verifica o detector de vitória
                         if victory_AND = '1' then
                             state <= q24;
@@ -208,15 +208,15 @@ architecture behav of FSM_main is
                         else
                             state <= q25;
                         end if;
-                    
+
                 end case;
             end if;
         end process;
-            
-        --with state select transmission_on <=
-        --    '1' when q6,
-        --    '1' when q13,
-        --    '0' when others;
+
+        with state select transmission_on <=
+            '1' when q6,
+            '1' when q13,
+            '0' when others;
 
         with state select load_mega_register <=
             '1' when q13,
@@ -260,7 +260,7 @@ architecture behav of FSM_main is
             "11000" when q24,
             "11001" when q25,
             "11111" when others;
-        
+
         with state select prepare_simple_regs <=
             '1' when q1,
             '1' when q2,
@@ -293,7 +293,7 @@ architecture behav of FSM_main is
             "11" when q7,
             "11" when q9,
             "00" when others;
-        
+
         with state select lose_life <=
             '1' when q22,
             '0' when others;
@@ -304,6 +304,6 @@ architecture behav of FSM_main is
 
 
     end architecture;
-                        
-                        
+
+
 

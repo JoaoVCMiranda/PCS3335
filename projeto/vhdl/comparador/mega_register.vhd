@@ -24,7 +24,7 @@ architecture behav of mega_register is
         count_value : out unsigned(6 downto 0)
     );
     end component;
-    
+
     signal loaded_data : std_logic_vector(127 downto 0) := (others => '0');
     signal transmission_ok : std_logic := '0';
 
@@ -35,16 +35,10 @@ architecture behav of mega_register is
         begin
             if reset = '1' then
                 serial_out <= '1';
-                
+
             elsif rising_edge(clock) then
                 if load = '1' then
                     loaded_data <= data_in;
-                elsif transmission_on = '1' then
-                    if transmission_ok = '0' then
-                        --transmissão se encontra desativada para essa entidade
-                        serial_out <= loaded_data(0);
-                        loaded_data <= '0' & loaded_data(127 downto 1);
-                    end if;
                 end if;
             end if;
         end process;

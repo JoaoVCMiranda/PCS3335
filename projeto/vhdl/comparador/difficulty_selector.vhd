@@ -7,12 +7,11 @@ entity difficulty_selector is
     port(
         clock, reset, select_bt, cursor_left, cursor_right : in std_logic;
         chosen_diff : out std_logic_vector(1 downto 0);
-        current_difficulty : in std_logic
+        current_difficulty : in std_logic_vector(1 downto 0)
     );
 end entity;
 
 architecture behav of difficulty_selector is
-     
 
     process(select_bt)
     begin
