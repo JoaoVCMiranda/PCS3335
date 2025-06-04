@@ -1,19 +1,3 @@
-library ieee;
-
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-
-entity telas is
-	port(
-        sel : in std_logic_vector(2 downto 0);
-        st_line : out std_logic_vector(127 downto 0);
-        nd_line : out std_logic_vector(127 downto 0)
-    );
-end entity;
-
-architecture arch_telas of telas is
-
-    begin
 
 -----------------------------------
 
@@ -2326,6 +2310,3 @@ with sel select nd_line(0) <=
 	'0' when others;
 
 -----------------------------------
-
-
-end architecture;

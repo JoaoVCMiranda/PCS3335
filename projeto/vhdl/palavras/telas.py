@@ -12,6 +12,10 @@ telas.append(win)
 lose = ['Vc cheira a suco', 'Tente novamente!']
 telas.append(lose)
 
+telas.append(['  Dificuldade   ','<-    Facil   ->'])
+telas.append(['  Dificuldade   ','<-    Medio   ->'])
+telas.append(['  Dificuldade   ','<-   Dificil  ->'])
+
 st_line = [tela[0] for tela in telas]
 nd_line = [tela[1] for tela in telas]
 
