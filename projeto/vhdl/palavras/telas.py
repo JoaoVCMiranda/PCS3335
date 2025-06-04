@@ -30,18 +30,32 @@ def binary_format(s):
 df['binary_1st'] = df['st_line'].apply(binary_format)
 df['binary_2nd'] = df['nd_line'].apply(binary_format)
 
+# 110 -> Registrador atualizado com a palavra e os undelines
 st_setup = "\n----- 1st line SETUP -----"
+
 for y in range(128):
   st_setup += f"\nwith sel select st_line({127-y}) <="
-  for x in range(len(telas)):
-    st_setup += f"\n\t'{df['binary_1st'][x][y]}' when \"{format(x, f'03b')}\","
+  for x in range(len(telas)+2):
+    if(x==6):
+      st_setup += f"\n\tword({127-y}) when \"{format(x, f'03b')}\","
+    elif(x==7):
+      st_setup += f"\n\tword({127-y}) when \"{format(x, f'03b')}\","
+    else:
+      st_setup += f"\n\t'{df['binary_1st'][x][y]}' when \"{format(x, f'03b')}\","
+
   st_setup += "\n\t'0' when others;\n"
+
 
 nd_setup = "\n----- 2nd line SETUP -----"
 for y in range(128):
   nd_setup += f"\nwith sel select nd_line({127-y}) <="
-  for x in range(len(telas)):
-    nd_setup += f"\n\t'{df['binary_2nd'][x][y]}' when \"{format(x, f'03b')}\","
+  for x in range(len(telas)+2):
+    if(x==6):
+      nd_setup += f"\n\tpalpite({y}) when \"{format(x, f'03b')}\"," if y<7 else f"\n\tpalpites_anteriores({127 - y}) when \"{format(x, f'03b')}\","
+    elif(x==7):
+      nd_setup += f"\n\ttip({127-y}) when \"{format(x, f'03b')}\","
+    else:
+      nd_setup += f"\n\t'{df['binary_2nd'][x][y]}' when \"{format(x, f'03b')}\","
   nd_setup += "\n\t'0' when others;\n"
 
 divider = "\n-----------------------------------\n"

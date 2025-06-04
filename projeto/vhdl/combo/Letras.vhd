@@ -30,6 +30,7 @@ begin
         if reset = '1' then
             contador <= 0;
         elsif rising_edge(clk) and switch_let = '0' then
+            contador <= contador + 1;
             -- delay para não mudar muito rápido a letra. Produz um clock de periodo 400ms.
             if contador = 1000000 then
                 clk_int <= not clk_int; -- Toggle clock every 368640 cycles

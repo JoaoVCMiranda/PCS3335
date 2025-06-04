@@ -189,8 +189,10 @@ signal game_ready : std_logic;
 --
 
 begin
-	pll : ip_pll
-	port map(clock, reset, out_clk);
+	--pll : ip_pll
+	--port map(clock, reset, out_clk);
+
+	out_clk <= clock;
 
 	db: banco_palavras
 	port map(out_clk, proxima, lvl,tip, word);

@@ -11,6 +11,7 @@ entity FSM_main is
         victory_AND : in std_logic;
         failure_NOR : in std_logic;
         bad_guess : in std_logic;
+        lvl       : in std_logic_vector(1 downto 0);
         send_underlines : out std_logic;
         current_state : out std_logic_vector(4 downto 0);
         prepare_simple_regs : out std_logic;
@@ -24,6 +25,7 @@ end entity;
 architecture behav of FSM_main is
     type state_type is(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25);
     signal state : state_type;
+    signal dificuldade : std_logic_vector(1 downto 0);
 
     begin
         process(clock, reset, state)
@@ -213,6 +215,76 @@ architecture behav of FSM_main is
             end if;
         end process;
 
+        process(clk, state)
+        begin
+            if rising_edge(clk) then
+                if select_btn = '0' then
+                    current_difficulty <= dificuldade;
+                end if;
+            end if;
+        end process;
+
+        -- TELAS
+        process(clk, state)
+        begin
+            if rising_edge(clk) then
+                if state = q0 then
+                    tela <= "000"; -- inicio
+                elsif state = q1 then
+                    tela <= "000";-- inicio
+                elsif state = q2 then
+                    tela <= "011"; --dificuldade
+                elsif state = q3 then
+                    tela <= "011";--dificuldade
+                elsif state = q4 then
+                    tela <= "100";--dificuldade
+                elsif state = q5 then
+                    tela <= "100";--dificuldade
+                elsif state = q6 then
+                    tela <= "101";--dificuldade
+                elsif state = q7 then
+                    tela <= "101";--dificuldade
+                elsif state = q8 then
+                    tela <= "011";--dificuldade
+                elsif state = q9 then
+                    tela <= "101";--dificuldade
+                elsif state = q10 then
+                    tela <= "100";--dificuldade
+                elsif state = q11 then
+                    tela <= "110";--palpite
+                elsif state = q12 then
+                    tela <= "110";--palpite
+                elsif state = q13 then
+                    tela <= "110";--palpite
+                elsif state = q14 then
+                    tela <= "110";--palpite
+                elsif state = q15 then
+                    tela <= "110";--palpite
+                elsif state = q16 then
+                    if select_btn = '0' then
+                        tela <= "111";
+                    else
+                        tela <= "110";--palpite
+                elsif state = q17 then
+                    tela <= "110";--palpite
+                elsif state = q18 then
+                    tela <= "110";--palpite
+                elsif state = q19 then
+                    tela <= "110";--palpite
+                elsif state = q20 then
+                    tela <= "110";--palpite
+                elsif state = q21 then
+                    tela <= "110";--palpite
+                elsif state = q22 then
+                    tela <= "110";--palpite
+                elsif state = q23 then
+                    tela <= "110";--palpite
+                elsif state = q24 then
+                    tela <= "001";--venceu
+                elsif state = q25 then
+                    tela <= "010";--perdeu
+                end if;
+
         with state select transmission_on <=
             '1' when q6,
             '1' when q13,
@@ -282,7 +354,7 @@ architecture behav of FSM_main is
             '1' when q23,
             '0' when others;
 
-        with state select current_difficulty <=
+        with state select dificuldade <=
             "01" when q2,
             "01" when q3,
             "01" when q8,

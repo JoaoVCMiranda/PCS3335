@@ -19,12 +19,12 @@ architecture arch_telas of telas is
 
 ----- 1st line SETUP -----
 with sel select st_line(127) <=
-	'0' when "000",
-	'0' when "001",
-	'0' when "010",
-	'0' when "011",
-	'0' when "100",
-	'0' when "101",
+	'0' when "000", -- inicio
+	'0' when "001", -- win
+	'0' when "010",-- lose
+	'0' when "011", -- facil
+	'0' when "100",-- medio
+	'0' when "101",--dificil
 	'0' when others;
 
 with sel select st_line(126) <=
