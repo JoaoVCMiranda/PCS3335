@@ -60,7 +60,8 @@ component Pontuacao is
     comp_ok         : in unsigned(15 downto 0);
     combo           : out std_logic_vector(3 downto 0);
     total           : out std_logic_vector(11 downto 0);
-    vidas           : out std_logic_vector(5 downto 0)
+    vidas           : out std_logic_vector(5 downto 0);
+		failure_NOR			: out std_logic
   ) ;
 end component;
 
@@ -132,11 +133,13 @@ component lifes_entity is
     );
 end component;
 
-component difficulty_selector is
-    port(
-        clock, reset, select_bt, cursor_left, cursor_right : in std_logic;
-        chosen_diff : out std_logic_vector(1 downto 0);
-        current_difficulty : in std_logic
+component fsm_difficulty is
+    Port (
+        clk         : in  std_logic;
+        reset       : in  std_logic;
+        switch_let  : in  std_logic;
+        sel         : in  std_logic;
+        dif         : out std_logic_vector(1 downto 0)
     );
 end component;
 
@@ -177,13 +180,13 @@ signal fsm_main_current_state: std_logic_vector(4 downto 0);
 signal deprecated_transmission_start :std_logic;
 signal deprecated_transmission_over :std_logic;
 signal deprecated_serial_out :std_logic;
-signal deprecated_counter_value: std_logic_vector(5 downto 0);
+signal deprecated_counter_value: unsigned(6 downto 0);
 signal debug_mega_reg_pararelo: std_logic_vector(127 downto 0);
 signal debug_simple_registers_out : std_logic_vector(127 downto 0);
 signal prepare_simple_regs:std_logic;
 signal load_mega_register : std_logic;
 signal game_ready : std_logic;
-
+--
 
 begin
 	pll : ip_pll
@@ -197,7 +200,7 @@ begin
 	port map(out_clk, reset, seta_direita , start , palpite);
 
 	pontos : Pontuacao
-	port map(out_clk, reset, comparison_ok, combo, total_pontos,vidas);
+	port map(out_clk, fill_lifes, comparison_ok, combo, total_pontos,vidas, failure_NOR);
 
 	transmissor : tx
 	port map(out_clk, reset, transmission_on , screen, tx_out, transmission_ok);
@@ -250,24 +253,13 @@ begin
     send_underlines,
     victory_AND
 	);
-
-	contole_vidas: lifes_entity
-	port map(
-        clock,
-				reset,
-				fill_lifes,
-				lose_life,
-        vidas,
-        failure_NOR
-	);
-
-	seletor_lvl: difficulty_selector
+	seletor_lvl: fsm_difficulty
 	port map(
 		out_clk,
 		reset,
+		seta_direita,
 		select_btn,
-		seta_esquerda,
-		seta_direita
+		lvl
 	);
 
 end architecture;

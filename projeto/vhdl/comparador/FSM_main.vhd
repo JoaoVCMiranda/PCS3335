@@ -298,7 +298,7 @@ architecture behav of FSM_main is
             '1' when q22,
             '0' when others;
 
-        with state select fill_lives <=
+        with state select fill_lifes <=
             '1' when q15,
             '0' when others;
 

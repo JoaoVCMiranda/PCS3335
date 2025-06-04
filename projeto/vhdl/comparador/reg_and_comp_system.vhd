@@ -166,10 +166,10 @@ architecture behav of reg_and_comp_system is
         bad_guess <= not(comp_OK(0) or comp_OK(1) or comp_OK(2) or comp_OK(3) or comp_OK(4) or comp_OK(5) or comp_OK(6) or comp_OK(7) or comp_OK(8) or
                          comp_OK(9) or comp_OK(10) or comp_OK(11) or comp_OK(12) or comp_OK(13) or comp_OK(14) or comp_OK(15));
 
-        victory_AND <= comps_saved_out(15) and comps_saved_out(14) and comps_saved_out(13) and comps_saved_out(12) and comps_saved_out(11) and
-                       comps_saved_out(10) and comps_saved_out(9) and comps_saved_out(8) and comps_saved_out(7) and comps_saved_out(6) and
-                       comps_saved_out(5) and comps_saved_out(4) and comps_saved_out(3) and comps_saved_out(2) and comps_saved_out(1) and
-                       comps_saved_out(0);
+        victory_AND <= comps_saved(15) and comps_saved(14) and comps_saved(13) and comps_saved(12) and comps_saved(11) and
+                       comps_saved(10) and comps_saved(9) and comps_saved(8) and comps_saved(7) and comps_saved(6) and
+                       comps_saved(5) and comps_saved(4) and comps_saved(3) and comps_saved(2) and comps_saved(1) and
+                       comps_saved(0);
         comps_saved_out <= comps_saved;
         comp_OK_out <= unsigned(comp_OK);
         simple_registers_out <= mega_register_in_signal;

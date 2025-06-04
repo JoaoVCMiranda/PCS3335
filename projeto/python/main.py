@@ -37,21 +37,4 @@ start = '\t'
 end = '\n'
 
 while 1:
-  char = ser.flush()
-  print(datetime.datetime.now().strftime("%mm%SS"),char)
 
-  if(char == start):
-    contador = 1
-
-  if(contador != 0):
-    linha += char
-
-  if(char == end and contador == 1):
-    linha1 = linha
-    contador = 2
-    linha = ''
-  if(char == end and contador == 2):
-    linha2 = linha
-    contador = 0
-    linha = ''
-    plot(linha1, linha2)

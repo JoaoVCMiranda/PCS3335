@@ -135,7 +135,7 @@ begin
           state <= T;
         end if;
       when T =>
-        letra <= "00001001";
+        letra <= "00010110";
         enviar <= '1';
         state <= L1_Q1;
       when L1_Q1 =>
@@ -332,7 +332,7 @@ begin
           end if;
       when N =>
           if done = '1' then
-            letra <= "00001010";
+            letra <= "00010110";
             enviar <= '1';
             state <= O;
             signal_ok <= '1';
