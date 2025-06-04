@@ -1420,7 +1420,7 @@ with sel select nd_line(127) <=
 	'0' when "011",
 	'0' when "100",
 	'0' when "101",
-	palpite(0) when "110",
+	palpite(7) when "110",
 	tip(127) when "111",
 	'0' when others;
 
@@ -1431,7 +1431,7 @@ with sel select nd_line(126) <=
 	'0' when "011",
 	'0' when "100",
 	'0' when "101",
-	palpite(1) when "110",
+	palpite(6) when "110",
 	tip(126) when "111",
 	'0' when others;
 
@@ -1442,7 +1442,7 @@ with sel select nd_line(125) <=
 	'1' when "011",
 	'1' when "100",
 	'1' when "101",
-	palpite(2) when "110",
+	palpite(5) when "110",
 	tip(125) when "111",
 	'0' when others;
 
@@ -1453,7 +1453,7 @@ with sel select nd_line(124) <=
 	'1' when "011",
 	'1' when "100",
 	'1' when "101",
-	palpite(3) when "110",
+	palpite(4) when "110",
 	tip(124) when "111",
 	'0' when others;
 
@@ -1464,7 +1464,7 @@ with sel select nd_line(123) <=
 	'1' when "011",
 	'1' when "100",
 	'1' when "101",
-	palpite(4) when "110",
+	palpite(3) when "110",
 	tip(123) when "111",
 	'0' when others;
 
@@ -1475,7 +1475,7 @@ with sel select nd_line(122) <=
 	'1' when "011",
 	'1' when "100",
 	'1' when "101",
-	palpite(5) when "110",
+	palpite(2) when "110",
 	tip(122) when "111",
 	'0' when others;
 
@@ -1486,7 +1486,7 @@ with sel select nd_line(121) <=
 	'0' when "011",
 	'0' when "100",
 	'0' when "101",
-	palpite(6) when "110",
+	palpite(1) when "110",
 	tip(121) when "111",
 	'0' when others;
 
@@ -1497,7 +1497,7 @@ with sel select nd_line(120) <=
 	'0' when "011",
 	'0' when "100",
 	'0' when "101",
-	palpites_anteriores(120) when "110",
+	palpite(0) when "110",
 	tip(120) when "111",
 	'0' when others;
 

@@ -51,7 +51,7 @@ for y in range(128):
   nd_setup += f"\nwith sel select nd_line({127-y}) <="
   for x in range(len(telas)+2):
     if(x==6):
-      nd_setup += f"\n\tpalpite({y}) when \"{format(x, f'03b')}\"," if y<7 else f"\n\tpalpites_anteriores({127 - y}) when \"{format(x, f'03b')}\","
+      nd_setup += f"\n\tpalpite({7-y}) when \"{format(x, f'03b')}\"," if y<=7 else f"\n\tpalpites_anteriores({127 - y}) when \"{format(x, f'03b')}\","
     elif(x==7):
       nd_setup += f"\n\ttip({127-y}) when \"{format(x, f'03b')}\","
     else:
