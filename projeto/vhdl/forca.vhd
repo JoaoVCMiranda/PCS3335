@@ -13,7 +13,7 @@ entity forca is
 		btn_select : in std_logic;
 		vidas : out std_logic_vector(5 downto 0);
 		display_pontos : out std_logic_vector(27 downto 0);
-		tx_out : out std_logic;
+		tx_out : out std_logic
 	);
 end entity;
 
@@ -94,6 +94,28 @@ component simple_fsm is
     );
 end component;
 
+component simple_alphabet is
+    port(
+        seta_esquerda : in std_logic;
+        seta_direita : in std_logic;
+        letra_selecionada : out std_logic_vector(7 downto 0) := (others => '0');
+        -- Sinal para indicar a letra selecionada
+        reset : in std_logic
+        -- Sinal de reset para reiniciar a seleção
+    );
+end component;
+
+component simple_diff_sel is
+	port(
+		seta_esquerda : in std_logic;
+		seta_direita : in std_logic;
+		dificuldade_selecionada : out std_logic_vector(1 downto 0) := "01";
+		-- Sinal para indicar a dificuldade selecionada
+		reset : in std_logic
+		-- Sinal de reset para reiniciar a seleção
+	);
+end component;
+
 
 -- OUT CLOCK
 signal out_clk : std_logic;
@@ -172,6 +194,21 @@ begin
 		vidas,
 		win,
 		sel
+	);
+	letras : simple_alphabet
+	port map(
+		seta_esquerda,
+		seta_direita,
+		palpite,
+		reset
+	);
+
+	dificulty_sel: simple_diff_sel
+	port map(
+		seta_esquerda,
+		seta_direita,
+		lvl,
+		reset
 	);
 
 
