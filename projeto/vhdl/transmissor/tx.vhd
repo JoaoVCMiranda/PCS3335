@@ -8,9 +8,7 @@ entity tx is
 	    reset : in std_logic;
 	    start : in std_logic;
 	    dados : in std_logic_vector(255 downto 0);
-	    sout  : out std_logic;
-      ok    : out std_logic
-	);
+	    sout  : out std_logic);
 end tx;
 
 architecture arch_tx of tx is
@@ -57,7 +55,6 @@ component control_unit_tx is
   signal enviar : std_logic := '1';
   signal data_out : std_logic;
   signal done : std_logic;
-  signal signal_ok   : std_logic;
   signal current_state : std_logic_vector(3 downto 0);
   signal state_tx : std_logic_vector(5 downto 0);
 
@@ -82,7 +79,6 @@ begin
 	port map(clock=>brg_clock, reset=>reset, divisor=>"0000000000001111", baudOut_n=>super_clock);
 
   sout <= data_out;
-  ok <= signal_ok;
 
   with state select
       state_tx <= "000000" when O,
@@ -335,7 +331,6 @@ begin
             letra <= "00010110";
             enviar <= '1';
             state <= O;
-            signal_ok <= '1';
           end if;
       end case;
     end if;
