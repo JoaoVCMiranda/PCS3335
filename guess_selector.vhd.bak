@@ -1,0 +1,304 @@
+library ieee;
+use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
+
+entity guess_selector is
+    port(
+        clock, reset : in std_logic;
+        left, right, space_as_choose, guess_unlocked : in std_logic;
+        letter_out, letter_out_2 : out std_logic_vector(7 downto 0)
+    );
+end entity;
+
+architecture behav of guess_selector is
+    type state_type is (q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22, q23, q24, q25);
+    signal state : state_type;
+    signal letter_out_signal : std_logic_vector(7 downto 0);
+
+    begin
+        process(clock, reset, state)
+        begin
+            if reset = '1' then
+                state <= q0;
+            elsif rising_edge(clock) then
+                case state is
+                    when q0 =>
+                        if left = '1' then
+                            state <= q25;
+                        elsif right = '1' then
+                            state <= q1;
+                        else
+                            state <= q0;
+                        end if;
+
+                    when q1 =>
+                        if left = '1' then
+                            state <= q0;
+                        elsif right = '1' then
+                            state <= q2;
+                        else
+                            state <= q1;
+                        end if;
+                    
+                    when q2 =>
+                        if left = '1' then
+                            state <= q1;
+                        elsif right = '1' then
+                            state <= q3;
+                        else
+                            state <= q2;
+                        end if;
+                    
+                    when q3 =>
+                        if left = '1' then
+                            state <= q2;
+                        elsif right = '1' then
+                            state <= q4;
+                        else
+                            state <= q3;
+                        end if;
+                    
+                    when q4 =>
+                        if left = '1' then
+                            state <= q3;
+                        elsif right = '1' then
+                            state <= q5;
+                        else
+                            state <= q4;
+                        end if;
+
+                    when q5 =>
+                        if left = '1' then
+                            state <= q4;
+                        elsif right = '1' then
+                            state <= q6;
+                        else
+                            state <= q5;
+                        end if;
+
+                    when q6 =>
+                        if left = '1' then
+                            state <= q5;
+                        elsif right = '1' then
+                            state <= q7;
+                        else
+                            state <= q6;
+                        end if;
+
+                    when q7 =>
+                        if left = '1' then
+                            state <= q6;
+                        elsif right = '1' then
+                            state <= q8;
+                        else
+                            state <= q7;
+                        end if;
+
+                    when q8 =>
+                        if left = '1' then
+                            state <= q7;
+                        elsif right = '1' then
+                            state <= q9;
+                        else
+                            state <= q8;
+                        end if;
+
+                    when q9 =>
+                        if left = '1' then
+                            state <= q8;
+                        elsif right = '1' then
+                            state <= q10;
+                        else
+                            state <= q9;
+                        end if;
+
+                    when q10 =>
+                        if left = '1' then
+                            state <= q9;
+                        elsif right = '1' then
+                            state <= q11;
+                        else
+                            state <= q10;
+                        end if;
+
+                    when q11 =>
+                        if left = '1' then
+                            state <= q10;
+                        elsif right = '1' then
+                            state <= q12;
+                        else
+                            state <= q11;
+                        end if;
+                    
+                    when q12 =>
+                        if left = '1' then
+                            state <= q11;
+                        elsif right = '1' then
+                            state <= q13;
+                        else
+                            state <= q12;
+                        end if;
+
+                    when q13 =>
+                        if left = '1' then
+                            state <= q12;
+                        elsif right = '1' then
+                            state <= q14;
+                        else
+                            state <= q13;
+                        end if;
+
+                    when q14 =>
+                        if left = '1' then
+                            state <= q13;
+                        elsif right = '1' then
+                            state <= q15;
+                        else
+                            state <= q14;
+                        end if;
+
+                    when q15 =>
+                        if left = '1' then
+                            state <= q14;
+                        elsif right = '1' then
+                            state <= q16;
+                        else
+                            state <= q15;
+                        end if;
+
+                    when q16 =>
+                        if left = '1' then
+                            state <= q15;
+                        elsif right = '1' then
+                            state <= q17;
+                        else
+                            state <= q16;
+                        end if;
+
+                    when q17 =>
+                        if left = '1' then
+                            state <= q16;
+                        elsif right = '1' then
+                            state <= q18;
+                        else
+                            state <= q17;
+                        end if;
+
+                    when q18 =>
+                        if left = '1' then
+                            state <= q17;
+                        elsif right = '1' then
+                            state <= q19;
+                        else
+                            state <= q18;
+                        end if;
+
+                    when q19 =>
+                        if left = '1' then
+                            state <= q18;
+                        elsif right = '1' then
+                            state <= q20;
+                        else
+                            state <= q19;
+                        end if;
+
+                    when q20 =>
+                        if left = '1' then
+                            state <= q19;
+                        elsif right = '1' then
+                            state <= q21;
+                        else
+                            state <= q20;
+                        end if;
+
+                    when q21 =>
+                        if left = '1' then
+                            state <= q20;
+                        elsif right = '1' then
+                            state <= q22;
+                        else
+                            state <= q21;
+                        end if;
+
+                    when q22 =>
+                        if left = '1' then
+                            state <= q21;
+                        elsif right = '1' then
+                            state <= q23;
+                        else
+                            state <= q20;
+                        end if;
+
+                    when q23 =>
+                        if left = '1' then
+                            state <= q22;
+                        elsif right = '1' then
+                            state <= q24;
+                        else
+                            state <= q23;
+                        end if;
+
+                    when q24 =>
+                        if left = '1' then
+                            state <= q23;
+                        elsif right = '1' then
+                            state <= q25;
+                        else
+                            state <= q24;
+                        end if;
+
+                    when q25 =>
+                        if left = '1' then
+                            state <= q24;
+                        elsif right = '1' then
+                            state <= q0;
+                        else
+                            state <= q25;
+                        end if;
+                    
+                    when others =>
+                        state <= q0;
+                    
+                end case;
+            end if;
+        end process;
+    with state select letter_out_signal <=
+        "01000001" when q0,
+        "01000010" when q1,
+        "01000011" when q2,
+        "01000100" when q3,
+        "01000101" when q4,
+        "01000110" when q5,
+        "01000111" when q6,
+        "01001000" when q7,
+        "01001001" when q8,
+        "01001010" when q9,
+        "01001011" when q10,
+        "01001100" when q11,
+        "01001101" when q12,
+        "01001110" when q13,
+        "01001111" when q14,
+        "01010000" when q15,
+        "01010001" when q16,
+        "01010010" when q17,
+        "01010011" when q18,
+        "01010100" when q19,
+        "01010101" when q20,
+        "01010110" when q21,
+        "01010111" when q22,
+        "01011000" when q23,
+        "01011001" when q24,
+        "01011010" when q25,
+        "00000000" when others;
+
+        letter_out <=   "00111111" when guess_unlocked = '0'  else --?
+                        "00100000" when space_as_choose = '1' else
+                      letter_out_signal;
+
+        letter_out_2 <= letter_out_signal;
+end architecture;
+
+                    
+                    
+                    
+                            

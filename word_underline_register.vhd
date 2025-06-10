@@ -1,0 +1,26 @@
+library ieee;
+use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
+
+entity word_underline_register is
+    port(
+        data_in : in std_logic_vector(1 downto 0);
+        data_out : out std_logic_vector(127 downto 0)
+    );
+end entity;
+
+architecture behav of word_underline_register is
+    begin
+        data_out <= "0010000000100000001000000101111101011111010111110101111101011111" &
+                    "0101111101011111010111110101111101011111010111110010000000100000" when data_in = "01" else
+
+                    "0010000000100000001000000101111101011111010111110101111101011111" &
+                    "0101111101011111010111110101111101011111010111110010000000100000" when data_in = "10" else
+
+                    "0101111101011111010111110101111101011111010111110010000001011111" &
+                    "0101111101011111010111110101111101011111010111110101111100100000" when data_in = "11" else
+
+                    "0011111100111111001111110011111100111111001111110011111100111111" &
+                    "0011111100111111001111110011111100111111001111110011111100111111"; -- cuidado com o "00" nas chaves da FPGA!!!
+
+    end architecture;

@@ -1,0 +1,76 @@
+v 4
+file . "state_to_seg.vhd" "a9438c5714cada64a33eb2d6948edb6e1b50099f" "20250609182034.345":
+  entity state_to_seg at 1( 0) + 0 on 465;
+  architecture rtl of state_to_seg at 11( 220) + 0 on 466;
+file . "simple_counter.vhd" "b16eb6e13bc24210672f5ef391a699334d9ae48a" "20250609183520.036":
+  entity simple_counter at 1( 0) + 0 on 469;
+  architecture behav of simple_counter at 12( 229) + 0 on 470;
+file . "word_underline_register.vhd" "1582700e802338ee9cf4c4e954a3d5252430c763" "20250609141824.313":
+  entity word_underline_register at 1( 0) + 0 on 435;
+  architecture behav of word_underline_register at 12( 250) + 0 on 436;
+file . "word_selector.vhd" "14b1d7088ab45fcce5e5178d73fbb42def25898b" "20250609141824.301":
+  entity word_selector at 1( 0) + 0 on 433;
+  architecture behav of word_selector at 12( 240) + 0 on 434;
+file . "word_register.vhd" "b6bbb3a3dbc9e498fe989eacfd3178b4eeb9fcba" "20250609141824.286":
+  entity word_register at 1( 0) + 0 on 431;
+  architecture behav of word_register at 12( 242) + 0 on 432;
+file . "transmitter.vhd" "cf1e7c3ff256d7f1f1055cc036d07188f6eb3092" "20250609141824.275":
+  entity transmitter at 1( 0) + 0 on 429;
+  architecture behav of transmitter at 17( 384) + 0 on 430;
+file . "transmitter_mux.vhd" "60c8f448790cb5f92d6b6fdac33ca36a4b7d3bcd" "20250609180833.118":
+  entity transmitter_mux at 1( 0) + 0 on 447;
+  architecture behav of transmitter_mux at 14( 490) + 0 on 448;
+file . "space_or_underline_detector.vhd" "9686c4d2471c67e04f68e2155011edb3489f5258" "20250609141824.251":
+  entity space_or_underline_detector at 1( 0) + 0 on 425;
+  architecture behav of space_or_underline_detector at 12( 255) + 0 on 426;
+file . "screens_register2.vhd" "2966ed94ce0e0e90f74f31d10df759e96adce342" "20250609141824.236":
+  entity screens_register2 at 2( 72) + 0 on 423;
+  architecture behav of screens_register2 at 13( 324) + 0 on 424;
+file . "screens_register1.vhd" "7d839b18f16d6e821d3a71f5e7cf9afd5d6ab9d5" "20250609141824.224":
+  entity screens_register1 at 2( 89) + 0 on 421;
+  architecture behav of screens_register1 at 13( 339) + 0 on 422;
+file . "lifes_entity.vhd" "4a92a4b7a8b0ac8fcf5cec375824c489f23b4318" "20250609141824.211":
+  entity lifes_entity at 1( 0) + 0 on 419;
+  architecture behav of lifes_entity at 14( 320) + 0 on 420;
+file . "letter_register.vhd" "f7ba0ebda9fd93cab4925cc7eed37a823ee9405d" "20250609141824.210":
+  entity letter_register at 1( 0) + 0 on 417;
+  architecture behav of letter_register at 13( 305) + 0 on 418;
+file . "initial_screen_adjuster.vhd" "e1c4ce2ca17f1b9c9de83a4ebead1e6a9f06ea46" "20250609141824.200":
+  entity initial_screen_adjuster at 1( 0) + 0 on 415;
+  architecture behav of initial_screen_adjuster at 13( 376) + 0 on 416;
+file . "guess_selector.vhd" "e961d4045e894a84f8bb4f3485deda3dc83881b2" "20250609141824.188":
+  entity guess_selector at 1( 0) + 0 on 413;
+  architecture behav of guess_selector at 13( 311) + 0 on 414;
+file . "guess_process_screen_register.vhd" "557da2a7038ec99c6453835c10a6131e6fb240a3" "20250609141824.172":
+  entity guess_process_screen_register at 1( 0) + 0 on 411;
+  architecture behav of guess_process_screen_register at 12( 340) + 0 on 412;
+file . "comparator.vhd" "5314fdb2dce83b46c134496776869a0bd6950540" "20250609141824.110":
+  entity comparator at 1( 0) + 0 on 405;
+  architecture behav of comparator at 17( 476) + 0 on 406;
+file . "button_edge_detector.vhd" "e071b419b428f5b553f034a03f4e1618cfd3f01d" "20250609141824.093":
+  entity button_edge_detector at 1( 0) + 0 on 403;
+  architecture behav of button_edge_detector at 13( 242) + 0 on 404;
+file . "brg.vhd" "97404e6800322acf57ab583d16207e66df6f2cc2" "20250609141824.092":
+  entity brg at 2( 23) + 0 on 401;
+  architecture arch of brg at 14( 329) + 0 on 402;
+file . "forca.vhd" "2c1b01ab3950557084cabd65dbbbcf866aea4fee" "20250609184417.420":
+  entity forca at 1( 0) + 0 on 471;
+  architecture behav of forca at 22( 803) + 0 on 472;
+file . "serial_tx.vhd" "66d3a8a8f3428cfb1007e21b5379be547dc80df5" "20250609182015.195":
+  entity serial_tx at 1( 0) + 0 on 463;
+  architecture behav of serial_tx at 16( 343) + 0 on 464;
+file . "bytes_counter.vhd" "79007e4eeb08a045736f5660183c89c3330cb35d" "20250607230332.473":
+  entity bytes_counter at 1( 0) + 0 on 49;
+  architecture behav of bytes_counter at 13( 240) + 0 on 50;
+file . "fsm.vhd" "23ba91f7a32afc0c70a80b910e43e3869fbdc746" "20250609141824.158":
+  entity fsm at 1( 0) + 0 on 409;
+  architecture behav of fsm at 19( 664) + 0 on 410;
+file . "forca_tb.vhd" "8fea7af80ace3cbc35eee74910d585262efa3335" "20250609181429.596":
+  entity tb at 1( 0) + 0 on 461;
+  architecture behav of tb at 8( 99) + 0 on 462;
+file . "clock_div_counter.vhd" "ed6b162242396a6d556bd82dee24027288cd922e" "20250609105152.682":
+  entity clock_div_counter at 3( 37) + 0 on 105;
+  architecture behav of clock_div_counter at 14( 273) + 0 on 106;
+file . "ip_pll.vhd" "5eebc8428411ca036ce671f60877423985d1876f" "20250609181118.896":
+  entity ip_pll at 7( 132) + 0 on 453;
+  architecture rtl of ip_pll at 20( 469) + 0 on 454;

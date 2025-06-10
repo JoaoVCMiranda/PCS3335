@@ -1,0 +1,259 @@
+library IEEE;
+use IEEE.numeric_std.all;
+use IEEE.std_logic_1164.all;
+
+entity forca is
+    port(
+        clock, reset : in std_logic;
+        start_bt, select_bt, left_bt, right_bt, guess_on_key : in std_logic;
+        difficulty_keys : in std_logic_vector(1 downto 0); --definem a dificuldade do jogo: 01 Fácil, 10 Médio e 11 Difícil
+        lifes_out : out std_logic_vector(5 downto 0);
+        serial_out : out std_logic;
+
+        --para debug:
+        --current_state : out std_logic_vector(3 downto 0);
+        --transm_in : out std_logic_vector(255 downto 0);
+        --transm_current_state : out std_logic_vector(3 downto 0);
+        --debug_stored_comps_out : out std_logic_vector(15 downto 0)
+    );
+end entity;
+
+architecture behav of forca is 
+
+    component button_edge_detector is
+    port(
+        clock : in std_logic;
+        button_in : in std_logic;
+        button_out : out std_logic
+    );
+    end component;
+
+    component comparator is
+    port(
+        clock, reset, clear : in std_logic;
+        successful_comparisons : out std_logic_vector(15 downto 0);
+        stored_comparisons : out std_logic_vector(15 downto 0);
+        guess : in std_logic_vector(7 downto 0);
+        data_in : in std_logic_vector(127 downto 0);
+        bad_guess, victory_detector : out std_logic
+        
+    );
+    end component;
+
+    component fsm is
+    port(
+        clock, reset : in std_logic;
+        start_bt, select_bt : in std_logic; --sinais de entrada após o detector de borda. Aqui, eles já são active high
+        bad_guess : in std_logic;
+        victory_detector, failure_detector : in std_logic;
+        preparing_game, space_as_choose, lose_a_life, clear_stored_comparisons, guess_unlocked : out std_logic;
+        initial_screen_adjust, transmitter_mux_sel : out std_logic_vector(1 downto 0);
+
+        --para debug:
+        current_state : out std_logic_vector(3 downto 0)
+    );
+    end component;
+
+    component guess_process_screen_register is --guarda o que vai para a segunda linha do LCD no momento de escolha da letra-palpite
+    port(
+        guess : in std_logic_vector(7 downto 0);
+        data_out : out std_logic_vector(127 downto 0)
+    );
+    end component;
+
+    component guess_selector is
+    port(
+        clock, reset : in std_logic;
+        left, right, space_as_choose, guess_unlocked : in std_logic;
+        letter_out, letter_out_2 : out std_logic_vector(7 downto 0)
+    );
+    end component;
+
+    component initial_screen_adjuster is 
+    port(
+        FSM_out : in std_logic_vector(1 downto 0);
+        keys_out : in std_logic_vector(1 downto 0);
+        word_selector_in : out std_logic_vector(1 downto 0)   
+    );
+    end component;
+
+    component letter_register is
+    port(
+        data_in : in std_logic_vector(7 downto 0);
+        load, preparing_mode, space_or_underline: in std_logic;
+        data_out : out std_logic_vector(7 downto 0)
+    );
+    end component;
+
+    component lifes_entity is
+    port(
+        clock, reset, preparing_game : in std_logic;
+        lose_a_life : in std_logic;
+        failure_detector : out std_logic;
+        lifes_out : out std_logic_vector(5 downto 0)
+    );
+    end component;
+
+    component screens_register1 is
+    port(
+        screen_number : in std_logic_vector(1 downto 0);
+        code_out : out std_logic_vector(255 downto 0)
+    );
+    end component;
+
+    component screens_register2 is
+    port(
+        victory_detector, failure_detector : in std_logic;
+        code_out : out std_logic_vector(127 downto 0)
+    );
+    end component;
+
+    component space_or_underline_detector is
+    port(
+        data_in : in std_logic_vector(127 downto 0);
+        data_out : out std_logic_vector(15 downto 0)
+    );
+    end component;
+
+    component transmitter_mux is
+    port(
+        data_in_initial, data_in_reg_and_tip, data_in_reg_and_guess, data_in_regcomplete_and_vict, data_in_regcomplete_and_fail : in std_logic_vector(255 downto 0);
+        FSM_out : in std_logic_vector(1 downto 0);
+        key_out : std_logic; --para trocar entre exibição da dica e do palpite
+        data_out : out std_logic_vector(255 downto 0)
+    );
+    end component;
+
+    component transmitter is
+    port(
+        clock, reset : in std_logic;
+        serial_out : out std_logic;
+        data_in : in std_logic_vector(255 downto 0);
+
+        --debug:
+        transm_current_state : out std_logic_vector(3 downto 0)
+    );
+    end component;
+
+    component word_register is
+    port(
+        data_in : in std_logic_vector(127 downto 0);
+        data_out : out std_logic_vector(127 downto 0)
+    );
+    end component;
+
+    component word_selector is
+    port(
+        data_in : in std_logic_vector(1 downto 0);
+        data_out : out std_logic_vector(255 downto 0)
+    );
+    end component;
+
+    component word_underline_register is
+    port(
+        data_in : in std_logic_vector(1 downto 0);
+        data_out : out std_logic_vector(127 downto 0)
+    );
+    end component;
+
+    signal start_bt_out, select_bt_out, left_bt_out, right_bt_out : std_logic;
+    signal clear_stored_comps, bad_guess, victory_detector, failure_detector, preparing_game, space_as_choose, lose_a_life, guess_unlocked: std_logic;
+    signal successful_comparisons_out, stored_comparisons_out, space_or_underline_detector_out : std_logic_vector(15 downto 0);
+    signal guess, guess2 : std_logic_vector(7 downto 0);
+    signal word_register_out, guess_screen_data_out, word_register_in, win_or_lose_message : std_logic_vector(127 downto 0);
+    signal word_underline_register_out : std_logic_vector(127 downto 0);
+    signal initial_screen_adjust, transmitter_mux_sel, word_selector_in : std_logic_vector(1 downto 0);
+    signal word_selector_out, transm_mux_out, data_in_initial : std_logic_vector(255 downto 0);
+    signal transm_mux_in1, transm_mux_in2, transm_mux_in3 : std_logic_vector(255 downto 0);
+    
+    --debug:
+    signal current_state : std_logic_vector(3 downto 0);   
+    signal transm_in : std_logic_vector(255 downto 0);
+
+
+    begin  
+        start_bt_edge_detector : button_edge_detector port map(clock, start_bt, start_bt_out);
+        select_bt_edge_detector : button_edge_detector port map(clock, select_bt, select_bt_out);
+        left_bt_edge_detector : button_edge_detector port map(clock, left_bt, left_bt_out);
+        right_bt_edge_detector : button_edge_detector port map(clock, right_bt, right_bt_out);
+        comp : comparator port map(clock, reset, clear_stored_comps, successful_comparisons_out, stored_comparisons_out,
+                                         guess, word_selector_out(255 downto 128), bad_guess, victory_detector);
+        statemach : fsm port map(clock, reset, start_bt_out, select_bt_out, bad_guess, victory_detector, failure_detector, 
+                                 preparing_game, space_as_choose, lose_a_life, clear_stored_comps, guess_unlocked,
+                                 initial_screen_adjust, transmitter_mux_sel, current_state);
+        guess_screen : guess_process_screen_register port map(guess2, guess_screen_data_out);
+        guess_sel : guess_selector port map(clock, reset, left_bt_out, right_bt_out, space_as_choose, guess_unlocked, guess, guess2);
+        init_adjust : initial_screen_adjuster port map(initial_screen_adjust, difficulty_keys, word_selector_in);
+        
+        let_reg15 : letter_register port map(word_selector_out(255 downto 248), stored_comparisons_out(15), preparing_game, 
+                                                    space_or_underline_detector_out(15), word_register_in(127 downto 120));
+
+        let_reg14 : letter_register port map(word_selector_out(247 downto 240), stored_comparisons_out(14), preparing_game, 
+                                                    space_or_underline_detector_out(14), word_register_in(119 downto 112));
+
+        let_reg13 : letter_register port map(word_selector_out(239 downto 232), stored_comparisons_out(13), preparing_game, 
+                                                    space_or_underline_detector_out(13), word_register_in(111 downto 104));
+
+        let_reg12 : letter_register port map(word_selector_out(231 downto 224), stored_comparisons_out(12), preparing_game, 
+                                                    space_or_underline_detector_out(12), word_register_in(103 downto 96));
+
+        let_reg11 : letter_register port map(word_selector_out(223 downto 216), stored_comparisons_out(11), preparing_game, 
+                                                    space_or_underline_detector_out(11), word_register_in(95 downto 88));
+
+        let_reg10 : letter_register port map(word_selector_out(215 downto 208), stored_comparisons_out(10), preparing_game, 
+                                                    space_or_underline_detector_out(10), word_register_in(87 downto 80));
+
+        let_reg9 : letter_register port map(word_selector_out(207 downto 200), stored_comparisons_out(9), preparing_game, 
+                                                    space_or_underline_detector_out(9), word_register_in(79 downto 72));
+
+        let_reg8 : letter_register port map(word_selector_out(199 downto 192), stored_comparisons_out(8), preparing_game, 
+                                                    space_or_underline_detector_out(8), word_register_in(71 downto 64));
+
+        let_reg7 : letter_register port map(word_selector_out(191 downto 184), stored_comparisons_out(7), preparing_game, 
+                                                    space_or_underline_detector_out(7), word_register_in(63 downto 56));
+
+        let_reg6 : letter_register port map(word_selector_out(183 downto 176), stored_comparisons_out(6), preparing_game, 
+                                                    space_or_underline_detector_out(6), word_register_in(55 downto 48));
+
+        let_reg5 : letter_register port map(word_selector_out(175 downto 168), stored_comparisons_out(5), preparing_game, 
+                                                    space_or_underline_detector_out(5), word_register_in(47 downto 40));
+
+        let_reg4 : letter_register port map(word_selector_out(167 downto 160), stored_comparisons_out(4), preparing_game, 
+                                                    space_or_underline_detector_out(4), word_register_in(39 downto 32));
+
+        let_reg3 : letter_register port map(word_selector_out(159 downto 152), stored_comparisons_out(3), preparing_game, 
+                                                    space_or_underline_detector_out(3), word_register_in(31 downto 24));
+
+        let_reg2 : letter_register port map(word_selector_out(151 downto 144), stored_comparisons_out(2), preparing_game, 
+                                                    space_or_underline_detector_out(2), word_register_in(23 downto 16));
+
+        let_reg1 : letter_register port map(word_selector_out(143 downto 136), stored_comparisons_out(1), preparing_game, 
+                                                    space_or_underline_detector_out(1), word_register_in(15 downto 8));
+
+        let_reg0 : letter_register port map(word_selector_out(135 downto 128), stored_comparisons_out(0), preparing_game, 
+                                                    space_or_underline_detector_out(0), word_register_in(7 downto 0));
+
+        lifes : lifes_entity port map(clock, reset, preparing_game, lose_a_life, failure_detector, lifes_out);
+
+        scr_reg1 : screens_register1 port map(word_selector_in, data_in_initial);
+        scr_reg2 : screens_register2 port map(victory_detector, failure_detector, win_or_lose_message);
+        sp_or_und_det : space_or_underline_detector port map(word_underline_register_out, space_or_underline_detector_out);
+        transm_mux : transmitter_mux port map(data_in_initial, transm_mux_in1, transm_mux_in2, transm_mux_in3, transm_mux_in3,
+                        transmitter_mux_sel, guess_on_key, transm_mux_out);
+        word_reg : word_register port map(word_register_in, word_register_out);
+        word_sel : word_selector port map(word_selector_in, word_selector_out);
+        und_reg  : word_underline_register port map(word_selector_in, word_underline_register_out);
+        transm : transmitter port map(clock, reset, serial_out, transm_mux_out, transm_current_state);
+
+        transm_mux_in1 <= word_register_out(127 downto 0) & word_selector_out(127 downto 0);
+        transm_mux_in2 <= word_register_out(127 downto 0) & guess_screen_data_out(127 downto 0);
+        transm_mux_in3 <= word_selector_out(255 downto 128) & win_or_lose_message(127 downto 0);
+
+        --transm_in <= transm_mux_out;
+        --debug_stored_comps_out <= stored_comparisons_out;
+    end architecture;
+
+
+        
+
+

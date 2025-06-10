@@ -1,0 +1,23 @@
+library ieee;
+use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
+
+entity transmitter_mux is
+    port(
+        data_in_initial, data_in_reg_and_tip, data_in_reg_and_guess, data_in_regcomplete_and_vict, data_in_regcomplete_and_fail : in std_logic_vector(255 downto 0);
+        FSM_out : in std_logic_vector(1 downto 0);
+        key_out : std_logic; --para trocar entre exibição da dica e do palpite
+        data_out : out std_logic_vector(255 downto 0);
+        inversor_key : in std_logic
+    );
+end entity;
+
+architecture behav of transmitter_mux is
+    --signal data_buffer
+    begin
+        data_out <= data_in_initial when FSM_out = "00" else
+                    data_in_reg_and_tip when FSM_out = "01" and key_out = '0' else
+                    data_in_reg_and_guess when FSM_out = "01" and key_out = '1' else
+                    data_in_regcomplete_and_vict when FSM_out = "10" else
+                    data_in_regcomplete_and_fail;
+end architecture;
