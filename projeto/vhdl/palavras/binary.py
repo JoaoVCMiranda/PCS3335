@@ -9,7 +9,8 @@ with open('lvl1.txt','r') as f:
 	lvl1 = pd.read_csv(f, header=None)
 
 def binary_format(s):
-  ans  = ''.join([format(0, '08b') for x in range(16 - len(s))])
+  s = s.center(16)
+  ans = ''
   ans += ''.join([format(ord(x), '08b') for x in s])
   return ans
 
