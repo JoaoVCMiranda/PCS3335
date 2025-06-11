@@ -4,7 +4,7 @@
 
 ```
 SSID: Kodi
-PASS: helloworld 
+PASS: ********** 
 ```
 
 
@@ -15,7 +15,7 @@ Conectar via termius com esse ip no usuário, basta segurar no host e ajustar o 
 ssh pi@[o_ip_da_placa]
 ```
 ```plaintext
-senha : 2f422f
+senha : ******
 ```
 
 
