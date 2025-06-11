@@ -1,32 +1,38 @@
 # PCS3335 - Laboratório Digital A
 
-[![Dashboard](https://img.shields.io/badge/taiga.io-dashboard-blue)](https://tree.taiga.io/project/joaovcmiranda-pcs3335/backlog "Taiga.io")
+Esse é o nosso projeto final da matéria PCS3335
+É um jogo da forca feito em VHDL que envia dados para uma raspberry pi e os mostra em um display LCD 16x2
+
+## Manual de Uso
+
+Carregar os arquivos no quartus
+
+Buildar
+
+Jogar
+
+## RTL
 
 
-## Jogo da Forca
-
-As tarefas estão no taiga.io, ao fazer a conta, por favor mandem os usuários para serem adicionados
-
-Deem uma olhada nos vídeos de utilização do git/github.
-
-Atenção, ao fazer o clone, nunca fazer push direto na master(pode acabar com o nosso projeto)
-Depois de concluir o primeiro tutorial, fazer uma branch auxiliar com a sua parte do projeto
+## Port Map
 
 
-- [Chaves e clonar repositório (5 min)](https://www.youtube.com/watch?v=9gkb81GKmVI)
-- [branches (4 min)](https://www.youtube.com/watch?v=b9LTz6joMf8)
-- [commits e branches(6 min)](https://youtu.be/i_23KUAEtUM?t=53)
+## Componentes
 
-## make_tests.sh
+### Banco de Palavras
 
-Para usar o script gerado por IA para fazer os testes mais rapidamente, verificar se todas as entidas estão no arquivo work....cf
-Para inserir uma entidade que passou batida, usar
+### Comparador
 
-```sh
-ghdl -a {nome_do_arquivo}
-```
+### Sistema de Pontuação
 
-## Informações adicionais
+### Transmissor Serial
 
-- [RasPi Tutorial](tutorial_raspi.md)
+### Máquina de Estados Principal
 
+### Seletor aleatório
+
+## Adicionais 
+
+### Python
+
+Para inserir novas palavras
