@@ -1,6 +1,0 @@
-banco_palavras_tb.vhd
-../../vhdl/banco_lvl1.vhd
-../../vhdl/banco_lvl2.vhd
-../../vhdl/banco_lvl3.vhd
-../../vhdl/pseudo_rand.vhd
-../../vhdl/banco_palavras.vhd

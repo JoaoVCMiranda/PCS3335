@@ -1,6 +1,0 @@
-../../vhdl/transmissor/tx.vhd
-../../vhdl/transmissor/baud_rate_generator.vhd
-../../vhdl/transmissor/shift_reg.vhd
-../../vhdl/transmissor/transmitter_timing_control.vhd
-../../vhdl/transmissor/control_unit_tx.vhd
-tx_tb.vhd
