@@ -1,3 +1,4 @@
-remote_theme: "tareqdandachi/jekyll-shell-theme"
+#remote_theme: "tareqdandachi/jekyll-shell-theme"
+theme: jekyll-theme-midnight
 title: Jogo da Forca
 description: Feito com <3 = vhld
