@@ -148,4 +148,92 @@ A função foi substituída pelo componente `word_selector.vhd` (descrito em "Ba
 
 ### Python
 
-Para inserir novas palavras
+
+Para facilitar a adição e o gerenciamento de palavras e telas no jogo, foram utilizados dois scripts Python para gerar automaticamente o código VHDL correspondente aos bancos de palavras e às telas de interface. Essa abordagem modulariza o conteúdo do jogo, separando-o da lógica principal.
+
+#### `binary.py` - Gerador do Banco de Palavras
+
+Este script é responsável por converter listas de palavras e suas dicas, armazenadas em arquivos de texto simples, em um componente de memória (ROM) em VHDL.
+
+*   **Funcionalidade:**
+    1.  Lê arquivos de texto para cada nível de dificuldade (ex: `lvl1.txt`), onde cada linha contém uma palavra e sua dica.
+    2.  Converte cada palavra e dica para um formato binário de tamanho fixo de 128 bits (16 caracteres ASCII).
+    3.  Gera um arquivo `.vhd` para cada nível, contendo uma grande estrutura `with...select`. Essa estrutura atua como uma ROM, onde uma entrada de seleção (`binary_select`) funciona como um endereço para acessar a palavra e a dica correspondentes.
+
+```python
+# Trecho de código de binary.py que formata a palavra/dica
+def binary_format(s):
+  # Preenche com caracteres nulos à esquerda até atingir 16 caracteres
+  ans  = ''.join([format(0, '08b') for x in range(16 - len(s))])
+  # Converte cada caractere da string para seu valor ASCII em 8 bits
+  ans += ''.join([format(ord(x), '08b') for x in s])
+  return ans
+
+# Trecho que gera o VHDL
+word_setup = "\n----- WORD SETUP -----"
+for y in range(128):
+  word_setup += f"\nwith binary_select select binary_word({127-y}) <="
+  for x in range(len(lvl1)):
+    # Para cada palavra (x), atribui o bit (y) correspondente
+    word_setup += f"\n\t'{lvl1['binary_word'][x][y]}' when \"{format(x, f'07b')}\","
+  word_setup += "\n\t'0' when others;\n"
+```
+
+
+#### `telas.py` - Gerador das Telas de Interface
+
+Este script gera o componente VHDL que armazena todas as mensagens estáticas (tela inicial, vitória, derrota, etc.) e gerencia o que é exibido na segunda linha do LCD durante o jogo.
+
+*   **Funcionalidade:**
+    1.  Define as strings para cada tela diretamente no código.
+    2.  Converte cada linha de texto em um formato binário de 128 bits.
+    3.  Gera o arquivo `telas.vhd` com uma estrutura `with...select` que funciona como um multiplexador.
+    4.  **Lógica Dinâmica:** Diferente do banco de palavras, este componente não é apenas uma ROM estática. Para certos estados do jogo, ele seleciona sinais de entrada em tempo real (como a letra do palpite atual ou a dica da palavra) para serem exibidos, em vez de uma mensagem fixa.
+
+```python
+# Trecho de código de telas.py que gera a lógica da segunda linha
+nd_setup = "\n----- 2nd line SETUP -----"
+for y in range(128):
+  nd_setup += f"\nwith sel select nd_line({127-y}) <="
+  for x in range(len(telas)+2):
+    if(x==6): # Estado de jogo: mostrando o palpite
+      nd_setup += f"\n\tpalpite({7-y}) when \"{format(x, f'03b')}\"," if y<=7 else f"\n\tpalpites_anteriores({127 - y}) when \"{format(x, f'03b')}\","
+    elif(x==7): # Estado de jogo: mostrando a dica
+      nd_setup += f"\n\ttip({127-y}) when \"{format(x, f'03b')}\","
+    else: # Outros estados: mostrando mensagens estáticas
+      nd_setup += f"\n\t'{df['binary_2nd'][x][y]}' when \"{format(x, f'03b')}\","
+  nd_setup += "\n\t'0' when others;\n"
+```
+
+#### Debug com Expressões Regulares (Regex)
+
+Para garantir a integridade do código VHDL gerado, os scripts incluem funções de depuração que utilizam expressões regulares para validar o conteúdo dos arquivos `.vhd` de forma automatizada.
+
+*   **Metodologia:**
+    1.  Uma função de `debug` constrói um padrão de regex para encontrar todas as atribuições de bit para uma palavra ou tela específica dentro do arquivo VHDL.
+    2.  O padrão, como `f"'([01])' when \"{format(index, '07b')}\""`, captura o valor do bit (`0` ou `1`) para um `index` de seleção.
+    3.  A função `re.findall()` extrai todos os 128 bits de uma entrada, um por um, e os armazena em uma lista.
+    4.  A lista é unida para reconstruir a string binária.
+    5.  Por fim, a string reconstruída (lida do VHDL) é comparada com a string binária original (gerada pelo Python). Se elas forem idênticas, a geração para aquela entrada foi um sucesso.
+
+```python
+# Função de debug de `binary.py`
+def debug1_by_index(index):
+  # Padrão para encontrar: '0' when "0000001", e capturar o bit '0'
+  regex = f"'([01])' when \"{format(index, '07b')}\""
+  
+  # Encontra todas as correspondências no arquivo VHDL gerado
+  matches = re.findall(regex, lvl1_vhd)
+
+  # Reconstrói a palavra e a dica a partir dos bits encontrados
+  word = matches[:128]
+  tip = matches[128:]
+
+  # Imprime o original e o reconstruído para verificação
+  print("Original Word Binary :", lvl1['binary_word'][index])
+  print("Extracted Word Binary:", "".join(word))
+  print("Original Tip Binary  :", lvl1['binary_tip'][index])
+  print("Extracted Tip Binary :", "".join(tip))
+```
+
+
